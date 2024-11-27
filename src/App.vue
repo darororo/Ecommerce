@@ -1,10 +1,20 @@
-<template>
- 
-</template>
-
-<script setup>
+<script setup lang="ts">
+import FormButton from './components/FormButton.vue';
 </script>
 
-<style scoped>
+<template>
+    <FormButton
+    :bgColor="'green'"/>
 
-</style>
+    <FormButton
+    :bgColor="'red'"
+    :label="'cancel '"/>
+
+    <FormButton
+    :bgColor="'black'"
+    :label="'click '"/>
+</template>
+
+
+
+
