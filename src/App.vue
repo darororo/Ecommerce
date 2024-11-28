@@ -3,18 +3,28 @@ import FormButton from './components/FormButton.vue';
 </script>
 
 <template>
-    <FormButton
-    :bgColor="'green'"/>
+    <div class="container">
+        <FormButton
+        :bgColor="'green'"/>
 
-    <FormButton
-    :bgColor="'red'"
-    :label="'cancel '"/>
+        <FormButton
+        :bgColor="'red'"
+        :label="'cancel '"/>
 
-    <FormButton
-    :bgColor="'black'"
-    :label="'click '"/>
+        <FormButton
+        :bgColor="'black'"
+        :label="'click '"/>
+    </div>
+
 </template>
 
+<style scoped>
+.container {
+    display: flex;
+    justify-content: center;
+    
+}
+</style>
 
 
 
