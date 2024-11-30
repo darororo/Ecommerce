@@ -1,10 +1,13 @@
 <template>
-    <div class="product-list">
-      <h3>Product Lists</h3>
+  <div class="product-list">
+      <h3 class="header-product">Product Lists</h3>
       <div class="product-container">
         <div class="product-item" v-for="(brand, index) in brands" :key="index">
           <img :src="brand.logo" :alt="brand.name" />
-          <p class="branch-name">{{ brand.name }}</p> <!-- Add this line to show the name -->
+          <!-- <div style="display: flex;">
+            <div style="border: 1px solid; height: 10px; width: 10px; border-radius: 100%; font-size: 8px; font-weight: bold;">R</div>
+          </div> -->
+          <p class="branch-name">{{ brand.name }}</p> 
         </div>
       </div>
     </div>
@@ -16,21 +19,27 @@
       return {
         brands: [
           { name: 'Porsche', logo: new URL('@/assets/images/brands/porsche.png', import.meta.url).href },
-          { name: 'Ferrari', logo: new URL('@/assets/images/brands/ferrari.png', import.meta.url).href },
-          { name: 'Mercedes', logo: new URL('@/assets/images/brands/mercedes.png', import.meta.url).href },
-          { name: 'Lamborghini', logo: new URL('@/assets/images/brands/lamborghini.png', import.meta.url).href },
-          { name: 'BMW', logo: new URL('@/assets/images/brands/bmw.png', import.meta.url).href }
+          { name: '', logo: new URL('@/assets/images/brands/ferrari.png', import.meta.url).href },
+          { name: '', logo: new URL('@/assets/images/brands/mercedes.png', import.meta.url).href },
+          { name: '', logo: new URL('@/assets/images/brands/lamborghini.png', import.meta.url).href },
+          { name: '', logo: new URL('@/assets/images/brands/bmw.png', import.meta.url).href }
         ]
       };
     }
   };
   </script>
+  <style>
+  @import url('https://fonts.cdnfonts.com/css/yapari-trial');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
   
-  <style scoped>
+  .header-product {
+    font-family: "Montserrat", sans-serif; 
+    font-weight: 400;
+    font-size: 26px;
+  }
   .product-list {
     text-align: center;
     margin-top: 20px;
-    font-family: Montserrat;
   }
   
   .product-container {
@@ -40,28 +49,30 @@
   }
   
   .product-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    text-align: center;
     border: 1px solid #ccc;
     padding: 20px;
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 132px;
-    height: 130px; /* Increased height to fit the text */
-    display: flex;
-    flex-direction: column; /* Stack image and text vertically */
-    align-items: center;
-    justify-content: center;
+    width: 160px;
+    height: 100px; 
     background-color: white;
+    cursor: pointer;
   }
   
   .product-item img {
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 48px;
+    max-width: 48px;
+    margin-top: 20px;
   }
   
   .branch-name {
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 14px;
-    font-weight: bold;
+    font-family: 'Yapari Variable Trial', sans-serif; 
   }
   </style>
   
