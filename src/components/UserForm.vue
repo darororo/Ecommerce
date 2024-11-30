@@ -3,7 +3,7 @@
         <!-- <video class="image-bg" autoplay loop muted>
             <source :src="videoSrc" type="video/mp4" >
         </video> -->
-        <!-- <img class="image-bg" src="@/assets/image/imageCar.jpg" alt="Background Image"> -->
+        <img class="image-bg" src="@/assets/image/imageCar.jpg" alt="Background Image">
 
         <form v-if="isCreateForm" class="form-sec">
             <div class="form-layout"> 
