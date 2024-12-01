@@ -1,8 +1,5 @@
 <template>
-<div class="bg"
-    :style="{
-        backgroundImage: `url(${currBg})`,
-    }">
+<div class="bg":style="{backgroundImage: `url(${currBg})`,}">
     <div class="title-wrapper">
         <h4 class="title caudex-bold">Luxury Car</h4>
         <p class="subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -10,19 +7,23 @@
     </div>
 
     <div class="indicator-container">
-        <div class="indicator-wrapper">
-            <template v-for="n in bgUrls.length">
-                <div class="indicator" :class="{'indicator-active' : bgIndex===n-1}"></div>
-            </template>
-            
-            <svg @click="prevImage" class="arrow-btn" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
-            </svg>
-            <svg @click="nextImg" class="arrow-btn arrow-right" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
-            </svg>
+        <div class="center-container">
+            <div class="indicator-wrapper">
+                <template v-for="n in bgUrls.length">
+                    <div class="indicator" :class="{'indicator-active' : bgIndex===n-1}"></div>
+                </template>
+                
+                <div class="skip-icon">
+                    <svg @click="prevImage" class="arrow-btn" width="24" height="16" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
+                    </svg>
+                    <svg @click="nextImg" class="arrow-btn arrow-right" width="24" height="16" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
+                    </svg>
+                </div>
+            </div>
+            <span>Lorem Ipsum is simply dummy text of the printing</span>
         </div>
-        <div>hello</div>
     </div>
     
     
@@ -83,7 +84,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&family=Quicksand:wght@300..700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 .bg{
     position: relative;
     height: 100vh;
@@ -91,7 +92,16 @@ export default {
     padding: 0;
     box-sizing: border-box;
 }
-
+.center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-family: "Roboto Flex", sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+}
 .title-wrapper {
     position: absolute;
     display: flex;
@@ -113,21 +123,19 @@ export default {
     font-style: italic;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 14px;
 
 }
 
 .indicator-container {
     display: flex;
     flex-direction: column;
-    background: purple;
     position: absolute;
     bottom: 52px;
     right: 40px;
 }
 
 .indicator-container > div {
-    color: red;
     margin: 0;
     padding: 0;
 }
@@ -136,14 +144,18 @@ export default {
     display: flex;
     align-items: center;
     column-gap: 8px;
+    padding-bottom: 14px;
   
 }
-
+.skip-icon {
+    display: flex; 
+    align-items: center;
+    padding-left: 20px; 
+}
 .indicator {
     width: 36px;
     height: 2px;
-    background-color: grey;
-
+    background-color: rgb(206, 206, 206);
 }
 
 .indicator-active {
@@ -154,11 +166,13 @@ export default {
 
 .arrow-btn {
     cursor: pointer;
+    padding-right: 5px;
 }
 
 
 .arrow-right {
     transform: rotate(180deg);
+    
 }
 
 .caudex-regular {
@@ -171,6 +185,7 @@ export default {
   font-family: "Caudex", serif;
   font-weight: 700;
   font-style: normal;
+  font-size: 50px;
 }
 
 </style>
