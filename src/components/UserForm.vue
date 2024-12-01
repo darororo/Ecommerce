@@ -1,10 +1,22 @@
 <template>
-    <div class="container">
-        <!-- <video class="image-bg" autoplay loop muted>
-            <source :src="videoSrc" type="video/mp4" >
-        </video> -->
-        <img class="image-bg" src="@/assets/imageCar.jpg" alt="Background Image">
+    <!-- <img class="image-bg" src="@/assets/images/Car1.jpg" alt="Background Image"> -->
+    <video class="image-bg" autoplay loop muted>
+        <source :src="videoSrc" type="video/mp4" >
+    </video>
 
+    <div class="header-content">
+        <div class="logo-title">
+            <img class="logo-img" src="@/assets/images/Logo.png" alt="logo-img">
+            <span>Carbodia</span>
+        </div>
+        <div>
+            <button @click="changeForm" v-if="!isLoggedIn">Sign Up</button>
+            <button @click="changeForm" v-else >Sign In</button>
+
+        </div>
+    </div>
+
+    <div class="container">
         <form v-if="isCreateForm" class="form-sec">
             <div class="form-layout"> 
             <div class="head-sec">
@@ -99,11 +111,19 @@
                 </button>
             </div>
         </form>
+        <div class="footer-skip">
+            <span>CAMBODIA</span>
+            <div class="skip-form">
+                <template v-for="(item, index) in skipItems" :key="index">
+                    <div class="indicator" :class="{'indicator-active': activeIndex === index}"></div>
+                </template>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import videoSrc from '@/assets/lambor.mp4';
+import videoSrc from '@/assets/Car1.mp4'
 import GoogleLogin from './icons/GoogleLogin.vue';
 import FacebookLogin from './icons/FacebookLogin.vue';
 import GoogleLogout from './icons/GoogleLogout.vue';
@@ -113,18 +133,23 @@ export default {
         GoogleLogin,
         FacebookLogin,
         GoogleLogout,
-        FacebookLogout
+        FacebookLogout,
     },
     data() {
         return {
             videoSrc,
             isCreateForm: true,
+            isLoggedIn: false,
+            skipItems: Array(5).fill(null),
+            activeIndex: 0,
         };
     },
     methods: {
         changeForm() {
             this.isCreateForm = !this.isCreateForm
+            this.isLoggedIn = !this.isLoggedIn
         },
+
         
 
     }
@@ -133,14 +158,17 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/yapari-trial');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 .container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+    position: absolute;
+    left: 50%;
+    padding-top: 20px;
+}
+.container form {
+    position: relative; 
+    left: -50%;
 }
 
 .image-bg {
@@ -154,13 +182,14 @@ export default {
 }
 
 .form-sec {
-    height: 650px;
-    width: 640px;
+    height: 610px;
+    width: 600px;
     background-color: white;
     border: 0px solid rgb(104, 103, 103);
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .form-layout {
     display: flex;
@@ -175,7 +204,6 @@ export default {
     font-family: 'Roboto Serif';
     text-align: center;
     line-height: 24px;
-    padding-top: 20px;
     padding-bottom: 40px;
 }
 
@@ -379,5 +407,71 @@ h2 {
     color: rgb(73, 73, 253);
     cursor: pointer;
     padding-right: 100px;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px 20px 50px;
+    margin-top: 20px;
+}
+.logo-img {
+    width: 75px;
+    height: 59px;
+
+}
+.logo-title {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-family: "Goldman", sans-serif;
+    font-size: 30px;
+    gap: 20px;
+}
+.header-content button {
+    background: transparent;
+    border: 1px solid white;
+    height: 50px;
+    width: 125px;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: "Quattrocento Sans", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+.footer-skip {
+    position: absolute;
+    left: -50%;
+    margin-top: 40px;
+    color: white;
+    font-size: 24px;
+    font-family: 'Yapari Variable Trial', sans-serif;
+    font-weight: normal;
+}
+.footer-skip {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.skip-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.indicator {
+  width: 44px;
+  height: 6px;
+  border-radius: 10px;
+  background-color: rgb(88, 88, 88);
+  transition: all 0.3s ease-in-out;
+}
+
+.indicator-active {
+  background-color: white;
 }
 </style>
