@@ -9,7 +9,8 @@
             <img class="logo-img" src="@/assets/images/Logo.png" alt="logo-img">
             <span>Carbodia</span>
         </div>
-        <div>
+        <div class="empty-space"></div>
+        <div class="container-btn">
             <button @click="changeForm" v-if="!isLoggedIn">Sign Up</button>
             <button @click="changeForm" v-else >Sign In</button>
 
@@ -164,7 +165,7 @@ export default {
 .container {
     position: absolute;
     left: 50%;
-    padding-top: 20px;
+    padding-top: 50px;
 }
 .container form {
     position: relative; 
@@ -409,11 +410,27 @@ h2 {
     padding-right: 100px;
 }
 .header-content {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0px 50px 20px 50px;
-    margin-top: 20px;
+    height: 92px;
+    text-align: center;
+}
+.empty-space {
+    background-color: red;
+    height: 31px;
+    width: 400%;
+    align-self: flex-start;
+}
+.container-btn {
+    display: flex;
+    justify-content: end;
+    background-color: green;
+    align-items: center;
+    padding-right: 50px;
+    height: 100px;
+    width: 100%;
 }
 .logo-img {
     width: 75px;
@@ -425,9 +442,35 @@ h2 {
     align-items: center;
     color: white;
     font-family: "Goldman", sans-serif;
+    background-color: blue;
+    height: 100px;
+    width: 100%;
     font-size: 30px;
+    padding-left: 50px;
     gap: 20px;
 }
+
+.logo-title::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 360px;
+    width: 50px;
+    border-radius: 0% 0% 30% 0%;
+    height: 122.5px;  
+    background-color: blue;
+    rotate: 50deg;
+}
+/* .logo-title::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 350px;
+    width: 50px;
+    border-radius: 25% 0%;
+    height: 50px;  
+    background-color: rgb(14, 153, 39);
+} */
 .header-content button {
     background: transparent;
     border: 1px solid white;
@@ -474,4 +517,5 @@ h2 {
 .indicator-active {
   background-color: white;
 }
+
 </style>
