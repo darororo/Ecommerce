@@ -1,11 +1,28 @@
 <template>
-    <div class="container">
-        <!-- <video class="image-bg" autoplay loop muted>
-            <source :src="videoSrc" type="video/mp4" >
-        </video> -->
-        <img class="image-bg" src="@/assets/imageCar.jpg" alt="Background Image">
+    <img class="image-bg" src="@/assets/images/auth-bgs/Car1.jpg" alt="Background Image">
+    <!-- <video class="image-bg" autoplay loop muted>
+        <source :src="videoSrc" type="video/mp4" >
+    </video> -->
 
-        <form v-if="isCreateForm" class="form-sec">
+    <div class="header-content">
+        <div class="logo-title">
+            <img class="logo-img" src="@/assets/images/Logo.png" alt="logo-img">
+            <span>Carbodia</span>
+        </div>
+        <div class="empty-space"></div>
+        <div class="container-btn">
+            <button v-if="!isCreateForm">
+                <RouterLink v-if="!isCreateForm" to="/signup" tag="button">Sign Up</RouterLink>
+            </button>
+            <button v-else >
+                <RouterLink to="/login" tag="button">Sign in</RouterLink>
+            </button>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <form v-if="!isCreateForm" class="form-sec">
             <div class="form-layout"> 
             <div class="head-sec">
                 <h2>Sign In</h2>
@@ -99,11 +116,19 @@
                 </button>
             </div>
         </form>
+        <div class="footer-skip">
+            <span>CAMBODIA</span>
+            <div class="skip-form">
+                <template v-for="(item, index) in skipItems" :key="index">
+                    <div class="indicator" :class="{'indicator-active': activeIndex === index}"></div>
+                </template>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import videoSrc from '@/assets/lambor.mp4';
+// import videoSrc from '@/assets/Car1.mp4'
 import GoogleLogin from './icons/GoogleLogin.vue';
 import FacebookLogin from './icons/FacebookLogin.vue';
 import GoogleLogout from './icons/GoogleLogout.vue';
@@ -113,18 +138,25 @@ export default {
         GoogleLogin,
         FacebookLogin,
         GoogleLogout,
-        FacebookLogout
+        FacebookLogout,
+    },
+    props: {
+        isCreateForm: Boolean,
     },
     data() {
         return {
-            videoSrc,
-            isCreateForm: true,
+            // videoSrc,
+            isLoggedIn: false,
+            skipItems: Array(5).fill(null),
+            activeIndex: 0,
         };
     },
     methods: {
         changeForm() {
             this.isCreateForm = !this.isCreateForm
+            this.isLoggedIn = !this.isLoggedIn
         },
+
         
 
     }
@@ -133,14 +165,23 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/yapari-trial');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+
+a {
+    text-decoration: none;
+    color: black;
+}
 
 .container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+    position: absolute;
+    left: 50%;
+    padding-top: 50px;
+}
+.container form {
+    position: relative; 
+    left: -50%;
 }
 
 .image-bg {
@@ -154,13 +195,14 @@ export default {
 }
 
 .form-sec {
-    height: 650px;
-    width: 640px;
+    height: 610px;
+    width: 600px;
     background-color: white;
     border: 0px solid rgb(104, 103, 103);
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .form-layout {
     display: flex;
@@ -175,7 +217,6 @@ export default {
     font-family: 'Roboto Serif';
     text-align: center;
     line-height: 24px;
-    padding-top: 20px;
     padding-bottom: 40px;
 }
 
@@ -380,4 +421,136 @@ h2 {
     cursor: pointer;
     padding-right: 100px;
 }
+.header-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92px;
+    text-align: center;
+}
+.empty-space {
+    background-color: rgb(255, 255, 255);
+    height: 31px;
+    width: 400%;
+    align-self: flex-start;
+}
+.container-btn {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    height: 100px;
+    padding: 0px 30px 0px 0px;
+    width: auto;
+    align-items: center;
+    column-gap: 20px;
+}
+.container-btn::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 50px;
+    right: 310px;
+    border-radius: 0% 30% 0% 0%;
+    height: 122.5px;  
+    background-color: rgb(255, 255, 255);
+    rotate: 130deg;
+}
+.container-btn::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 160px;
+    border-bottom-left-radius: 20px;
+    right: 155px;
+    height: 100px;  
+    background-color: rgb(255, 255, 255);
+}
+.logo-img {
+    width: 75px;
+    height: 59px;
+
+}
+.logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-family: "Goldman", sans-serif;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    font-size: 30px;
+    width: auto;
+    padding: 0px 30px 0px 30px;
+    column-gap: 20px;
+}
+
+.logo-title::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 310px;
+    width: 50px;
+    border-radius: 0% 0% 30% 0%;
+    height: 122.5px;  
+    background-color: rgb(255, 255, 255);
+    rotate: 50deg;
+}
+.logo-title::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 291px;
+    top: 0;
+    width: 60px;
+    height: 45px;  
+    background-color: rgb(255, 255, 255);
+}
+.header-content button {
+    background: transparent;
+    border: 1px solid black;
+    height: 50px;
+    width: 125px;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: "Quattrocento Sans", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+.footer-skip {
+    position: absolute;
+    left: -50%;
+    margin-top: 40px;
+    color: white;
+    font-size: 24px;
+    font-family: 'Yapari Variable Trial', sans-serif;
+    font-weight: normal;
+}
+.footer-skip {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.skip-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.indicator {
+  width: 44px;
+  height: 6px;
+  border-radius: 10px;
+  background-color: rgb(88, 88, 88);
+  transition: all 0.3s ease-in-out;
+}
+
+.indicator-active {
+  background-color: white;
+}
+
 </style>
