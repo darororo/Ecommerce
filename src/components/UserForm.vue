@@ -11,13 +11,15 @@
         </div>
         <div class="empty-space"></div>
         <div class="container-btn">
-            <button v-if="!isCreateForm">
-                <RouterLink v-if="!isCreateForm" to="/signup" tag="button">Sign Up</RouterLink>
-            </button>
-            <button v-else >
-                <RouterLink to="/login" tag="button">Sign in</RouterLink>
-            </button>
-
+            <RouterLink to="/">
+                <button class="login-direction">Go to website</button>
+            </RouterLink>
+            <RouterLink v-if="!isCreateForm" to="/signup" tag="button">
+                <button>Sign Up</button>
+            </RouterLink>
+            <RouterLink v-else to="/login" tag="button">
+                <button>Sign in</button>
+            </RouterLink>
         </div>
     </div>
 
@@ -440,7 +442,7 @@ h2 {
     background-color: rgb(255, 255, 255);
     align-items: center;
     height: 100px;
-    padding: 0px 30px 0px 0px;
+    padding: 0px 20px 0px 0px;
     width: auto;
     align-items: center;
     column-gap: 20px;
@@ -455,16 +457,21 @@ h2 {
     height: 122.5px;  
     background-color: rgb(255, 255, 255);
     rotate: 130deg;
+    clip-path: polygon(34% 0, 100% 0, 100% 100%, 0% 100%);
 }
 .container-btn::before {
     content: "";
     display: block;
     position: absolute;
-    width: 160px;
-    border-bottom-left-radius: 20px;
+    width: 175px;
+    border-bottom-left-radius: 30px;
     right: 155px;
-    height: 100px;  
+    height: 100px;
     background-color: rgb(255, 255, 255);
+}
+
+.container-btn .login-direction {
+    position: relative;
 }
 .logo-img {
     width: 75px;
