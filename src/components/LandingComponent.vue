@@ -1,47 +1,46 @@
 <template>
-<div class="bg">
-    <div class="showcase-wrapper">
-        <div class="showcase">
-            <template v-for="(bg, index) in bgUrls" :key="index">
-                <div class="showcase-item">
-                    <img :src="bg" alt="">
-                </div>
-            </template>
-        </div>
-    </div>
-    <!-- <transition name="fade" mode="in-out" @after-leave="bgNext"> 
-        <img :key="currBg" :src="currBg" alt="">
-    </transition> -->
-    <!-- <img :src="currBg" alt=""> -->
-    <div class="title-wrapper">
-        <h4 class="title caudex-bold">Luxury Car</h4>
-        <p class="subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            of type and scrambled it to make a type specimen book.</p>
-    </div>
-
-    <div class="indicator-container">
-        <div class="center-container">
-            <div class="indicator-wrapper">
-                <template v-for="n in bgUrls.length">
-                    <transition name="fade" mode="out-in">
-                    <div class="indicator" :class="{'indicator-active' : bgIndex===n-1}"></div>
-                    </transition>
+    <div class="bg">
+        <div class="showcase-wrapper">
+            <div class="showcase">
+                <template v-for="(bg, index) in bgUrls" :key="index">
+                    <div class="showcase-item">
+                        <img :src="bg" alt="">
+                    </div>
                 </template>
-                
-                <div class="skip-icon">
-                    <svg @click="prevImage" class="arrow-btn prev" width="24" height="16" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
-                    </svg>
-                    <svg @click="nextImg" class="arrow-btn arrow-right next" width="24" height="16" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
-                    </svg>
-                </div>
             </div>
-            <span>Lorem Ipsum is simply dummy text of the printing</span>
+        </div>
+        <!-- <transition name="fade" mode="in-out" @after-leave="bgNext"> 
+            <img :key="currBg" :src="currBg" alt="">
+        </transition> -->
+        <!-- <img :src="currBg" alt=""> -->
+        <div class="title-wrapper">
+            <h4 class="title caudex-bold">Luxury Car</h4>
+            <p class="subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                of type and scrambled it to make a type specimen book.</p>
+        </div>
+
+        <div class="indicator-container">
+            <div class="center-container">
+                <div class="indicator-wrapper">
+                    <template v-for="n in bgUrls.length">
+                        <transition name="fade" mode="out-in">
+                        <div class="indicator" :class="{'indicator-active' : bgIndex===n-1}"></div>
+                        </transition>
+                    </template>
+                    
+                    <div class="skip-icon">
+                        <svg @click="prevImage" class="arrow-btn prev" width="24" height="16" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
+                        </svg>
+                        <svg @click="nextImg" class="arrow-btn arrow-right next" width="24" height="16" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.78554 5.24992H20V6.74992H4.78554L11.4905 10.7729L9.72275 11.8335L0 5.99992L9.72275 0.16626L11.4905 1.22692L4.78554 5.24992Z" fill="white" fill-opacity="0.8"/>
+                        </svg>
+                    </div>
+                </div>
+                <span>Lorem Ipsum is simply dummy text of the printing</span>
+            </div>
         </div>
     </div>
-</div>
-
 </template>
 
 <script>
