@@ -7,10 +7,17 @@
                     <span>Porsche 911 GT2 RS</span>
                     <input class="star" type="checkbox" title="bookmark page" checked>
                 </div>
-                <div class="Sport">Sport</div>
-                <div class="popular-car">
-                    <img src="@/assets/images/popular/car1.png" alt="car1">
-                </div>
+                <div class="sport">Sport</div>
+                <Transition 
+                appear
+                :css="false" 
+                @before-enter="onBeforeEnter"
+                @enter="onEnter"
+                >
+                    <div class="popular-car">
+                        <img src="@/assets/images/popular/car1.png" alt="car1">
+                    </div>
+                </Transition>
                 <div class="bg-popular"></div>
                 <div class="details">
                     <span>
@@ -31,8 +38,6 @@
                     <button class="btn-buy">Inquire</button>
                 </div>
             </div>
-            <div class="column"></div>
-            <div class="column"></div>
         </div>
     </div>
 </template>
@@ -41,14 +46,45 @@
 import speedo from '@/components/icons/popIcons/speedo.vue';
 import gas from '@/components/icons/popIcons/gas.vue';
 import GroupPeople from '@/components/icons/popIcons/groupPeople.vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default {
+    setup() {
+        gsap.registerPlugin(ScrollTrigger);
+    },
     components: {
         gas,
         GroupPeople,
         speedo
+    },
+    methods: {
+        onEnter,
+        onBeforeEnter,
     }
 }
+
+function onBeforeEnter(el) {
+    gsap.set(el, {
+    x: 250,
+  })
+}
+  
+function onEnter(el, done) {
+  gsap.to(el, {
+    scrollTrigger: {
+        trigger: '.popular-car',
+        start: '50% 80%',
+        // markers: true
+
+    },
+    duration: 1.5,
+    x: -20,
+    ease: 'power2.out',
+    onComplete: done
+  })
+}
+
 </script>
 
 <style scoped>
@@ -68,7 +104,6 @@ export default {
 .layout-sec {
     display: flex;
     justify-content: space-between;
-
 }
 .column {
     overflow: hidden;
@@ -76,11 +111,12 @@ export default {
     height: 380px;
     width: 500px;
     border-radius: 10px;
+    position: relative;
 }
 .column .header-col {
     display: flex;
     justify-content: space-between;
-    padding: 30px 30px 0px 30px;
+    padding: 30px 0px 0px 30px;
     align-items: center;
     font-family: "Raleway", sans-serif;
     font-size: 18px;
@@ -101,9 +137,9 @@ export default {
 }
 .star:checked::after {
     color: #A8A8A8;
-   content: "\2606";
+    content: "\2606";
 }
-.Sport {
+.sport {
     color: #B8B8B8;
     font-size: 18px;
     font-family: "Raleway", sans-serif;
@@ -112,7 +148,8 @@ export default {
 }
 .popular-car {
     position: absolute;
-    left: 200px;
+    left: 45px;
+    overflow: hidden;
 }
 
 .popular-car img {
@@ -165,7 +202,8 @@ export default {
     background: rgb(255,255,255);
     font-size: 20px;
     font-weight: 500;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);    padding: 10px 20px 10px 20px;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);    
+    padding: 10px 20px 10px 20px;
     cursor: pointer;
 }
 .btn-buy {
