@@ -33,7 +33,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
   
   .header-product {
-    padding: 100px 0px 28px 0px;
+    padding: 50px 0px 28px 0px;
     font-family: "Montserrat", sans-serif; 
     font-weight: 400;
     font-size: 32px;
