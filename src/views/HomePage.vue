@@ -1,15 +1,24 @@
 <template>
+<<<<<<< HEAD
   <Transition appear @enter="navEnter" >
   <NavComponent class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"/>
   </Transition>
   <LandingComponent class="hero"/>
   <ProductList/>
   <PopularCard />
+  <CarCard />
   <FooterComponent/>
   <div style="height: 200px;"></div>
+=======
+  <!-- <NavComponent/>
+  <LandingComponent/> -->
+  <CarCard/>
+  
+>>>>>>> 08c090b (Add CarCard component)
 </template>
 
 <script>
+import CarCard from '../components/CarCard.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import LandingComponent from '../components/LandingComponent.vue';
 import NavComponent from '../components/NavComponent.vue';
@@ -33,7 +42,8 @@ export default {
       LandingComponent,
       NavComponent,
       ProductList,
-      PopularCard
+      PopularCard,
+      CarCard
     },
     methods: {
       navInit,
@@ -74,6 +84,9 @@ function navEnter(el, done){
       this.color = "white";
       this.bgColor = "transparent"
       done();
+        LandingComponent,
+        NavComponent,
+        CarCard,
     }
   })
 }
