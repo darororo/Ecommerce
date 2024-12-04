@@ -1,6 +1,6 @@
 <template>
   <div class="product-list">
-      <h3 class="header-product">Product lists</h3>
+      <h3 class="header-product">Top Brands</h3>
       <div class="product-container">
         <div class="product-item" v-for="(brand, index) in brands" :key="index">
           <img :src="brand.logo" :alt="brand.name" />
