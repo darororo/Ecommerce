@@ -17,10 +17,14 @@
 
 <script>
 export default {
+    props: {
+        textColor: {
+            default: "white",
+        }
+    },
     data() {
         return {
             isLoggedIn: false,
-
         }
     },
 
@@ -53,7 +57,7 @@ a {
     font-family: 'Quattrocento';
     font-size: 16px;
     padding-left: 4px;
-    color: white;
+    color: v-bind(textColor);
 }
 
 .btn-log-in {
@@ -66,7 +70,8 @@ a {
     width: 140px;
     border-radius: 20px;
     background-color: transparent;
-    border: 2px solid white;
+    border: 2px solid;
+    border-color: v-bind(textColor);
     cursor: pointer;
     /* margin-right: 100px; */
 }
@@ -80,7 +85,8 @@ a {
     width: 140px;
     border-radius: 20px;
     background-color: transparent;
-    border: 2px solid white;
+    border: 2px solid;
+    border-color: v-bind(textColor);
     cursor: pointer;
     border: none;
     /* margin-right: 100px; */
@@ -96,6 +102,6 @@ a {
 .user-name {
     font-size: 13px;
     font-family: sans-serif;
-    color: white;
+    color: v-bind(textColor);
 }
 </style>
