@@ -1,15 +1,14 @@
 <template>
-  
   <div class="container">
-    
-   
     <div class="menu">
       <header class="header">
         <div class="head">
           <div class="img">
           <img src="@/assets/images/media/carbodia.png" alt="Frame">
           </div>
-          <div class="text"><h1>Carbodia</h1></div>
+          <div class="text">
+            <h1>Carbodia</h1>
+          </div>
         
         </div>
         <nav class="nav">    
@@ -57,8 +56,8 @@
 .container{
   background-color: black;
   color: black; 
-  width:1440px ;
-  height:447px ;
+  width:100%;
+  /* height:447px ; */
   
 }
 .head{
@@ -74,8 +73,8 @@
 .img{
   width: 108px;
   height: 80px;
-  margin: 20px;
-  margin-right: 20px;
+  /* margin: 20px; */
+  /* margin-right: 20px; */
 }
 
 .header {
@@ -87,14 +86,10 @@
     font-size: 20px;
     
 }
-.h1{
-  font-size: 30px;
-  font-weight: Goldman;
-  margin-right:20px ;
-}
+
 .nav .ul {
     list-style: none;
-    margin-right: 150px;
+    /* margin-right: 150px; */
     display: flex;
     font-family: Goldman;
 }
@@ -114,7 +109,6 @@
 }
 
 .description{
-  padding: 20px;
   color: white;
   font-family: Roboto;
   font-size: 16px;
