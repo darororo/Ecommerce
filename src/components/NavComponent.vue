@@ -2,7 +2,7 @@
 <div class="wrapper">
     <div class="container">
         <div class="menu-btn">
-            <svg class="burger-svg" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
+            <svg class="burger-svg" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" :fill="textColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
             <p class="goldman-regular">Carbodia</p> 
         </div>
         <div class="search-wrapper">
@@ -11,37 +11,37 @@
                 <input type="text" class="search-bar" placeholder="Search"></input>
             </div>
         </div>        
-        <LoginButton/>
+        <LoginButton :textColor="textColor"/>
     </div>
 
     <div class="brand-navs">
         <div class="brand">
             <div>
-                <FerrariNavIcon :color="'white'" :width="'20px'" :height="'24px'"/>
+                <FerrariNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
             </div>
             <p class="quattrocento-bold">Ferrari</p>
         </div>
         <div class="brand">
             <div>
-                <MercedesNavIcon :color="'white'" :width="'20px'" :height="'24px'"/>
+                <MercedesNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
             </div>
             <p class="quattrocento-bold">Mercedes</p>
         </div>
         <div class="brand">
             <div>
-                <PorscheNavIcon :color="'white'" :width="'20px'" :height="'24px'"/>
+                <PorscheNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
             </div>
             <p class="quattrocento-bold">Porsche</p>
         </div>
         <div class="brand">
             <div>
-                <LamboNavIcon :color="'white'" :width="'20px'" :height="'24px'"/>
+                <LamboNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
             </div>
             <p class="quattrocento-bold">Lamboghini</p>
         </div>
         <div class="brand">
             <div>
-                <BmwNavIcon :color="'white'" :width="'20px'" :height="'24px'"/>
+                <BmwNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
             </div>
             <p class="quattrocento-bold">BMW</p>
         </div>
@@ -66,6 +66,14 @@ export default {
         BmwNavIcon,
         LamboNavIcon,
         LoginButton
+    },
+    props: {
+        textColor: {
+            default: "white"
+        },
+        bgColor: {
+            default: "transparent"
+        },
     }
 }
 
@@ -79,6 +87,8 @@ export default {
     position: fixed;
     width: 100%;
     z-index: 168;
+    background: v-bind(bgColor);
+    box-shadow: 0 2px 6px rgb(196, 185, 185);
 }
 
 .container {
@@ -114,6 +124,8 @@ export default {
     border-radius: 20px;
     padding: 1rem;
     box-sizing: border-box;
+    border: 1px solid black;
+    /* background-color: purple; */
 }
 
 .menu-btn {
@@ -121,11 +133,12 @@ export default {
     position: relative;
     align-items: center;
     cursor: pointer;
-    color: white;
+    color: v-bind(textColor);
 }
 
 .menu-btn > p {
     font-size: 1.8rem;
+    color: v-bind(textColor);
 }
 
 
@@ -140,7 +153,8 @@ export default {
     display: flex;
     justify-content: center;
     column-gap: 4rem;
-    border: 2px solid white;
+    border: 2px solid;
+    border-color: v-bind(textColor);
     border-right: none;
     border-left: none;
 }
@@ -156,7 +170,7 @@ export default {
     position: relative;
     font-size: 14px;
     bottom: 2px;
-    color: white;
+    color: v-bind(textColor);
 }
 
 .goldman-regular {
