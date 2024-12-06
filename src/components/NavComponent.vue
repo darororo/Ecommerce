@@ -74,6 +74,7 @@ export default {
         bgColor: {
             default: "transparent"
         },
+        borderColor: "gray"
     }
 }
 
@@ -88,7 +89,7 @@ export default {
     width: 100%;
     z-index: 168;
     background: v-bind(bgColor);
-    box-shadow: 0 2px 6px rgb(196, 185, 185);
+    /* box-shadow: 0 2px 6px rgb(196, 185, 185); */
 }
 
 .container {
@@ -124,7 +125,8 @@ export default {
     border-radius: 20px;
     padding: 1rem;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 1px solid;
+    border-color: v-bind(borderColor);
     /* background-color: purple; */
 }
 
@@ -153,8 +155,8 @@ export default {
     display: flex;
     justify-content: center;
     column-gap: 4rem;
-    border: 2px solid;
-    border-color: v-bind(textColor);
+    border: 1px solid;
+    border-color: v-bind(borderColor);
     border-right: none;
     border-left: none;
 }
