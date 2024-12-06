@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <Transition appear @enter="navEnter" >
   <NavComponent class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"/>
   </Transition>
@@ -9,12 +8,6 @@
   <CarCard />
   <FooterComponent/>
   <div style="height: 200px;"></div>
-=======
-  <!-- <NavComponent/>
-  <LandingComponent/> -->
-  <CarCard/>
-  
->>>>>>> 08c090b (Add CarCard component)
 </template>
 
 <script>
@@ -43,7 +36,8 @@ export default {
       NavComponent,
       ProductList,
       PopularCard,
-      CarCard
+      CarCard,
+      FooterComponent
     },
     methods: {
       navInit,
@@ -84,9 +78,6 @@ function navEnter(el, done){
       this.color = "white";
       this.bgColor = "transparent"
       done();
-        LandingComponent,
-        NavComponent,
-        CarCard,
     }
   })
 }
@@ -104,5 +95,4 @@ function navLeave(el, done){
 
   this.color = white;
 }
-
 </script>
