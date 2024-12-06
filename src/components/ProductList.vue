@@ -3,7 +3,7 @@
       <h3 class="header-product">Product lists</h3>
       <div class="product-container">
         <div class="product-item" v-for="(brand, index) in brands" :key="index">
-          <img :src="brand.logo" :alt="brand.name" />
+          <img :src="brand.logo" :alt="brand.name" loading="lazy" />
           <!-- <div style="display: flex;">
             <div style="border: 1px solid; height: 10px; width: 10px; border-radius: 100%; font-size: 8px; font-weight: bold;">R</div>
           </div> -->

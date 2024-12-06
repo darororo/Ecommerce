@@ -4,7 +4,7 @@
             <div class="showcase">
                 <template v-for="(bg, index) in bgUrls" :key="index">
                     <div class="showcase-item">
-                        <img :src="bg" alt="">
+                        <img :src="bg" loading="lazy" alt="">
                     </div>
                 </template>
             </div>
