@@ -124,9 +124,9 @@ function onEnter(el, done) {
 }
 .star {
     visibility:hidden;
-    font-size: 40px;
-    bottom: 23px;
-    right: 10px;
+    font-size: 36px;
+    bottom: 20px;
+    right: 42px;
     position: relative;
     cursor:pointer;
 }
