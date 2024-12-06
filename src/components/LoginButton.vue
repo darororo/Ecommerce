@@ -8,7 +8,7 @@
         </button>
         </RouterLink>
         <button v-else @click="btnClicked"  class="btn-user" style="position: relative; z-index: 1;">
-            <img class="image-user" src="@/assets/images/user.jpg">
+            <img class="image-user" src="@/assets/images/user.jpg" loading="lazy">
             <label class="user-name">Yem Daro</label>
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="white"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
         </button>
