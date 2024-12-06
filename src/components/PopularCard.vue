@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-        <h1>Popular Cars</h1>
         <div class="layout-sec">
             <div class="column">
                 <div class="header-col">
-                    <span>Porsche 911 GT2 RS</span>
+                    <span>{{ name }}</span>
                     <input class="star" type="checkbox" title="bookmark page" checked>
                 </div>
                 <div class="sport">Sport</div>
@@ -15,7 +14,7 @@
                 @enter="onEnter"
                 >
                     <div class="popular-car">
-                        <img src="@/assets/images/popular/car1.png" alt="car1">
+                        <img :src="img" loading="lazy" alt="car1">
                     </div>
                 </Transition>
                 <div class="bg-popular"></div>
@@ -34,80 +33,8 @@
                     </span>
                 </div>
                 <div class="price-inquire">
-                    <button class="btn-price">$293.200</button>
+                    <button class="btn-price">{{ price }}</button>
                     <button class="btn-buy">Inquire</button>
-                </div>
-            </div>
-            <div class="column">
-                <div class="header-col">
-                    <span>Ferrari SF90</span>
-                    <input class="star" type="checkbox" title="bookmark page" checked>
-                </div>
-                <div class="sport">Sport</div>
-                <Transition 
-                appear
-                :css="false" 
-                @before-enter="onBeforeEnter"
-                @enter="onEnter"
-                >
-                    <div class="popular-car">
-                        <img src="@/assets/images/popular/car2.png" alt="car1">
-                    </div>
-                </Transition>
-                <div class="bg-popular-ferrari"></div>
-                <div class="details">
-                    <span>
-                        <gas/>
-                        <span class="space-txt">90L</span>
-                    </span>
-                    <span>
-                        <GroupPeople/>
-                        <span class="space-txt">2 People</span>
-                    </span>
-                    <span>
-                        <speedo/>
-                        <span class="space-txt">211 mph</span>
-                    </span>
-                </div>
-                <div class="price-inquire">
-                    <button class="btn-price-ferrari">$293.200</button>
-                    <button class="btn-buy-ferrari">Inquire</button>
-                </div>
-            </div>
-            <div class="column">
-                <div class="header-col">
-                    <span>Lamborghini Aventador S Roadster</span>
-                    <input class="star" type="checkbox" title="bookmark page" checked>
-                </div>
-                <div class="sport">Sport</div>
-                <Transition 
-                appear
-                :css="false" 
-                @before-enter="onBeforeEnter"
-                @enter="onEnter"
-                >
-                    <div class="popular-car3">
-                        <img src="@/assets/images/popular/car3.png">
-                    </div>
-                </Transition>
-                <div class="bg-popular-car3"></div>
-                <div class="details">
-                    <span>
-                        <gas/>
-                        <span class="space-txt">90L</span>
-                    </span>
-                    <span>
-                        <GroupPeople/>
-                        <span class="space-txt">2 People</span>
-                    </span>
-                    <span>
-                        <speedo/>
-                        <span class="space-txt">211 mph</span>
-                    </span>
-                </div>
-                <div class="price-inquire">
-                    <button class="btn-price-car3">$293.200</button>
-                    <button class="btn-buy-car3">Inquire</button>
                 </div>
             </div>
         </div>
@@ -125,14 +52,33 @@ export default {
     setup() {
         gsap.registerPlugin(ScrollTrigger);
     },
+    props: {
+        name: "",
+        img: "",
+        price: 0,
+        themeColor: "red",
+        imgHeight: "160px"
+
+    },
+    data() {
+        return {
+            color: this.themeColor || "gray", 
+            height: this.imgHeight || "160px"
+        }
+    },
     components: {
         gas,
         GroupPeople,
-        speedo
+        speedo,
     },
     methods: {
         onEnter,
         onBeforeEnter,
+    },
+    computed: {
+        linearGradient() {
+            return `linear-gradient(90deg, #ffffff 18%, ${this.color} 100%)`
+        }
     }
 }
 
@@ -165,7 +111,7 @@ function onEnter(el, done) {
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Rajdhani:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 
 .container {
-    padding: 100px 160px 100px 160px;
+    /* padding: 100px 160px 100px 160px; */
 }
 .container h1 {
     font-size: 38px;
@@ -222,25 +168,14 @@ function onEnter(el, done) {
 .popular-car {
     position: absolute;
     left: 45px;
-    overflow: hidden;
-}
-.popular-car3 {
-    position: absolute;
-    left: 42px;
     bottom: 135px;
-    overflow: hidden;    
+    overflow: hidden;
 }
 
 .popular-car img {
-    height: 160px;
+    height: v-bind(height);
     width: auto;
 }
-
-.popular-car3 img {
-    height: 125px;
-    width: auto;
-}
-
 
 .bg-popular {
     position: relative;
@@ -248,36 +183,12 @@ function onEnter(el, done) {
     width: 620px;
     right: 50px;
     top: 100px;
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);
+    background: v-bind(linearGradient);
     box-shadow: 0px 6px 5px rgb(190, 190, 190);
     rotate: -22.83deg;
     z-index: -100;
 }
-.bg-popular-ferrari {
-    position: relative;
-    height: 180px;
-    width: 620px;
-    right: 50px;
-    top: 100px;
-    background: rgb(255,255,255);
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 18%, rgba(255,0,0,1) 100%);
-    rotate: -22.83deg;
-    z-index: -100;
-}
-.bg-popular-car3 {
-    position: relative;
-    height: 180px;
-    width: 620px;
-    right: 50px;
-    top: 100px;
-    background: rgb(255,255,255);
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 18%, rgba(45,94,168,1) 100%);
-    rotate: -22.83deg;
-    z-index: -100;
-}
+
 .details {
     display: flex;
     justify-content: space-between;
@@ -310,72 +221,25 @@ function onEnter(el, done) {
     background: rgb(255,255,255);
     font-size: 20px;
     font-weight: 500;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);    
+    /* background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);     */
+    background: v-bind(linearGradient);
     padding: 10px 20px 10px 20px;
     cursor: pointer;
 }
 
-.btn-price-ferrari {
-    border: none;
-    border-radius: 0px 10px 0px 0px;
-    width: 130px;
-    font-family: "Rajdhani", sans-serif;
-    background: rgb(255,255,255);
-    font-size: 20px;
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 18%, rgba(255,0,0,1) 100%); 
-    padding: 10px 20px 10px 20px;
-    cursor: pointer;
-}
 
-.btn-price-car3 {
-    border: none;
-    border-radius: 0px 10px 0px 0px;
-    width: 130px;
-    font-family: "Rajdhani", sans-serif;
-    background: rgb(255,255,255);
-    font-size: 20px;
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 18%, rgba(45,94,168,1) 100%);
-    padding: 10px 20px 10px 20px;
-    cursor: pointer;
-}
 
 .btn-buy {
     padding: 10px 20px 10px 20px;
     width: 130px;
     border: none;
     color: white;
-    background-color: #AEAEAE;
+    background-color: v-bind("themeColor");
     font-family: "Raleway", sans-serif;
     border-radius: 0px 10px 0px 10px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-}
-.btn-buy-ferrari {
-    padding: 10px 20px 10px 20px;
-    width: 130px;
-    border: none;
-    color: white;
-    background-color: #FF4F4F;
-    font-family: "Raleway", sans-serif;
-    border-radius: 0px 10px 0px 10px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;    
-}
-.btn-buy-car3 {
-    padding: 10px 20px 10px 20px;
-    width: 130px;
-    border: none;
-    color: white;
-    background-color: #2D5EA8;
-    font-family: "Raleway", sans-serif;
-    border-radius: 0px 10px 0px 10px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;    
 }
 
 </style>

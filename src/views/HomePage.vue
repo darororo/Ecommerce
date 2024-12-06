@@ -4,7 +4,19 @@
   </Transition>
   <LandingComponent class="hero"/>
   <ProductList/>
-  <PopularCard />
+  <h1>Popular Cars</h1>
+  <div class="popular-list">
+    <template v-for="(car, index) in popularCars" :key="index">
+      <PopularCard 
+      :name="car.name"
+      :themeColor="car.color" 
+      :price="car.price"
+      :img="car.img"
+      :imgHeight="car.height"
+      />
+  
+    </template>
+  </div>
 
   <h1>Features</h1>
 
@@ -38,7 +50,33 @@ export default {
       return {
         color: 'white',
         bgColor: 'transparent',
-        borderColor: "gray"
+        borderColor: "gray",
+        popularCars: [
+          {
+            name: "Porsche 911 GT2 RS",
+            price: "293,200",
+            color: "gray",
+            img: "./src/assets/images/popular/car1.png",
+            height: "160px",
+          },
+          {
+            name: "Ferrari SF90",
+            price: "293,200",
+            color: "red",
+            img: "./src/assets/images/popular/car2.png",
+            height: "160px",
+
+          },
+          {
+            name: "Lamborghini Aventador S Roadster",
+            price: "293,200",
+            color: "#0066ff",
+            img: "./src/assets/images/popular/car3.png",
+            height: "125px",
+
+          }
+
+        ]
       }
     },
     components: {
@@ -116,6 +154,14 @@ h1 {
     font-weight: bold;
 }
 .car-listing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr) );
+  gap: 30px;
+  justify-content: center;
+  padding: 20px 160px 20px 160px;
+}
+
+.popular-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr) );
   gap: 30px;
