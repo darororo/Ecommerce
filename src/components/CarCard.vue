@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <!-- <div class="main"> -->
         <div class="container">
             <div class="img-container">
                 <img src="@/assets/images/products/car1.png" alt="">
@@ -8,7 +8,6 @@
                 <div class="text-row-1">
                     <div class="price">$6,670,088</div>
                     <div class="bookmark">
-                        <dir>bookmark</dir>
                         <input class="star" type="checkbox" title="bookmark page" checked>
                     </div>
                 </div>
@@ -26,10 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="container"></div>
-        <div class="container"></div>
-
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>
@@ -51,12 +47,14 @@ export default {
     justify-content: center;
     padding: 20px 40px 20px 40px;
     gap: 20px;
+    background-color: red;
 }
 .container {
     display: flex;
     flex-direction: column;
-    width: 430px;
-    height: 485px;
+    width: 100%;
+    padding-bottom: 8px;
+    height: 100%;
     border: 1px solid #B0B0B0;
 }
 
@@ -75,13 +73,14 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
 }
 
 .star {
     visibility:hidden;
     font-size: 36px;
     bottom: 22px;
-    right: 10px;
+    right: 16px;
     position: relative;
     cursor:pointer;
 }
@@ -98,7 +97,7 @@ export default {
 .price {
     font-style: normal;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
                                                 
 }
@@ -106,8 +105,8 @@ export default {
 .bookmark {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 14px;
+    gap: 14px;
+    font-size: 18px;
     font-style: normal;
     font-family: 'Inria Sans', sans-serif;
                                                 
@@ -116,15 +115,15 @@ export default {
     font-family: 'Inria Sans', sans-serif;
     font-weight: 100;
     padding-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 .description {
     font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: lighter;
     color: #828282;
-    width: 18rem;
-    line-height: 20px;
+    width: 24rem;
+    line-height: 24px;
 }
 .script-seller {
     display: flex;
@@ -140,7 +139,7 @@ export default {
     padding: 0px 6px 0px 0px;
 }
 .seller span {
-    font-size: 12px;
+    font-size: 14px;
 
 }
 .reser-detail {
@@ -148,26 +147,26 @@ export default {
     justify-content: space-between;
 }
 .btn-reser {
-    width: 190px;
+    width: 230px;
     height: 50px;
     border: none;
     background-color: #FF0000;
     color: white;
     border-radius: 0px 12px 0px 12px;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 200;
     cursor: pointer;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .btn-deta {
-    width: 190px;
+    width: 230px;
     height: 50px;
     border: 2px solid rgb(172, 172, 172);
     background-color: white;
     border-radius: 0px 12px 0px 12px;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 200;
     cursor: pointer;
 }

@@ -5,7 +5,17 @@
   <LandingComponent class="hero"/>
   <ProductList/>
   <PopularCard />
-  <CarCard />
+
+  <h1>Features</h1>
+
+  <div class="car-listing">
+    <CarCard />
+    <CarCard />
+    <CarCard />    
+    <CarCard />
+    <CarCard />
+    <CarCard />       
+  </div>
   <FooterComponent/>
   <div style="height: 200px;"></div>
 </template>
@@ -96,3 +106,20 @@ function navLeave(el, done){
   this.color = white;
 }
 </script>
+
+<style scoped>
+h1 {
+    padding: 0px 0px 0px 160px;
+    font-size: 38px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+}
+.car-listing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr) );
+  gap: 30px;
+  justify-content: center;
+  padding: 20px 160px 20px 160px;
+}
+</style>
