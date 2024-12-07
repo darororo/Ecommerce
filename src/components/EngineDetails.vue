@@ -16,7 +16,7 @@
               <span class="space1">{{ carInfo.owners }}</span>
           </div>
           <div class="info-item">
-              <span>
+              <span> 
                 <location />
                 <span class="space">Location</span>
               </span>
