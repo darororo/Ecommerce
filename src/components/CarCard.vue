@@ -1,31 +1,29 @@
 <template>
-    <!-- <div class="main"> -->
-        <div class="container">
-            <div class="img-container">
-                <img src="@/assets/images/products/car1.png" alt="">
+    <div class="container">
+        <div class="img-container">
+            <img src="@/assets/images/products/car1.png" alt="">
+        </div>
+        <div class="text-container">
+            <div class="text-row-1">
+                <div class="price">$6,670,088</div>
+                <div class="bookmark">
+                    <input class="star" type="checkbox" title="bookmark page" checked>
+                </div>
             </div>
-            <div class="text-container">
-                <div class="text-row-1">
-                    <div class="price">$6,670,088</div>
-                    <div class="bookmark">
-                        <input class="star" type="checkbox" title="bookmark page" checked>
-                    </div>
+            <div class="name-car">2017 Ferrari LaFerrari</div>
+            <div class="script-seller">
+                <div class="description">The LaFerrari features a 6262cc V12 engine built for performance. The LaFerrari is the first production car to ever be equipped with an F1-derived hybrid solution </div>
+                <div class="seller">
+                    <SellerIcon/>
+                    <span>Yem Daro</span>
                 </div>
-                <div class="name-car">2017 Ferrari LaFerrari</div>
-                <div class="script-seller">
-                    <div class="description">The LaFerrari features a 6262cc V12 engine built for performance. The LaFerrari is the first production car to ever be equipped with an F1-derived hybrid solution </div>
-                    <div class="seller">
-                        <SellerIcon/>
-                        <span>Yem Daro</span>
-                    </div>
-                </div>
-                <div class="reser-detail"> 
-                    <button class="btn-reser">Reserve Now</button>
-                    <button class="btn-deta">More detail</button>
-                </div>
+            </div>
+            <div class="reser-detail"> 
+                <button class="btn-reser">Reserve Now</button>
+                <button class="btn-deta">More detail</button>
             </div>
         </div>
-    <!-- </div> -->
+    </div>
 </template>
 
 <script>
@@ -42,13 +40,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Goldman:wght@400;700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.cdnfonts.com/css/inria-sans');
-.main {
-    display: flex;
-    justify-content: center;
-    padding: 20px 40px 20px 40px;
-    gap: 20px;
-    background-color: red;
-}
+
 .container {
     display: flex;
     flex-direction: column;

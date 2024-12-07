@@ -29,7 +29,6 @@
     <CarCard />       
   </div>
   <FooterComponent/>
-  <div style="height: 200px;"></div>
 </template>
 
 <script>
@@ -158,7 +157,7 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr) );
   gap: 30px;
   justify-content: center;
-  padding: 20px 160px 20px 160px;
+  padding: 20px 160px 30px 160px;
 }
 
 .popular-list {

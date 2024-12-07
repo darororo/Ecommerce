@@ -184,11 +184,35 @@ function onEnter(el, done) {
     right: 50px;
     top: 100px;
     background: v-bind(linearGradient);
+    /* background: rgb(255,255,255); */
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);
     box-shadow: 0px 6px 5px rgb(190, 190, 190);
     rotate: -22.83deg;
     z-index: -100;
 }
 
+.bg-popular-ferrari {
+    position: relative;
+    height: 180px;
+    width: 620px;
+    right: 50px;
+    top: 100px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 18%, rgba(255,0,0,1) 100%);
+    rotate: -22.83deg;
+    z-index: -100;
+}
+.bg-popular-car3 {
+    position: relative;
+    height: 180px;
+    width: 620px;
+    right: 50px;
+    top: 100px;
+    background: #ffffff;
+    background: linear-gradient(90deg, #ffffff 18%, #0066ff 100%);
+    rotate: -22.83deg;
+    z-index: -100;
+}
 .details {
     display: flex;
     justify-content: space-between;
