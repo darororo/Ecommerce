@@ -14,21 +14,24 @@
       :img="car.img"
       :imgHeight="car.height"
       />
-  
     </template>
   </div>
-
   <h1>Features</h1>
-
   <div class="car-listing">
     <CarCard />
     <CarCard />
     <CarCard />    
     <CarCard />
     <CarCard />
+    <CarCard /> 
+    <CarCard />
+    <CarCard />   
     <CarCard />       
   </div>
   <FooterComponent/>
+  <div>
+    <SideBarComponent/>
+  </div>
 </template>
 
 <script>
@@ -40,6 +43,7 @@ import PopularCard from '../components/PopularCard.vue';
 import ProductList from '../components/ProductList.vue';
 import {gsap, Power2} from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SideBarComponent from '../components/SideBarComponent.vue';
 
 export default {
     setup() {
@@ -84,7 +88,8 @@ export default {
       ProductList,
       PopularCard,
       CarCard,
-      FooterComponent
+      FooterComponent,
+      SideBarComponent
     },
     methods: {
       navInit,
@@ -146,7 +151,7 @@ function navLeave(el, done){
 
 <style scoped>
 h1 {
-    padding: 0px 0px 0px 160px;
+    padding: 30px 0px 0px 160px;
     font-size: 38px;
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
@@ -154,10 +159,10 @@ h1 {
 }
 .car-listing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr) );
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr) );
+  gap: 40px 36px;
   justify-content: center;
-  padding: 20px 160px 30px 160px;
+  padding: 20px 160px 50px 160px;
 }
 
 .popular-list {
@@ -166,5 +171,6 @@ h1 {
   gap: 30px;
   justify-content: center;
   padding: 20px 160px 20px 160px;
+  
 }
 </style>
