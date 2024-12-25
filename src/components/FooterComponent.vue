@@ -5,7 +5,7 @@
         <div class="description-logo">
           <div class="head">
             <div class="img">
-              <img src="@/assets/images/media/carbodia.png" alt="Frame">
+              <img src="@/assets/images/media/carbodiaWhite.png" alt="Frame">
             </div>
             <div class="brand-name">Carbodia</div>
           </div>
@@ -73,7 +73,7 @@
 }
 .container{
   background-color: #2B2B2B;
-  padding: 30px 80px 30px 60px;
+  padding: 40px 100px 30px 100px;
   width: auto;
 }
 .head{
