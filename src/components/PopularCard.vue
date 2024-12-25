@@ -109,10 +109,6 @@ function onEnter(el, done) {
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Rajdhani:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
-
-.container {
-    /* padding: 100px 160px 100px 160px; */
-}
 .container h1 {
     font-size: 38px;
     font-family: "Raleway", sans-serif;
@@ -122,7 +118,6 @@ function onEnter(el, done) {
 .layout-sec {
     display: flex;
     justify-content: space-between;
-    padding: 40px 0px 0px 0px;
 }
 .column {
     overflow: hidden;
@@ -131,6 +126,7 @@ function onEnter(el, done) {
     width: 500px;
     border-radius: 10px;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .column .header-col {
     display: flex;
@@ -184,8 +180,6 @@ function onEnter(el, done) {
     right: 50px;
     top: 100px;
     background: v-bind(linearGradient);
-    /* background: rgb(255,255,255); */
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(165,165,165,1) 100%);
     box-shadow: 0px 6px 5px rgb(190, 190, 190);
     rotate: -22.83deg;
     z-index: -100;
