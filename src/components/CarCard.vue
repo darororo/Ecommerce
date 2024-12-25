@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="img-container">
-            <img src="@/assets/images/products/car1.png" alt="">
+            <img src="@/assets/images/products/car1.png">
         </div>
         <div class="text-container">
             <div class="text-row-1">
@@ -48,11 +48,14 @@ export default {
     padding-bottom: 8px;
     height: 100%;
     border: 1px solid #B0B0B0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
 }
 
 .img-container > img {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
 
 .text-container {
@@ -121,7 +124,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0px 0px 12px 0px;
+    padding: 14px 0px 20px 0px;
 }
 .seller {
     display: flex;
@@ -137,20 +140,45 @@ export default {
 .reser-detail {
     display: flex;
     justify-content: space-between;
+
 }
 .btn-reser {
-    width: 230px;
-    height: 50px;
-    border: none;
-    background-color: #FF0000;
+    position: relative;
+    display: inline-block;
+    padding: 14px 60px;
+    font-size: 16px;
     color: white;
+    background-color: red;
+    border: 1px solid transparent;
     border-radius: 0px 12px 0px 12px;
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 200;
     cursor: pointer;
-    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    overflow: hidden;
+    transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease; 
+    z-index: 1;
 }
+
+.btn-reser::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%; 
+    height: 0%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: -1;
+    background-color: white;
+    transition: height 0.8s ease;
+}
+
+.btn-reser:hover::before {
+    height: 400%; 
+}
+
+.btn-reser:hover {
+    color: black; 
+    border: 1px solid rgb(172, 172, 172);
+}
+
 .btn-deta {
     width: 230px;
     height: 50px;
@@ -160,6 +188,7 @@ export default {
     font-family: 'Inria Sans', sans-serif;
     font-size: 18px;
     font-weight: 200;
+    border: 1px solid rgb(172, 172, 172);
     cursor: pointer;
 }
 </style>
