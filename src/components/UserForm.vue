@@ -1,8 +1,8 @@
 <template>
-    <img class="image-bg" src="@/assets/images/auth-bgs/Car1.jpg" alt="Background Image">
-    <!-- <video class="image-bg" autoplay loop muted>
+    <!-- <img class="image-bg" src="@/assets/images/auth-bgs/Car1.jpg" alt="Background Image"> -->
+    <video class="image-bg" autoplay loop muted>
         <source :src="videoSrc" type="video/mp4" >
-    </video> -->
+    </video>
 
     <div class="header-content">
         <div class="logo-title">
@@ -130,7 +130,7 @@
 </template>
 
 <script>
-// import videoSrc from '@/assets/Car1.mp4'
+import videoSrc from '@/assets/videos/Car1.mp4'
 import GoogleLogin from './icons/GoogleLogin.vue';
 import FacebookLogin from './icons/FacebookLogin.vue';
 import GoogleLogout from './icons/GoogleLogout.vue';
@@ -147,7 +147,7 @@ export default {
     },
     data() {
         return {
-            // videoSrc,
+            videoSrc,
             isLoggedIn: false,
             skipItems: Array(5).fill(null),
             activeIndex: 0,
