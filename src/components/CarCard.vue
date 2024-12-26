@@ -21,7 +21,9 @@
                 </div>
                 <div class="reser-detail"> 
                     <button class="btn-reser">Reserve Now</button>
-                    <button class="btn-deta">More detail</button>
+                    <RouterLink to="/car/1">
+                        <button class="btn-deta">More detail</button>
+                    </RouterLink>
                 </div>
             </div>
         </div>
@@ -29,6 +31,7 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
 import SellerIcon from './icons/SellerIcon.vue';
 
 export default {
