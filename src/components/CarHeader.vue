@@ -66,7 +66,7 @@ import ChevronBack from './icons/productPage/chevronBack.vue';
   width: auto;
 }
 .back-button button {
-  font-family: "Lora", serif;
+  font-family: Arial, Helvetica, sans-serif;
   height: 60px;
   text-align: left;
   font-size: 20px;
@@ -145,7 +145,7 @@ import ChevronBack from './icons/productPage/chevronBack.vue';
   column-gap: 60px;
 }
 .text-content {
-  font-family: "Lora", serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .title {
   font-size: 30px;
