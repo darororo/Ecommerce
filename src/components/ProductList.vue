@@ -57,7 +57,7 @@
     text-align: center;
     border: 1px solid #ccc;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 180px;
     height: 100px; 
     background-color: white;
