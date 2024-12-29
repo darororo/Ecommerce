@@ -2,19 +2,19 @@
   <div class="car-header">
     <div class="back-button">
       <RouterLink to="/" class="router-link">
-          <ChevronBack/>
-          <button @click="goBack">Back</button>
-        </RouterLink>
+        <ChevronBack />
+        <button @click="goBack">Back</button>
+      </RouterLink>
     </div>
     <div class="image-section">
-      <img src="@/assets/images/products/car1.png" class="large-image">
+      <img src="@/assets/images/products/car1.png" class="large-image" />
       <div class="small-gallery">
-        <img src="@/assets/images/products/car1.png" class="small-image">
-        <img src="@/assets/images/products/car1.png" class="small-image">
-        <img src="@/assets/images/products/car1.png" class="small-image">
+        <img src="@/assets/images/products/car1.png" class="small-image" />
+        <img src="@/assets/images/products/car1.png" class="small-image" />
+        <img src="@/assets/images/products/car1.png" class="small-image" />
         <div class="overlay-container">
           <div class="overlay-text">All Photos (6)</div>
-          <img src="@/assets/images/products/car1.png" class="small-image">
+          <img src="@/assets/images/products/car1.png" class="small-image" />
         </div>
       </div>
     </div>
@@ -34,28 +34,28 @@
     </div>
   </div>
 </template>
-  
-  <script>
-import ChevronBack from './icons/productPage/chevronBack.vue';
 
-  export default {
-    name: "CarHeader",
-    methods: {
-      inquire() {
-        alert("Inquire button clicked!");
-      },
+<script>
+import ChevronBack from "./icons/productPage/chevronBack.vue";
+
+export default {
+  name: "CarHeader",
+  methods: {
+    inquire() {
+      alert("Inquire button clicked!");
     },
-    components: {
-      ChevronBack
-    }
-  };
-  </script>
-  
+  },
+  components: {
+    ChevronBack,
+  },
+};
+</script>
+
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 .car-header {
-  padding-top: 116px;    
+  padding-top: 116px;
 }
 .back-button {
   display: flex;
@@ -74,7 +74,7 @@ import ChevronBack from './icons/productPage/chevronBack.vue';
   border: 10px;
   background-color: rgba(217, 217, 217, 0);
   cursor: pointer;
-} 
+}
 .router-link {
   display: flex;
   align-items: center;
@@ -133,7 +133,7 @@ import ChevronBack from './icons/productPage/chevronBack.vue';
 .car-details {
   margin-top: 30px;
 }
-.car-details1{
+.car-details1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -155,7 +155,7 @@ import ChevronBack from './icons/productPage/chevronBack.vue';
 }
 .subtitle {
   font-size: 16px;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   color: #000000;
 }
 .price {
@@ -177,5 +177,6 @@ import ChevronBack from './icons/productPage/chevronBack.vue';
   font-size: 16px;
   cursor: pointer;
   border-radius: 0px 16px 0px 16px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  }
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 </style>
