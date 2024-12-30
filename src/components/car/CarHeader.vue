@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import ChevronBack from "./icons/productPage/chevronBack.vue";
+import ChevronBack from "@/components/icons/productPage/chevronBack.vue";
 
 export default {
   name: "CarHeader",
@@ -55,7 +55,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 .car-header {
-  padding-top: 116px;
+  /* padding-top: 116px; */
 }
 .back-button {
   display: flex;
@@ -127,9 +127,7 @@ export default {
   justify-content: center;
   cursor: pointer;
 }
-.price-sec {
-  padding: 0px 136px 0px 136px;
-}
+
 .car-details {
   margin-top: 30px;
 }

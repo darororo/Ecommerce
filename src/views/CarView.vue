@@ -1,7 +1,7 @@
 <script>
-import CarHeader from "@/components/CarHeader.vue";
+import CarHeader from "@/components/car/CarHeader.vue";
 import NavComponent from "@/components/NavComponent.vue";
-import CarDescription from "../components/CarDescription.vue";
+import CarDescription from "@/components/car/CarDescription.vue";
 export default {
   components: {
     CarHeader,
@@ -12,14 +12,19 @@ export default {
 </script>
 
 <template>
-  <!-- <NavComponent/> -->
-  <CarHeader />
-  <div class="line"><hr /></div>
-  <CarDescription />
+  <div class="container">
+    <CarHeader />
+    <div class="line"><hr /></div>
+    <CarDescription /> 
+  </div>
 </template>
 
-<style>
+<style scoped>
 .line {
+  
+}
+
+.container {
   padding: 26px 136px 0px 136px;
 }
 </style>

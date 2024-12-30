@@ -34,7 +34,7 @@
 
 <script>
 import { RouterLink } from "vue-router";
-import SellerIcon from "./icons/SellerIcon.vue";
+import SellerIcon from "@/components/icons/SellerIcon.vue";
 
 export default {
   components: {
