@@ -49,12 +49,15 @@ export default {
     <div v-else>
       <RouterView />
     </div>
+    <div class="line">
+      <hr />
+    </div>
+    <CommentSection />
+
   </div>
 </template>
 
-<style scoped scoped>
-.main {}
-
+<style scoped>
 .container {
   padding: 0px 136px 0px 136px;
 }

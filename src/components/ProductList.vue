@@ -59,6 +59,7 @@ export default {
   font-weight: 400;
   font-size: 32px;
 }
+
 .product-list {
   text-align: center;
   margin-top: 20px;
