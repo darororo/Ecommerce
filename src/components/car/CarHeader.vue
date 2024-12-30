@@ -1,11 +1,5 @@
 <template>
   <div class="car-header">
-    <div class="back-button">
-      <RouterLink to="/" class="router-link">
-        <ChevronBack />
-        <button @click="goBack">Back</button>
-      </RouterLink>
-    </div>
     <div class="image-section">
       <img src="@/assets/images/products/car1.png" class="large-image" />
       <div class="small-gallery">
@@ -36,17 +30,12 @@
 </template>
 
 <script>
-import ChevronBack from "@/components/icons/productPage/chevronBack.vue";
-
 export default {
   name: "CarHeader",
   methods: {
     inquire() {
       alert("Inquire button clicked!");
     },
-  },
-  components: {
-    ChevronBack,
   },
 };
 </script>
@@ -56,29 +45,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 .car-header {
   /* padding-top: 116px; */
-}
-.back-button {
-  display: flex;
-  align-items: center;
-  background-color: rgba(217, 217, 217, 0.7);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  padding: 0px 0px 0px 20px;
-  width: auto;
-}
-.back-button button {
-  font-family: Arial, Helvetica, sans-serif;
-  height: 60px;
-  text-align: left;
-  font-size: 20px;
-  font-weight: 500;
-  border: 10px;
-  background-color: rgba(217, 217, 217, 0);
-  cursor: pointer;
-}
-.router-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
 }
 .image-section {
   display: flex;
