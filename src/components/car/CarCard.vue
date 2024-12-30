@@ -58,7 +58,7 @@ export default {
   border-radius: 10px;
 }
 
-.img-container > img {
+.img-container>img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -85,11 +85,13 @@ export default {
   position: relative;
   cursor: pointer;
 }
+
 .star::after {
   content: "\2605";
   visibility: visible;
   color: black;
 }
+
 .star:checked::after {
   color: #a8a8a8;
   content: "\2606";
@@ -110,12 +112,14 @@ export default {
   font-style: normal;
   font-family: "Inria Sans", sans-serif;
 }
+
 .name-car {
   font-family: "Inria Sans", sans-serif;
   font-weight: 100;
   padding-bottom: 10px;
   font-size: 18px;
 }
+
 .description {
   font-family: "Inria Sans", sans-serif;
   font-size: 16px;
@@ -124,12 +128,14 @@ export default {
   width: 24rem;
   line-height: 24px;
 }
+
 .script-seller {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding: 14px 0px 20px 0px;
 }
+
 .seller {
   display: flex;
   color: #464646;
@@ -137,13 +143,16 @@ export default {
   cursor: pointer;
   padding: 0px 6px 0px 0px;
 }
+
 .seller span {
   font-size: 14px;
 }
+
 .reser-detail {
   display: flex;
   justify-content: space-between;
 }
+
 .btn-reser {
   position: relative;
   display: inline-block;

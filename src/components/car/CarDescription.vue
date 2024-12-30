@@ -21,13 +21,15 @@
 .container {
   padding: 0;
 }
-.header > span {
+
+.header>span {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 28px;
   color: black;
 }
-.header > p {
+
+.header>p {
   font-family: Arial, Helvetica, sans-serif;
   width: 60rem;
   line-height: 2rem;

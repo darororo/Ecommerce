@@ -5,26 +5,15 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent
-      class="nav"
-      :textColor="color"
-      :bgColor="bgColor"
-      :borderColor="borderColor"
-      @toggle-sidebar="toggleSidebar"
-    />
+    <NavComponent class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"
+      @toggle-sidebar="toggleSidebar" />
   </Transition>
   <LandingComponent class="hero" />
   <ProductList />
   <h1>Popular Cars</h1>
   <div class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
-      <PopularCard
-        :name="car.name"
-        :themeColor="car.color"
-        :price="car.price"
-        :img="car.img"
-        :imgHeight="car.height"
-      />
+      <PopularCard :name="car.name" :themeColor="car.color" :price="car.price" :img="car.img" :imgHeight="car.height" />
     </template>
   </div>
   <h1>Features</h1>
@@ -49,9 +38,11 @@
 
 <script>
 import CarCard from "../components/car/CarCard.vue";
+import CarCard from "../components/car/CarCard.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import LandingComponent from "../components/LandingComponent.vue";
 import NavComponent from "../components/NavComponent.vue";
+import PopularCard from "../components/car/PopularCard.vue";
 import PopularCard from "../components/car/PopularCard.vue";
 import ProductList from "../components/ProductList.vue";
 import { gsap, Power2 } from "gsap";
@@ -170,6 +161,7 @@ h1 {
   font-optical-sizing: auto;
   font-weight: bold;
 }
+
 .car-listing {
   flex: 3;
   display: grid;
@@ -185,6 +177,7 @@ h1 {
   justify-content: center;
   padding: 20px 160px 20px 160px;
 }
+
 .car-listing-container {
   display: flex;
   position: relative;
@@ -197,4 +190,3 @@ h1 {
   top: 100px;
 }
 </style>
-
