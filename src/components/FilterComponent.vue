@@ -87,11 +87,7 @@ const discountOptions = [
 @import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto:wght@400;700&display=swap");
 
 .filter-panel {
-  position: fixed;
   max-width: 300px;
-  bottom: 8%;
-  left: 92%;
-  z-index: -1;
   margin: 0 auto;
 }
 

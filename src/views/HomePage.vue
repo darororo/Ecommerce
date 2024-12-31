@@ -28,7 +28,7 @@
     </template>
   </div>
   <h1>Features</h1>
-  <div class="item-fitler">
+  <div class="car-listing-container">
     <div class="car-listing">
       <CarCard />
       <CarCard />
@@ -40,7 +40,9 @@
       <CarCard />
       <CarCard />
     </div>
-    <FilterComponent />
+    <div class="filter-wrapper">
+      <FilterComponent />
+    </div>
   </div>
   <FooterComponent />
 </template>
@@ -174,7 +176,7 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 30px 26px;
   justify-content: center;
-  padding: 20px 180px 50px 160px;
+  padding: 20px 40px 30px 160px;
 }
 
 .popular-list {
@@ -183,8 +185,15 @@ h1 {
   justify-content: center;
   padding: 20px 160px 20px 160px;
 }
-.item-fitler {
+.car-listing-container {
   display: flex;
+  position: relative;
   align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.filter-wrapper {
+  position: sticky;
+  top: 100px;
 }
 </style>
