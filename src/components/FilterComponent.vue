@@ -87,8 +87,11 @@ const discountOptions = [
 @import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto:wght@400;700&display=swap");
 
 .filter-panel {
-  font-family: "Roboto", sans-serif;
+  position: fixed;
   max-width: 300px;
+  bottom: 8%;
+  left: 92%;
+  z-index: -1;
   margin: 0 auto;
 }
 
@@ -97,15 +100,13 @@ const discountOptions = [
 }
 
 .title {
-  font-family: "Goldman", sans-serif;
+  font-family: "Quattrocento", serif;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
 .option {
-  display: flex;
-  align-items: center;
   margin-bottom: 8px;
 }
 
@@ -114,8 +115,8 @@ input[type="radio"] {
 }
 
 .roboto {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-family: "Quattrocento", serif;
+  font-weight: 500;
   font-size: 16px;
 }
 </style>

@@ -28,16 +28,19 @@
     </template>
   </div>
   <h1>Features</h1>
-  <div class="car-listing">
-    <CarCard />
-    <CarCard />
-    <CarCard />
-    <CarCard />
-    <CarCard />
-    <CarCard />
-    <CarCard />
-    <CarCard />
-    <CarCard />
+  <div class="item-fitler">
+    <div class="car-listing">
+      <CarCard />
+      <CarCard />
+      <CarCard />
+      <CarCard />
+      <CarCard />
+      <CarCard />
+      <CarCard />
+      <CarCard />
+      <CarCard />
+    </div>
+    <FilterComponent />
   </div>
   <FooterComponent />
 </template>
@@ -52,6 +55,7 @@ import ProductList from "../components/ProductList.vue";
 import { gsap, Power2 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SideBarComponent from "../components/SideBarComponent.vue";
+import FilterComponent from "../components/FilterComponent.vue";
 
 export default {
   setup() {
@@ -96,6 +100,7 @@ export default {
     CarCard,
     FooterComponent,
     SideBarComponent,
+    FilterComponent,
   },
   methods: {
     navInit,
@@ -157,25 +162,29 @@ function navLeave(el, done) {
 
 <style scoped>
 h1 {
-  padding: 30px 0px 0px 160px;
+  padding: 10px 0px 10px 160px;
   font-size: 38px;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
 }
 .car-listing {
+  flex: 3;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 40px 36px;
+  gap: 30px 26px;
   justify-content: center;
-  padding: 20px 160px 50px 160px;
+  padding: 20px 180px 50px 160px;
 }
 
 .popular-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 30px;
   justify-content: center;
   padding: 20px 160px 20px 160px;
+}
+.item-fitler {
+  display: flex;
+  align-items: flex-start;
 }
 </style>

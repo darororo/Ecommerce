@@ -110,8 +110,6 @@ export default {
   margin-top: 20px;
   width: 22%;
   height: 101%;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 5px 0px 8px;
 }
 .header {
