@@ -3,12 +3,12 @@
     <div class="image-section">
       <img src="@/assets/images/products/car1.png" class="large-image" />
       <div class="small-gallery">
-        <img src="@/assets/images/products/car1.png" class="small-image" />
-        <img src="@/assets/images/products/car1.png" class="small-image" />
-        <img src="@/assets/images/products/car1.png" class="small-image" />
+        <img src="@/assets/images/products/car2.png" class="small-image" />
+        <img src="@/assets/images/products/car3.png" class="small-image" />
+        <img src="@/assets/images/products/car4.png" class="small-image" />
         <div class="overlay-container">
           <div class="overlay-text">All Photos (6)</div>
-          <img src="@/assets/images/products/car1.png" class="small-image" />
+          <img src="@/assets/images/products/car5.png" class="small-image" />
         </div>
       </div>
     </div>
@@ -44,7 +44,30 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 .car-header {
-  /* padding-top: 116px; */
+  padding-top: 10px;
+}
+.back-button {
+  display: flex;
+  align-items: center;
+  background-color: rgba(217, 217, 217, 0.7);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 0px 0px 0px 20px;
+  width: auto;
+}
+.back-button button {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 60px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+  border: 10px;
+  background-color: rgba(217, 217, 217, 0);
+  cursor: pointer;
+}
+.router-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 .image-section {
   display: flex;
@@ -54,7 +77,7 @@ export default {
 }
 .large-image {
   width: auto;
-  height: 443px;
+  height: 498px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -64,7 +87,7 @@ export default {
   gap: 16px;
 }
 .small-gallery > img {
-  height: 214px;
+  height: 240px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -72,7 +95,7 @@ export default {
   position: relative;
 }
 .overlay-container > img {
-  height: 214px;
+  height: 240px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -81,13 +104,14 @@ export default {
   position: absolute;
   top: 49%;
   left: 50%;
+  font-family: Arial, Helvetica, sans-serif;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  height: 214px;
+  height: 240px;
   width: 100%;
   align-items: center;
   justify-content: center;

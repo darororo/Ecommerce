@@ -4,6 +4,10 @@ import UserForm from '../components/UserForm.vue'
 import CarView from '../views/CarView.vue'
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 }
+  },
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
