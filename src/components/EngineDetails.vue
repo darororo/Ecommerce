@@ -1,4 +1,5 @@
 <template>
+  <h2>Car Details</h2>
   <div class="box">
     <div class="info-item">
       <span>
@@ -90,24 +91,29 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Grey+Qo&family=Moul&family=Moulpali&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-
+h2 {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  color: black;
+}
 .box {
   display: flex;
   justify-content: space-between;
-  width: 382px;
+  width: 407.59px;
   height: 350px;
   background-color: white;
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  padding: 20px 40px 20px 40px;
   flex-direction: column;
-  font-family: "Roboto Serif";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
 }
 
 .space {
-  font-family: "Roboto Serif";
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 16px;
   margin-left: 12px;

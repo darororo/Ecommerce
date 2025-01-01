@@ -5,7 +5,7 @@
     y="0px"
     width="30"
     height="30"
-    fill="rgba(0, 0, 0, 0.8)"
+    fill="black"
     viewBox="0 0 50 50"
   >
     <path
