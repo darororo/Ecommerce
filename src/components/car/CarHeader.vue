@@ -1,16 +1,20 @@
 <template>
   <div class="car-header">
     <div class="image-section">
-      <img src="@/assets/images/products/car1.png" class="large-image" />
-      <div class="small-gallery">
-        <img src="@/assets/images/products/car2.png" class="small-image" />
-        <img src="@/assets/images/products/car3.png" class="small-image" />
-        <img src="@/assets/images/products/car4.png" class="small-image" />
-        <div class="overlay-container">
-          <div class="overlay-text">All Photos (6)</div>
-          <img src="@/assets/images/products/car5.png" class="small-image" />
+      <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
+        <img src="@/assets/images/products/car1.png" class="large-image" />
+      </RouterLink>
+      <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
+        <div class="small-gallery">
+          <img src="@/assets/images/products/car2.png" class="small-image" />
+          <img src="@/assets/images/products/car3.png" class="small-image" />
+          <img src="@/assets/images/products/car4.png" class="small-image" />
+          <div class="overlay-container">
+            <div class="overlay-text">All Photos (6)</div>
+            <img src="@/assets/images/products/car5.png" class="small-image" />
+          </div>
         </div>
-      </div>
+      </RouterLink>
     </div>
     <div class="price-sec">
       <div class="car-details">
@@ -73,7 +77,7 @@ export default {
   display: flex;
   justify-content: center;
   padding: 10px 120px 0 120px;
-  column-gap: 20px;
+  column-gap: 10px;
 }
 .large-image {
   width: auto;
@@ -84,10 +88,10 @@ export default {
 .small-gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 10px;
 }
 .small-gallery > img {
-  height: 240px;
+  height: 244px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

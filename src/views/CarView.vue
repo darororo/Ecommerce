@@ -18,22 +18,26 @@ export default {
 </script>
 
 <template>
-  <Back />
   <div class="container">
-    <CarHeader />
-    <div class="line"><hr /></div>
-    <div class="listing-body-wrapper">
-      <CarDescription />
-      <div>
-        <EngineDetails />
-        <ContactDealer />
+    <div class="main">
+      <CarHeader />
+      <div class="line"><hr /></div>
+      <div class="listing-body-wrapper">
+        <CarDescription />
+        <div>
+          <EngineDetails />
+          <ContactDealer />
+        </div>
       </div>
+    </div>
+    <div>
+      <RouterView />
     </div>
   </div>
 </template>
 
 <style scoped>
-.container {
+.main {
   padding: 0px 136px 0px 136px;
 }
 .listing-body-wrapper {
