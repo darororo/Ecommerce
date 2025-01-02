@@ -1,9 +1,7 @@
 <template>
   <div class="back-button">
-    <RouterLink to="/" class="router-link">
-      <ChevronBack />
-      <button @click="goBack">Back</button>
-    </RouterLink>
+    <ChevronBack />
+    <button @click="$router.back()">Back</button>
   </div>
 </template>
 
@@ -26,6 +24,7 @@ export default {
   padding: 0px 0px 0px 20px;
   width: auto;
 }
+
 .back-button button {
   font-family: Arial, Helvetica, sans-serif;
   height: 60px;
@@ -36,6 +35,7 @@ export default {
   background-color: rgba(217, 217, 217, 0);
   cursor: pointer;
 }
+
 .router-link {
   display: flex;
   align-items: center;

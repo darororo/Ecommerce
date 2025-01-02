@@ -14,14 +14,27 @@ export default {
     ContactDealer,
     EngineDetails,
   },
+  data() {
+    return {
+      // showGallery: false,
+    }
+  },
+  computed: {
+    showGallery() {
+      let curPath = this.$route.path;
+      return curPath.split("/").reverse()[0] === "gallery"
+    }
+  },
 };
 </script>
 
 <template>
   <div class="container">
-    <div class="main">
+    <div v-if="!showGallery" class="main">
       <CarHeader />
-      <div class="line"><hr /></div>
+      <div class="line">
+        <hr />
+      </div>
       <div class="listing-body-wrapper">
         <CarDescription />
         <div>
@@ -30,7 +43,7 @@ export default {
         </div>
       </div>
     </div>
-    <div>
+    <div v-else>
       <RouterView />
     </div>
   </div>
@@ -40,6 +53,7 @@ export default {
 .main {
   padding: 0px 136px 0px 136px;
 }
+
 .listing-body-wrapper {
   display: flex;
   justify-content: space-between;
