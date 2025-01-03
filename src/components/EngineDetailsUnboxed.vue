@@ -95,7 +95,7 @@ export default {
 h2 {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 28px;
+  font-size: 26px;
   color: black;
 }
 
@@ -105,8 +105,8 @@ h2 {
   width: 407.59px;
   height: 350px;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  padding: 20px 40px 20px 40px;
+  /* border: 1px solid rgba(0, 0, 0, 0.4); */
+  /* padding: 20px 40px 20px 40px; */
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;

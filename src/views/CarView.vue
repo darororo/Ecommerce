@@ -45,7 +45,9 @@ export default {
           <div class="line line-grey">
             <hr>
           </div>
-          <EngineDetailsUnboxed />
+          <div class="engine-details">
+            <EngineDetailsUnboxed />
+          </div>
 
           <div class="line line-grey">
             <hr>
@@ -71,9 +73,10 @@ export default {
 
 <style scoped>
 .line-grey>hr {
-  margin: 20px 0;
   border-color: #ffffff;
   width: 90%;
+  padding: 0;
+  margin: 1px 0;
 }
 
 .container {
@@ -92,13 +95,17 @@ export default {
 }
 
 .comment-section {
+  margin-top: 14px;
   width: 90%;
-  margin-top: 50px;
 }
 
 .contact-dealer {
   position: sticky;
   top: 0;
   height: 100%;
+}
+
+.engine-details {
+  margin-bottom: 18px;
 }
 </style>
