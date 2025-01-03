@@ -1,6 +1,5 @@
 <template>
     <CommentHeader />
-    <hr class="line">
     <div class="singles-wrapper">
         <template v-for="n in 10">
             <SingleComment />
@@ -29,7 +28,9 @@ export default {
 }
 
 .singles-wrapper {
+    margin-top: 25px;
     height: 600px;
     overflow-y: scroll;
+    margin-bottom: 20px;
 }
 </style>

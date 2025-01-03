@@ -38,11 +38,9 @@
 
 <script>
 import CarCard from "../components/car/CarCard.vue";
-import CarCard from "../components/car/CarCard.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import LandingComponent from "../components/LandingComponent.vue";
 import NavComponent from "../components/NavComponent.vue";
-import PopularCard from "../components/car/PopularCard.vue";
 import PopularCard from "../components/car/PopularCard.vue";
 import ProductList from "../components/ProductList.vue";
 import { gsap, Power2 } from "gsap";

@@ -12,8 +12,10 @@
 <style scoped>
 .comment-box {
     width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .inquire-button {
