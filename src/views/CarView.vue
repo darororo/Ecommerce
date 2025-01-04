@@ -7,6 +7,9 @@ import ContactDealer from "../components/ContactDealer.vue";
 import EngineDetails from "../components/EngineDetails.vue";
 import CommentSection from "@/components/comment/CommentSection.vue";
 import EngineDetailsUnboxed from "../components/EngineDetailsUnboxed.vue";
+import FooterComponent from "../components/FooterComponent.vue";
+import NavMenu from "../components/car/NavMenu.vue";
+
 export default {
   components: {
     Back,
@@ -17,17 +20,19 @@ export default {
     EngineDetails,
     EngineDetailsUnboxed,
     CommentSection,
+    FooterComponent,
+    NavMenu,
   },
   data() {
     return {
       // showGallery: false,
-    }
+    };
   },
   computed: {
     showGallery() {
       let curPath = this.$route.path;
-      return curPath.split("/").reverse()[0] === "gallery"
-    }
+      return curPath.split("/").reverse()[0] === "gallery";
+    },
   },
 };
 </script>
@@ -35,22 +40,23 @@ export default {
 <template>
   <div class="container">
     <div v-if="!showGallery" class="main">
+      <NavMenu />
       <CarHeader />
       <div class="line">
-        <hr>
+        <hr />
       </div>
       <div class="listing-body-wrapper">
         <div class="desc-container">
           <CarDescription />
           <div class="line line-grey">
-            <hr>
+            <hr />
           </div>
           <div class="engine-details">
             <EngineDetailsUnboxed />
           </div>
 
           <div class="line line-grey">
-            <hr>
+            <hr />
           </div>
           <div class="comment-section">
             <CommentSection />
@@ -67,12 +73,12 @@ export default {
     <div class="line">
       <hr />
     </div>
-
   </div>
+  <FooterComponent />
 </template>
 
 <style scoped>
-.line-grey>hr {
+.line-grey > hr {
   border-color: #ffffff;
   width: 90%;
   padding: 0;
@@ -80,7 +86,7 @@ export default {
 }
 
 .container {
-  padding: 0px 136px 0px 136px;
+  padding: 0px 136px 100px 136px;
 }
 
 .listing-body-wrapper {

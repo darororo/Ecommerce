@@ -1,8 +1,10 @@
 <script>
+import FooterComponent from "../FooterComponent.vue";
 import Back from "./Back.vue";
 export default {
   components: {
     Back,
+    FooterComponent,
   },
 };
 </script>
@@ -33,7 +35,7 @@ export default {
 
 <style scoped>
 .container {
-  padding: 10px 20px 0px 20px;
+  padding: 10px 20px 100px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,8 +53,7 @@ export default {
   width: 100%;
 }
 .grid-header img {
-  height: auto;
-  height: 100%;
+  height: 70%;
   width: 100%;
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -66,8 +67,10 @@ export default {
   width: 100%;
 }
 .grid-main img {
+  position: relative;
+  bottom: 198px;
   height: auto;
-  height: 100%;
+  height: 90%;
   width: 100%;
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -80,22 +83,26 @@ export default {
   width: 100%;
 }
 .grid-footer img {
+  position: relative;
+  bottom: 240px;
   height: auto;
   width: 100%;
-  height: 100%;
+  height: 80%;
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
 }
 .last-gallery {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
   width: 100%;
 }
 .last-gallery > img {
+  position: relative;
+  bottom: 358px;
   height: auto;
-  height: 100%;
+  height: 80%;
   width: 100%;
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
