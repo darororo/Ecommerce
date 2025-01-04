@@ -5,15 +5,26 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"
-      @toggle-sidebar="toggleSidebar" />
+    <NavComponent
+      class="nav"
+      :textColor="color"
+      :bgColor="bgColor"
+      :borderColor="borderColor"
+      @toggle-sidebar="toggleSidebar"
+    />
   </Transition>
   <LandingComponent class="hero" />
   <ProductList />
   <h1>Popular Cars</h1>
   <div class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
-      <PopularCard :name="car.name" :themeColor="car.color" :price="car.price" :img="car.img" :imgHeight="car.height" />
+      <PopularCard
+        :name="car.name"
+        :themeColor="car.color"
+        :price="car.price"
+        :img="car.img"
+        :imgHeight="car.height"
+      />
     </template>
   </div>
   <h1>Features</h1>
@@ -56,7 +67,7 @@ export default {
     return {
       color: "white",
       bgColor: "transparent",
-      borderColor: "gray",
+      borderColor: "#C0C0C0",
       popularCars: [
         {
           name: "Porsche 911 GT2 RS",

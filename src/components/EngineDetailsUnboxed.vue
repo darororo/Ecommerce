@@ -50,6 +50,13 @@
       </span>
       <span class="space1">{{ carInfo.power }} hp</span>
     </div>
+    <div class="info-item">
+      <span>
+        <Power />
+        <span class="space">Color</span>
+      </span>
+      <span class="space1">{{ carInfo.color }}</span>
+    </div>
   </div>
 </template>
 
@@ -83,6 +90,7 @@ export default {
         engine: "12 Cylinder",
         fuelType: "Petrol",
         power: 949,
+        color: "Cherry",
       },
     };
   },
@@ -90,47 +98,70 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Grey+Qo&family=Moul&family=Moulpali&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Grey+Qo&family=Moul&family=Moulpali&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
 
 h2 {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px;
+  font-size: 28px;
   color: black;
+  margin: 0;
+  padding: 10px 0px 20px 0px;
 }
 
 .box {
-  display: flex;
-  justify-content: space-between;
-  width: 407.59px;
-  height: 350px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
   background-color: white;
-  /* border: 1px solid rgba(0, 0, 0, 0.4); */
-  /* padding: 20px 40px 20px 40px; */
-  flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #dcdfe3;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
-}
-
-.space {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  margin-left: 12px;
+  width: 94%;
 }
 
 .info-item {
   display: flex;
+  font-family: Arial, Helvetica, sans-serif;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 10px 0px 10px;
+  background: #ffffff;
+  border: 1px solid #dcdfe3;
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.3s ease-in-out;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); */
 }
 
-.info-item>span {
+.info-item:hover {
+  transform: translateY(-5px);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
+}
+
+.space {
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 8px;
+  color: #000000;
+}
+
+.space1 {
+  margin-left: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.info-item span svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  transition: fill 0.3s ease;
+}
+span {
   display: flex;
   align-items: center;
-  margin: 0;
 }
 </style>

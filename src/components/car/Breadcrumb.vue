@@ -1,38 +1,37 @@
 <template>
-  <div class="container">
-    <nav class="nav-link">
-      <RouterLink to="/">
-        <li>
-          <a href="">Home</a>
-          <ChevronRight />
-        </li>
-      </RouterLink>
+  <NavComponent />
+  <nav class="nav-link">
+    <RouterLink to="/">
       <li>
-        <a href="">Brand</a>
+        <a href="">Home</a>
         <ChevronRight />
       </li>
-      <li>
-        <a href="">Gallery</a>
-        <ChevronRight />
-      </li>
-    </nav>
-  </div>
+    </RouterLink>
+    <li>
+      <a href="">Brand</a>
+      <ChevronRight />
+    </li>
+    <li>
+      <a href="">Gallery</a>
+      <ChevronRight />
+    </li>
+  </nav>
 </template>
 <script>
 import ChevronRight from "../icons/NavIcons/chevronRight.vue";
+import NavComponent from "../NavComponent.vue";
 export default {
   components: {
     ChevronRight,
+    NavComponent,
   },
 };
 </script>
 <style scoped>
-.container {
-  padding: 135px 0px 0px 0px;
-}
 .nav-link {
   display: flex;
   gap: 20px;
+  padding: 136px 136px 0 136px;
 }
 .nav-link li {
   display: flex;

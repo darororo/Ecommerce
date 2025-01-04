@@ -49,9 +49,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
 .car-header {
-  padding-top: 10px;
+  padding: 10px 136px 0 136px;
 }
-
 .back-button {
   display: flex;
   align-items: center;
@@ -98,7 +97,7 @@ export default {
   gap: 10px;
 }
 
-.small-gallery>img {
+.small-gallery > img {
   height: 244px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -108,7 +107,7 @@ export default {
   position: relative;
 }
 
-.overlay-container>img {
+.overlay-container > img {
   height: 240px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

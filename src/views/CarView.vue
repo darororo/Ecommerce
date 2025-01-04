@@ -8,7 +8,7 @@ import EngineDetails from "../components/EngineDetails.vue";
 import CommentSection from "@/components/comment/CommentSection.vue";
 import EngineDetailsUnboxed from "../components/EngineDetailsUnboxed.vue";
 import FooterComponent from "../components/FooterComponent.vue";
-import NavMenu from "../components/car/NavMenu.vue";
+import NavMenu from "../components/car/Breadcrumb.vue";
 
 export default {
   components: {
@@ -38,6 +38,12 @@ export default {
 </script>
 
 <template>
+  <NavComponent
+    v-show="!showGallery"
+    :bgColor="'white'"
+    :textColor="'black'"
+    :borderColor="'none'"
+  />
   <div class="container">
     <div v-if="!showGallery" class="main">
       <NavMenu />
@@ -48,14 +54,13 @@ export default {
       <div class="listing-body-wrapper">
         <div class="desc-container">
           <CarDescription />
-          <div class="line line-grey">
+          <div class="line-grey">
             <hr />
           </div>
           <div class="engine-details">
             <EngineDetailsUnboxed />
           </div>
-
-          <div class="line line-grey">
+          <div class="line-grey">
             <hr />
           </div>
           <div class="comment-section">
@@ -78,23 +83,20 @@ export default {
 </template>
 
 <style scoped>
-.line-grey > hr {
+.line {
+  padding: 0px 136px 0 136px;
+}
+.line-grey {
   border-color: #ffffff;
-  width: 90%;
-  padding: 0;
   margin: 1px 0;
+  padding: 0px 30px 0 0px;
 }
-
-.container {
-  padding: 0px 136px 100px 136px;
-}
-
 .listing-body-wrapper {
   display: flex;
   justify-content: space-between;
   position: relative;
+  padding: 0px 136px 0 136px;
 }
-
 .desc-container {
   display: flex;
   flex-direction: column;
@@ -102,12 +104,13 @@ export default {
 
 .comment-section {
   margin-top: 14px;
-  width: 90%;
+  width: auto;
+  padding: 0px 30px 0px 0px;
 }
 
 .contact-dealer {
   position: sticky;
-  top: 0;
+  top: 100px;
   height: 100%;
 }
 

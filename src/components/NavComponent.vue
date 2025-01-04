@@ -69,12 +69,14 @@ export default {
     },
     props: {
         textColor: {
-            default: "white"
+            default: "transparent"
         },
         bgColor: {
             default: "transparent"
         },
-        borderColor: "gray"
+        borderColor: {
+            default: "#C0C0C0"
+        },
     }
 }
 
