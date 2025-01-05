@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
     <div class="container">
-        <div class="menu-btn">
+        <div class="menu-btn" @click="$emit('toggle-sidebar')">
             <svg class="burger-svg" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" :fill="textColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
             <p class="goldman-regular">Carbodia</p> 
         </div>
@@ -69,12 +69,14 @@ export default {
     },
     props: {
         textColor: {
-            default: "white"
+            default: "transparent"
         },
         bgColor: {
             default: "transparent"
         },
-        borderColor: "gray"
+        borderColor: {
+            default: "#C0C0C0"
+        },
     }
 }
 

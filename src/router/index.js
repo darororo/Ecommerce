@@ -1,32 +1,43 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '../views/HomePage.vue'
-import UserForm from '../components/UserForm.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import HomePage from "../views/HomePage.vue";
+import UserForm from "../components/UserForm.vue";
+import CarView from "../views/CarView.vue";
+import GalleryImages from "../components/car/GalleryImages.vue";
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 };
+  },
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: "/",
       component: HomePage,
     },
 
     {
-      path: '/login',
+      path: "/login",
       component: UserForm,
       props: {
-        isCreateForm: false
-      }
+        isCreateForm: false,
+      },
     },
 
     {
-      path: '/signup',
+      path: "/signup",
       component: UserForm,
       props: {
         isCreateForm: true,
-      }
+      },
     },
 
+    {
+      path: "/car/:carId",
+      component: CarView,
+      children: [{ path: "gallery", component: GalleryImages }],
+    },
   ],
-})
+});
 
-export default router
+export default router;
