@@ -19,13 +19,13 @@
     <div class="price-sec">
       <div class="car-details">
         <div class="text-content">
-          <h2 class="title">2017 Ferrari LaFerrari</h2>
+          <h2 class="title">{{ model }}</h2>
         </div>
       </div>
       <div class="car-details1">
-        <p class="subtitle">Dubai, United Arab Emirates</p>
+        <p class="subtitle">{{ location }}</p>
         <div class="price-inquire">
-          <p class="price">$6,669,988</p>
+          <p class="price">{{ price }}</p>
           <button @click="inquire" class="inquire-button">Inquire</button>
         </div>
       </div>
@@ -36,6 +36,11 @@
 <script>
 export default {
   name: "CarHeader",
+  props: {
+    model: String,
+    price: String,
+    location: String,
+  },
   methods: {
     inquire() {
       alert("Inquire button clicked!");
@@ -51,6 +56,7 @@ export default {
 .car-header {
   padding: 10px 136px 0 136px;
 }
+
 .back-button {
   display: flex;
   align-items: center;
@@ -97,7 +103,7 @@ export default {
   gap: 10px;
 }
 
-.small-gallery > img {
+.small-gallery>img {
   height: 244px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -107,7 +113,7 @@ export default {
   position: relative;
 }
 
-.overlay-container > img {
+.overlay-container>img {
   height: 240px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

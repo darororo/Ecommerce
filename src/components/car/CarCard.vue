@@ -1,21 +1,19 @@
 <template>
   <div class="container">
     <div class="img-container">
-      <img src="@/assets/images/products/car1.png" />
+      <img :src="car.images[0]" />
     </div>
     <div class="text-container">
       <div class="text-row-1">
-        <div class="price">$6,670,088</div>
+        <div class="price">{{ formatUsd(car.price) }}</div>
         <div class="bookmark">
           <input class="star" type="checkbox" title="bookmark page" checked />
         </div>
       </div>
-      <div class="name-car">2017 Ferrari LaFerrari</div>
+      <div class="name-car">{{ car.model }}</div>
       <div class="script-seller">
         <div class="description">
-          The LaFerrari features a 6262cc V12 engine built for performance. The
-          LaFerrari is the first production car to ever be equipped with an
-          F1-derived hybrid solution
+          {{ car.description }}
         </div>
         <div class="seller">
           <SellerIcon />
@@ -26,7 +24,7 @@
         <RouterLink to="/checkout">
           <button class="btn-reser">Reserve Now</button>
         </RouterLink>
-        <RouterLink to="/car/1">
+        <RouterLink :to="`/car/${car.id}`">
           <button class="btn-deta">More detail</button>
         </RouterLink>
       </div>
@@ -37,11 +35,25 @@
 <script>
 import { RouterLink } from "vue-router";
 import SellerIcon from "@/components/icons/SellerIcon.vue";
+import { mapState } from "pinia";
+import { useCarStore } from "../../stores/cars";
+import { useUtilStore } from "../../stores/utils";
 
 export default {
   components: {
     SellerIcon,
   },
+  computed: {
+    ...mapState(useCarStore, {
+      cars: "cars",
+    }),
+    ...mapState(useUtilStore, {
+      formatUsd: "formatUsd",
+    })
+  },
+  props: {
+    car: Object,
+  }
 };
 </script>
 
@@ -60,7 +72,7 @@ export default {
   border-radius: 10px;
 }
 
-.img-container > img {
+.img-container>img {
   width: 100%;
   height: 100%;
   border-radius: 10px;

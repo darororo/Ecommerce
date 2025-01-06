@@ -5,40 +5,24 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent
-      class="nav"
-      :textColor="color"
-      :bgColor="bgColor"
-      :borderColor="borderColor"
-      @toggle-sidebar="toggleSidebar"
-    />
+    <NavComponent class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"
+      @toggle-sidebar="toggleSidebar" />
   </Transition>
   <LandingComponent class="hero" />
   <ProductList />
   <h1>Popular Cars</h1>
   <div class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
-      <PopularCard
-        :name="car.name"
-        :themeColor="car.color"
-        :price="car.price"
-        :img="car.img"
-        :imgHeight="car.height"
-      />
+      <PopularCard :name="car.name" :themeColor="car.color" :price="car.price" :img="car.img" :imgHeight="car.height" />
     </template>
   </div>
   <h1>Features</h1>
   <div class="car-listing-container">
     <div class="car-listing">
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
-      <CarCard />
+      <template v-for="car in cars">
+        <CarCard :car="car" />
+      </template>
+
     </div>
     <div class="filter-wrapper">
       <FilterComponent />
@@ -58,6 +42,8 @@ import { gsap, Power2 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SideBarComponent from "../components/SideBarComponent.vue";
 import FilterComponent from "../components/FilterComponent.vue";
+import { mapState } from "pinia";
+import { useCarStore } from "../stores/cars";
 
 export default {
   setup() {
@@ -112,6 +98,11 @@ export default {
       this.isSidebarVisible = !this.isSidebarVisible;
     },
   },
+  computed: {
+    ...mapState(useCarStore, {
+      cars: "cars",
+    })
+  }
 };
 
 function navInit(el, done) {
