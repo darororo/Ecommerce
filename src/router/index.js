@@ -3,6 +3,7 @@ import HomePage from "../views/HomePage.vue";
 import UserForm from "../components/UserForm.vue";
 import CarView from "../views/CarView.vue";
 import GalleryImages from "../components/car/GalleryImages.vue";
+import Reserve from "../components/checkout/Reserve.vue";
 
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
@@ -36,6 +37,10 @@ const router = createRouter({
       path: "/car/:carId",
       component: CarView,
       children: [{ path: "gallery", component: GalleryImages }],
+    },
+    {
+      path: "/car/1/Checkout",
+      component: Reserve,
     },
   ],
 });

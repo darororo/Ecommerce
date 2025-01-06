@@ -52,3 +52,4 @@
   column-gap: 30px;
 }
 </style>
+Now I understand that's you are weird XD

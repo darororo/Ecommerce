@@ -11,10 +11,12 @@
       <a href="">Brand</a>
       <ChevronRight />
     </li>
-    <li>
-      <a href="">Gallery</a>
-      <ChevronRight />
-    </li>
+    <RouterLink to="/car/1/gallery">
+      <li>
+        <a href="">Gallery</a>
+        <ChevronRight />
+      </li>
+    </RouterLink>
   </nav>
 </template>
 <script>

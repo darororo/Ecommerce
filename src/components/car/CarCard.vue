@@ -23,7 +23,9 @@
         </div>
       </div>
       <div class="reser-detail">
-        <button class="btn-reser">Reserve Now</button>
+        <RouterLink to="/car/1/Checkout">
+          <button class="btn-reser">Reserve Now</button>
+        </RouterLink>
         <RouterLink to="/car/1">
           <button class="btn-deta">More detail</button>
         </RouterLink>
@@ -58,7 +60,7 @@ export default {
   border-radius: 10px;
 }
 
-.img-container>img {
+.img-container > img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
