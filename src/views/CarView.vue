@@ -20,7 +20,6 @@ export default {
     NavComponent,
     CarDescription,
     ContactDealer,
-    EngineDetails,
     EngineDetailsUnboxed,
     CommentSection,
     FooterComponent,
@@ -35,7 +34,10 @@ export default {
     ...mapState(useCarStore, {
       cars: "cars",
       car(store) {
-        return store.getCar(parseInt(this.$route.params.carId))
+        console.log("route carId: " + this.$route.params.carId)
+        console.log("car id 0: " + this.cars[0].id)
+        let c = this.cars.find(car => car.id === this.$route.params.carId)
+        return c
       }
     }),
 

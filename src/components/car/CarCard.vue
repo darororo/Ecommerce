@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="img-container">
-      <img :src="car.images[0]" />
+      <img :src="imageUrl" />
     </div>
     <div class="text-container">
       <div class="text-row-1">
@@ -46,6 +46,9 @@ export default {
   computed: {
     ...mapState(useCarStore, {
       cars: "cars",
+      imageUrl(store) {
+        return store.getImageURL("cars", this.car.id, this.car.images[0])
+      },
     }),
     ...mapState(useUtilStore, {
       formatUsd: "formatUsd",

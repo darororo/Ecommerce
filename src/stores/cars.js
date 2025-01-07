@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import pb from "../lib/pocketbase";
 
 export const useCarStore = defineStore("cars", {
   state: () => ({
@@ -72,5 +73,31 @@ export const useCarStore = defineStore("cars", {
   }),
   getters: {
     getCar: (state) => (id) => state.cars.find((car) => car.id === id),
+  },
+  actions: {
+    async fetchCars() {
+      try {
+        const carsPb = await pb.collection("cars").getFullList();
+        console.log(carsPb);
+
+        this.cars = carsPb;
+        console.log("CARS POCKETBASE");
+        console.log(carsPb);
+
+        console.log("THIS CARS");
+        console.log(this.cars);
+        console.log(this.cars[0].images[0]);
+        console.log(
+          this.getImageURL("cars", this.cars[0].id, this.cars[0].images[0])
+        );
+      } catch (error) {
+        alert(error);
+      }
+    },
+    getImageURL(collectionName, recID, filename) {
+      return `${
+        import.meta.env.VITE_PB_URL
+      }/api/files/${collectionName}/${recID}/${filename}`;
+    },
   },
 });

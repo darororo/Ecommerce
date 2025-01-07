@@ -99,7 +99,9 @@ export default {
   computed: {
     ...mapState(useCarStore, {
       car(store) {
-        return store.getCar(parseInt(this.$route.params.carId))
+        console.log(store.cars[0].brand)
+        console.log(this.$route.params.carId)
+        return store.getCar(this.$route.params.carId)
       }
     }),
     engine() {
