@@ -8,7 +8,7 @@ import EngineDetails from "../components/EngineDetails.vue";
 import CommentSection from "@/components/comment/CommentSection.vue";
 import EngineDetailsUnboxed from "../components/EngineDetailsUnboxed.vue";
 import FooterComponent from "../components/FooterComponent.vue";
-import NavMenu from "../components/car/Breadcrumb.vue";
+import Breadcrumb from "../components/car/Breadcrumb.vue";
 import { mapState } from "pinia";
 import { useCarStore } from "../stores/cars";
 import { useUtilStore } from "../stores/utils";
@@ -23,7 +23,7 @@ export default {
     EngineDetailsUnboxed,
     CommentSection,
     FooterComponent,
-    NavMenu,
+    Breadcrumb,
   },
   data() {
     return {
@@ -61,8 +61,8 @@ export default {
   <NavComponent v-show="!showGallery" :bgColor="'white'" :textColor="'black'" :borderColor="'none'" />
   <div class="container">
     <div v-if="!showGallery" class="main">
-      <NavMenu />
-      <CarHeader :model="car.model" :price="priceUsd" :location="car.location" />
+      <Breadcrumb :brand="car.brand" :model="car.model" />
+      <CarHeader :id="car.id" :model="car.model" :price="priceUsd" :location="car.location" :images="car.images" />
       <div class="line">
         <hr />
       </div>

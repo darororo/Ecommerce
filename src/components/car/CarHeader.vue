@@ -2,16 +2,18 @@
   <div class="car-header">
     <div class="image-section">
       <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
-        <img src="@/assets/images/products/car1.png" class="large-image" />
+        <img :src="imageUrls[0]" class="large-image" />
       </RouterLink>
       <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
         <div class="small-gallery">
-          <img src="@/assets/images/products/car2.png" class="small-image" />
+          <!-- <img v-for="img in imageUrls" :src="img" alt=""> -->
+          <img v-for="img in imageUrls.slice(1, 4)" :src="img" alt="" class="small-image" />
+          <!-- <img src="@/assets/images/products/car2.png" class="small-image" />
           <img src="@/assets/images/products/car3.png" class="small-image" />
-          <img src="@/assets/images/products/car4.png" class="small-image" />
+          <img src="@/assets/images/products/car4.png" class="small-image" /> -->
           <div class="overlay-container">
             <div class="overlay-text">All Photos (6)</div>
-            <img src="@/assets/images/products/car5.png" class="small-image" />
+            <img :src="imageUrls[4]" class="small-image" />
           </div>
         </div>
       </RouterLink>
@@ -34,18 +36,38 @@
 </template>
 
 <script>
+import { mapState } from 'pinia';
+import { useCarStore } from '../../stores/cars';
+
 export default {
   name: "CarHeader",
   props: {
     model: String,
     price: String,
     location: String,
+    id: String,
+    images: Array,
   },
   methods: {
     inquire() {
       alert("Inquire button clicked!");
     },
   },
+  computed: {
+    ...mapState(useCarStore, {
+      cars: "cars",
+      imageUrls(store) {
+        const urls = [];
+        this.images.forEach(img => {
+          urls.push(store.getImageURL("cars", this.$route.params.carId, img))
+        });
+        console.log("POOPY")
+        console.log(this.images)
+
+        return urls
+      },
+    }),
+  }
 };
 </script>
 
