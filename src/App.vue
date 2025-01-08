@@ -15,14 +15,14 @@ export default {
     }
   },
   async mounted() {
-    try {
-      const authData = await pb
-        .collection("users")
-        .authWithPassword("daroyem99@gmail.com", "password123");
-      console.log(authData.record.email)
-    } catch (error) {
-      alert(error)
-    }
+    // try {
+    //   const authData = await pb
+    //     .collection("users")
+    //     .authWithPassword("daroyem99@gmail.com", "password123");
+    //   console.log(authData.record.email)
+    // } catch (error) {
+    //   alert(error)
+    // }
 
     this.carStore.fetchCars();
     console.log(this.carStore.cars)
