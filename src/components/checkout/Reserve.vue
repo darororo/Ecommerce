@@ -1,48 +1,26 @@
-<script>
-import Back from "../car/Back.vue";
-import ChevronBack from "../icons/productPage/chevronBack.vue";
-
-export default {
-  components: {
-    Back,
-    ChevronBack,
-  },
-};
-</script>
-
 <template>
   <div class="back-btn">
     <Back />
   </div>
-  <div class="wrapper-content">
+  <div v-if="showReserve" class="wrapper-content">
     <div class="image-wrapper">
       <img
         src="@/assets/images/products/car1.png"
         alt="Ferrari LaFerrari 2017"
       />
-      <div class="splied-grid">
-        <div class="skip-left">
-          <ChevronBack />
+      <div>
+        <h1>Ferrari LaFerrari 2017</h1>
+        <div class="span-content">
+          <span>Ferrari Approved Pre-Owned</span>
+          <span>Ferrari Centre Dubai, United Arab Emirates</span>
         </div>
-        <img src="@/assets/images/products/car1.png" />
-        <img src="@/assets/images/products/car2.png" />
-        <img src="@/assets/images/products/car3.png" />
-        <img src="@/assets/images/products/car4.png" />
-        <div class="skip-right">
-          <ChevronBack />
+        <div class="price-name-content">
+          <span>Price</span>
+          <h3>$6,670,088</h3>
         </div>
       </div>
     </div>
     <div class="container-fill-content">
-      <h1>Ferrari LaFerrari 2017</h1>
-      <div class="span-content">
-        <span>Ferrari Approved Pre-Owned</span>
-        <span>Ferrari Centre Dubai, United Arab Emirates</span>
-      </div>
-      <div class="price-name-content">
-        <span>Price</span>
-        <h3>$6,670,088</h3>
-      </div>
       <div class="row-select-fill">
         <div class="select-fill-content">
           <span>Finance Product*</span>
@@ -98,32 +76,66 @@ export default {
       </div>
     </div>
   </div>
-  <div class="btn-next">
-    <button>Next</button>
+  <div v-else>
+    <RouterView />
   </div>
+  <RouterLink v-show="showBtnNext" :to="next">
+    <div class="btn-next">
+      <button>Next</button>
+    </div>
+  </RouterLink>
 </template>
+
+<script>
+import Back from "../car/Back.vue";
+import ChevronBack from "../icons/productPage/chevronBack.vue";
+
+export default {
+  components: {
+    Back,
+    ChevronBack,
+  },
+  data() {
+    return {
+      showReserve: false,
+    };
+  },
+  computed: {
+    showReserve() {
+      let curPath = this.$route.path;
+      return curPath.split("/").reverse()[0] === "checkout";
+    },
+    next() {
+      let curPath = this.$route.path;
+      const endpoint = curPath.split("/").reverse()[0];
+      if (endpoint === "customer") {
+        return "/checkout/customer/payment";
+      } else if (endpoint === "checkout") {
+        return "/checkout/customer";
+      }
+    },
+    showBtnNext() {
+      let curPath = this.$route.path;
+      const endpoint = curPath.split("/").reverse()[0];
+      return endpoint != "payment";
+    },
+  },
+};
+</script>
 
 <style scoped>
 .back-btn {
   padding-bottom: 20px;
 }
 .wrapper-content {
+  padding: 10px 136px 0 136px;
+}
+.image-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
   gap: 40px;
-  padding: 20px 0px 20px 0px;
-  justify-content: center;
-}
-.skip-left {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.skip-right {
-  position: relative;
-  display: flex;
-  align-items: center;
-  rotate: 180deg;
+  padding-bottom: 30px;
 }
 h1 {
   font-family: Arial, Helvetica, sans-serif;
@@ -133,32 +145,21 @@ h1 {
   height: auto;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 100%;
+  width: 40%;
 }
-.splied-grid {
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  padding: 20px 0px 20px 0px;
-}
-.splied-grid img {
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: auto;
-  width: 9vw;
-}
+
 .container-fill-content {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 18px;
-  max-width: 600px;
-  width: 100%;
+  margin-bottom: 100px;
 }
 .span-content {
   display: flex;
   flex-direction: column;
   gap: 12px;
   font-size: 15px;
+  padding: 20px 0px 30px 0px;
   color: #555;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -166,7 +167,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0px 8px 0px;
 }
 .price-name-content > span {
   font-size: 16px;
@@ -185,11 +185,13 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   align-items: end;
+  padding-bottom: 20px;
 }
 .select-fill-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-bottom: 20px;
 }
 .select-fill-content select {
   font-size: 16px;
@@ -248,7 +250,7 @@ button:focus > option {
   display: flex;
   justify-content: space-between;
   padding: 20px 20px 20px 20px;
-  font-size: 16px;
+  font-size: 18px;
   width: 100%;
   border-radius: 6px;
   background-color: #dcdcdc;
@@ -259,21 +261,25 @@ button:focus > option {
   font-weight: 600;
 }
 .btn-next {
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
   display: flex;
+  /* top: 115%; */
+  /* margin-top: 30px; */
+  bottom: 0;
   justify-content: end;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  padding: 10px 0px 10px 0px;
   width: 100%;
 }
 .btn-next button {
-  padding: 12px 40px 12px 40px;
+  padding: 16px 40px 16px 40px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 14px;
-  margin-right: 2%;
+  margin-right: 7%;
   background-color: transparent;
   border: none;
   color: white;

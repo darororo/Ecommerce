@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="reser-detail">
-        <RouterLink to="/car/1/Checkout">
+        <RouterLink to="/checkout">
           <button class="btn-reser">Reserve Now</button>
         </RouterLink>
         <RouterLink to="/car/1">
