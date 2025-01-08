@@ -76,8 +76,10 @@ export default {
 }
 
 .img-container>img {
+  display: block;
+  max-height: 300px;
   width: 100%;
-  height: 400px;
+  height: auto;
   border-radius: 10px;
 }
 
