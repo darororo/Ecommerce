@@ -24,10 +24,10 @@
 
   <!-- Log in  Section-->
   <div class="container">
-    <form v-if="!isCreateForm" class="form-sec">
+    <form v-if="!isCreateForm" class="form-sec" @submit.prevent>
       <div class="form-layout">
         <div class="head-sec">
-          <h2>Sign In</h2>
+          <h2 @click="signIn">Sign In</h2>
           <span>Don't have an account?
             <strong @click="changeForm">Sign Up</strong></span>
         </div>
@@ -37,17 +37,21 @@
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M10 14.974L0 6.14899V17.5H20V6.14899L10 14.974ZM10.001 12.312L0 3.48102V2.5H20V3.48102L10.001 12.312Z"
               fill="black" fill-opacity="0.7" />
+            fill="black" fill-opacity="0.7" />
           </svg>
-          <input type="text" name="fill-input" class="fill-input" placeholder="Email" />
+          <input v-model="user.email" type="text" name="fill-input" class="fill-input" placeholder="Email" />
         </div>
         <div class="fill-pass">
+
           <svg class="icon-style" width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
               d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
               fill="black" fill-opacity="0.7" />
+            fill="black" fill-opacity="0.7" />
           </svg>
-          <input type="password" name="fill-input" class="fill-input-password" placeholder="Password" />
+          <input v-model="user.password" type="password" name="fill-input" class="fill-input-password"
+            placeholder="Password" />
         </div>
       </div>
       <div class="form-check">
@@ -57,7 +61,7 @@
         </div>
         <span class="forget-ps">Forget Password?</span>
       </div>
-      <div class="btn-sign-in"><button>Sign In</button></div>
+      <div class="btn-sign-in"><button @click="signIn">Sign In</button></div>
       <div class="register">
         <hr />
         <span>or register with</span>
@@ -157,6 +161,7 @@ import FacebookLogout from "@/components/icons/auth/FacebookLogout.vue";
 import { useForm } from "vee-validate";
 import { string } from "yup";
 
+import pb from "../../lib/pocketbase";
 export default {
   setup() {
     const emailValidator = string().required("Email is required").email();
@@ -213,12 +218,39 @@ export default {
       skipItems: Array(5).fill(null),
       activeIndex: 0,
       termsChecked: false,
+      user: {
+        email: "",
+        password: "",
+      }
     };
   },
   methods: {
     changeForm() {
       this.isCreateForm = !this.isCreateForm;
       this.isLoggedIn = !this.isLoggedIn;
+    },
+    async signIn() {
+      try {
+        pb.authStore.clear();
+        const authData = await pb
+          .collection("users")
+          .authWithPassword(this.user.email, this.user.password);
+
+        console.log(pb.authStore.record.avatar)
+
+        if (pb.authStore.isValid) {
+          this.$router.push({ name: "home" })
+        }
+      } catch (error) {
+        alert(`Authentication failed: ${error}`)
+      }
+    },
+    async createUser() {
+      try {
+
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 };
@@ -240,6 +272,7 @@ a {
   left: 50%;
   /* padding-top: 0px; */
 }
+
 
 .container form {
   position: relative;
