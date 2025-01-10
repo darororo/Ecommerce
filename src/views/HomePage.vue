@@ -5,10 +5,11 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"
+    <NavComponent v-show="!isBrandPath" class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"
       @toggle-sidebar="toggleSidebar" />
   </Transition>
-  <LandingComponent class="hero" />
+  <LandingComponent v-if="!isBrandPath" class="hero" />
+  <BrandLanding v-else class="brand-landing" />
   <ProductList />
   <h1>Popular Cars</h1>
   <div class="popular-list">
@@ -42,6 +43,7 @@ import { gsap, Power2 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SideBarComponent from "../components/SideBarComponent.vue";
 import FilterComponent from "../components/FilterComponent.vue";
+import BrandLanding from "../components/landingPage/BrandLanding.vue";
 import { mapState } from "pinia";
 import { useCarStore } from "../stores/cars";
 
@@ -80,6 +82,12 @@ export default {
       isSidebarVisible: false,
     };
   },
+  computed: {
+    isBrandPath() {
+      console.log(this.$route.name);
+      return this.$route.name === "brand";
+    },
+  },
   components: {
     LandingComponent,
     NavComponent,
@@ -89,6 +97,7 @@ export default {
     FooterComponent,
     SideBarComponent,
     FilterComponent,
+    BrandLanding,
   },
   methods: {
     navInit,
@@ -188,5 +197,9 @@ h1 {
 .filter-wrapper {
   position: sticky;
   top: 100px;
+}
+
+.brand-landing {
+  /* padding-top: 1000px; */
 }
 </style>

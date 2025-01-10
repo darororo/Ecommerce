@@ -2,13 +2,20 @@
   <div class="product-list">
     <h3 class="header-product">Product lists</h3>
     <div class="product-container">
-      <div class="product-item" v-for="(brand, index) in brands" :key="index">
-        <img :src="brand.logo" :alt="brand.name" loading="lazy" />
-        <!-- <div style="display: flex;">
-            <div style="border: 1px solid; height: 10px; width: 10px; border-radius: 100%; font-size: 8px; font-weight: bold;">R</div>
-          </div> -->
-        <p class="branch-name">{{ brand.name }}</p>
-      </div>
+      <RouterLink
+        class="RouterLink"
+        v-for="(brand, index) in brands"
+        :key="index"
+        :to="`/brand/${brand.name}`"
+      >
+        <div class="product-item">
+          <img :src="brand.logo" :alt="brand.name" loading="lazy" />
+          <!-- <div style="display: flex;">
+          <div style="border: 1px solid; height: 10px; width: 10px; border-radius: 100%; font-size: 8px; font-weight: bold;">R</div>
+        </div> -->
+          <!-- <p class="branch-name">{{ brand.name }}</p> -->
+        </div>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -19,29 +26,29 @@ export default {
     return {
       brands: [
         {
-          name: "Porsche",
+          name: "porsche",
           logo: new URL("@/assets/images/brands/porsche.png", import.meta.url)
             .href,
         },
         {
-          name: "",
+          name: "ferrari",
           logo: new URL("@/assets/images/brands/ferrari.png", import.meta.url)
             .href,
         },
         {
-          name: "",
+          name: "mercedes",
           logo: new URL("@/assets/images/brands/mercedes.png", import.meta.url)
             .href,
         },
         {
-          name: "",
+          name: "lamborghini",
           logo: new URL(
             "@/assets/images/brands/lamborghini.png",
             import.meta.url
           ).href,
         },
         {
-          name: "",
+          name: "bmw",
           logo: new URL("@/assets/images/brands/bmw.png", import.meta.url).href,
         },
       ],
@@ -52,7 +59,10 @@ export default {
 <style>
 @import url("https://fonts.cdnfonts.com/css/yapari-trial");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
+.RouterLink {
+  text-decoration: none;
+  color: black;
+}
 .header-product {
   padding: 100px 0px 28px 0px;
   font-family: "Montserrat", sans-serif;
