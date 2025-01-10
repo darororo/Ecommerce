@@ -20,7 +20,7 @@
 <script>
 import { mapState } from "pinia";
 import ChevronRight from "../icons/NavIcons/chevronRight.vue";
-import NavComponent from "../NavComponent.vue";
+import NavComponent from "../navigation/NavComponent.vue";
 import { useCarStore } from "../../stores/cars";
 export default {
   components: {

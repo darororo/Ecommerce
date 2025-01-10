@@ -1,13 +1,8 @@
 <template>
   <div class="product-list">
-    <h3 class="header-product">Product lists</h3>
+    <h3 class="header-product">Brand lists</h3>
     <div class="product-container">
-      <RouterLink
-        class="RouterLink"
-        v-for="(brand, index) in brands"
-        :key="index"
-        :to="`/brand/${brand.name}`"
-      >
+      <RouterLink class="RouterLink" v-for="(brand, index) in brands" :key="index" :to="`/brand/${brand.name}`">
         <div class="product-item">
           <img :src="brand.logo" :alt="brand.name" loading="lazy" />
           <!-- <div style="display: flex;">
@@ -59,10 +54,7 @@ export default {
 <style>
 @import url("https://fonts.cdnfonts.com/css/yapari-trial");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-.RouterLink {
-  text-decoration: none;
-  color: black;
-}
+
 .header-product {
   padding: 100px 0px 28px 0px;
   font-family: "Montserrat", sans-serif;

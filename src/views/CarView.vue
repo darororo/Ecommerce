@@ -1,6 +1,6 @@
 <script>
 import CarHeader from "@/components/car/CarHeader.vue";
-import NavComponent from "@/components/NavComponent.vue";
+import NavComponent from "@/components/navigation/NavComponent.vue";
 import CarDescription from "@/components/car/CarDescription.vue";
 import Back from "../components/car/Back.vue";
 import ContactDealer from "../components/ContactDealer.vue";

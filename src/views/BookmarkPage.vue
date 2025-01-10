@@ -3,7 +3,7 @@ import { mapState } from 'pinia';
 import { useUsersStore } from '@/stores/users';
 import { useUtilStore } from '@/stores/utils';
 import SimpleCarCard from '@/components/car/SimpleCarCard.vue';
-import NavComponent from '@/components/NavComponent.vue';
+import NavComponent from '@/components/navigation/NavComponent.vue';
 import { useCarStore } from '../stores/cars';
 
 export default {

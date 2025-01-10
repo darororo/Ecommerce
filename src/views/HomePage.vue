@@ -10,7 +10,7 @@
   </Transition>
   <LandingComponent v-if="$route.name !== 'brand'" class="hero" />
   <BrandLanding v-else class="brand-landing" />
-  <ProductList />
+  <BrandList />
   <h1>Popular Cars</h1>
   <div class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
@@ -36,16 +36,16 @@
 import CarCard from "../components/car/CarCard.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import LandingComponent from "../components/LandingComponent.vue";
-import NavComponent from "../components/NavComponent.vue";
+import NavComponent from "../components/navigation/NavComponent.vue";
 import PopularCard from "../components/car/PopularCard.vue";
-import ProductList from "../components/ProductList.vue";
 import { gsap, Power2 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SideBarComponent from "../components/SideBarComponent.vue";
+import SideBarComponent from "../components/users/SideBarComponent.vue";
 import FilterComponent from "../components/FilterComponent.vue";
 import BrandLanding from "../components/landingPage/BrandLanding.vue";
 import { mapState } from "pinia";
 import { useCarStore } from "../stores/cars";
+import BrandList from "../components/BrandList.vue";
 
 export default {
   setup() {
@@ -86,13 +86,13 @@ export default {
   components: {
     LandingComponent,
     NavComponent,
-    ProductList,
     PopularCard,
     CarCard,
     FooterComponent,
     SideBarComponent,
     FilterComponent,
     BrandLanding,
+    BrandList,
   },
   methods: {
     navInit,
