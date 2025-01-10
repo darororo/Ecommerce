@@ -6,9 +6,7 @@
     <div class="text-container">
       <div class="text-row-1">
         <div class="price">{{ formatUsd(car.price) }}</div>
-        <div class="bookmark">
-          <input class="star" type="checkbox" title="bookmark page" checked />
-        </div>
+        <BookmarkComponent :car="car" />
       </div>
       <div class="name-car">{{ car.model }}</div>
       <div class="script-seller">
@@ -38,10 +36,12 @@ import SellerIcon from "@/components/icons/SellerIcon.vue";
 import { mapState } from "pinia";
 import { useCarStore } from "../../stores/cars";
 import { useUtilStore } from "../../stores/utils";
+import { useUsersStore } from "../../stores/users";
+import BookmarkComponent from "../bookmark/BookmarkComponent.vue";
 
 export default {
   components: {
-    SellerIcon,
+    SellerIcon, BookmarkComponent,
   },
   computed: {
     ...mapState(useCarStore, {
@@ -52,7 +52,8 @@ export default {
     }),
     ...mapState(useUtilStore, {
       formatUsd: "formatUsd",
-    })
+    }),
+
   },
   props: {
     car: Object,
@@ -130,6 +131,7 @@ export default {
   font-size: 18px;
   font-style: normal;
   font-family: "Inria Sans", sans-serif;
+  cursor: pointer;
 }
 
 .name-car {

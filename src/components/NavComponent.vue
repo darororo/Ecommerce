@@ -1,53 +1,60 @@
 <template>
-<div class="wrapper">
-    <div class="container">
-        <div class="menu-btn" @click="$emit('toggle-sidebar')">
-            <svg class="burger-svg" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24" :fill="textColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
-            <p class="goldman-regular">Carbodia</p> 
-        </div>
-        <div class="search-wrapper">
-            <div class="search">
-                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"></path></svg>     
-                <input type="text" class="search-bar" placeholder="Search"></input>
+    <div class="wrapper">
+        <div class="container">
+            <div class="menu-btn">
+                <svg @click="$emit('toggle-sidebar')" class="burger-svg" xmlns="http://www.w3.org/2000/svg" width="2rem"
+                    height="2rem" viewBox="0 0 24 24" :fill="textColor">
+                    <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path>
+                </svg>
+                <p @click="$router.push('/')" class="goldman-regular">Carbodia</p>
             </div>
-        </div>        
-        <LoginButton :textColor="textColor"/>
-    </div>
+            <div class="search-wrapper">
+                <div class="search">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+                        </path>
+                    </svg>
+                    <input type="text" class="search-bar" placeholder="Search"></input>
+                </div>
+            </div>
+            <LoginButton :textColor="textColor" />
+        </div>
 
-    <div class="brand-navs">
-        <div class="brand">
-            <div>
-                <FerrariNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
+        <div class="brand-navs">
+            <div class="brand">
+                <div>
+                    <FerrariNavIcon :color="textColor" :width="'20px'" :height="'24px'" />
+                </div>
+                <p class="quattrocento-bold">Ferrari</p>
             </div>
-            <p class="quattrocento-bold">Ferrari</p>
-        </div>
-        <div class="brand">
-            <div>
-                <MercedesNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
+            <div class="brand">
+                <div>
+                    <MercedesNavIcon :color="textColor" :width="'20px'" :height="'24px'" />
+                </div>
+                <p class="quattrocento-bold">Mercedes</p>
             </div>
-            <p class="quattrocento-bold">Mercedes</p>
-        </div>
-        <div class="brand">
-            <div>
-                <PorscheNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
+            <div class="brand">
+                <div>
+                    <PorscheNavIcon :color="textColor" :width="'20px'" :height="'24px'" />
+                </div>
+                <p class="quattrocento-bold">Porsche</p>
             </div>
-            <p class="quattrocento-bold">Porsche</p>
-        </div>
-        <div class="brand">
-            <div>
-                <LamboNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
+            <div class="brand">
+                <div>
+                    <LamboNavIcon :color="textColor" :width="'20px'" :height="'24px'" />
+                </div>
+                <p class="quattrocento-bold">Lamboghini</p>
             </div>
-            <p class="quattrocento-bold">Lamboghini</p>
-        </div>
-        <div class="brand">
-            <div>
-                <BmwNavIcon :color="textColor" :width="'20px'" :height="'24px'"/>
+            <div class="brand">
+                <div>
+                    <BmwNavIcon :color="textColor" :width="'20px'" :height="'24px'" />
+                </div>
+                <p class="quattrocento-bold">BMW</p>
             </div>
-            <p class="quattrocento-bold">BMW</p>
         </div>
-    </div>
 
-</div>
+    </div>
 
 </template>
 
@@ -106,7 +113,7 @@ export default {
     width: auto;
 }
 
-.search > input {
+.search>input {
     padding-left: 2.5rem;
     box-sizing: border-box;
     width: 35vw;
@@ -140,7 +147,7 @@ export default {
     color: v-bind(textColor);
 }
 
-.menu-btn > p {
+.menu-btn>p {
     font-size: 1.8rem;
     color: v-bind(textColor);
 }
@@ -148,7 +155,7 @@ export default {
 
 .burger-svg {
     position: absolute;
-    left: -44px; 
+    left: -44px;
 }
 
 .brand-navs {
@@ -163,14 +170,14 @@ export default {
     border-left: none;
 }
 
-.brand-navs > .brand {
+.brand-navs>.brand {
     display: flex;
     align-items: center;
     column-gap: 1rem;
     cursor: pointer;
 }
 
-.brand > p {
+.brand>p {
     position: relative;
     font-size: 14px;
     bottom: 2px;
@@ -178,27 +185,26 @@ export default {
 }
 
 .goldman-regular {
-  font-family: "Goldman", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Goldman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .goldman-bold {
-  font-family: "Goldman", sans-serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Goldman", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .quattrocento-sans-regular {
-  font-family: "Quattrocento Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Quattrocento Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .quattrocento-bold {
-  font-family: "Quattrocento", serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Quattrocento", serif;
+    font-weight: 700;
+    font-style: normal;
 }
-
 </style>

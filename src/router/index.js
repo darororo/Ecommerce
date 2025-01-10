@@ -6,6 +6,7 @@ import GalleryImages from "../components/car/GalleryImages.vue";
 import Reserve from "../components/checkout/Reserve.vue";
 import CustomerDetails from "../components/checkout/CustomerDetails.vue";
 import Payment from "../components/checkout/Payment.vue";
+import BookmarkPage from "../views/BookmarkPage.vue";
 
 const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
@@ -60,6 +61,11 @@ const router = createRouter({
           ],
         },
       ],
+    },
+    {
+      path: "/bookmarks",
+      name: "bookmarks",
+      component: BookmarkPage,
     },
   ],
 });
