@@ -5,10 +5,10 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent v-show="!isBrandPath" class="nav" :textColor="color" :bgColor="bgColor" :borderColor="borderColor"
-      @toggle-sidebar="toggleSidebar" />
+    <NavComponent v-show="$route.name !== 'brand'" class="nav" :textColor="color" :bgColor="bgColor"
+      :borderColor="borderColor" @toggle-sidebar="toggleSidebar" />
   </Transition>
-  <LandingComponent v-if="!isBrandPath" class="hero" />
+  <LandingComponent v-if="$route.name !== 'brand'" class="hero" />
   <BrandLanding v-else class="brand-landing" />
   <ProductList />
   <h1>Popular Cars</h1>
@@ -82,12 +82,7 @@ export default {
       isSidebarVisible: false,
     };
   },
-  computed: {
-    isBrandPath() {
-      console.log(this.$route.name);
-      return this.$route.name === "brand";
-    },
-  },
+
   components: {
     LandingComponent,
     NavComponent,
