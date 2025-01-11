@@ -21,7 +21,9 @@ export default {
     </div>
     <h3>Selected Vehicle</h3>
     <div class="vehicle-selection">
-      <img src="@/assets/images/products/car1.png" />
+      <img
+        src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
+      />
       <div class="vehicle-info">
         <label>Ferrari LaFerrari 2017</label>
         <span>Stueng MeanChey tmei 210, Phonm Penh, Cambodia</span>

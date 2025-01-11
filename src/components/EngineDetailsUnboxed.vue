@@ -52,7 +52,7 @@
     </div>
     <div class="info-item">
       <span>
-        <Power />
+        <color />
         <span class="space">Color</span>
       </span>
       <span class="space1">{{ engine.color }}</span>
@@ -70,6 +70,7 @@ import Location from "./icons/nameIcon/location.vue";
 import Mileage from "./icons/nameIcon/mileage.vue";
 import Power from "./icons/nameIcon/power.vue";
 import { useCarStore } from "../stores/cars";
+import color from "./icons/nameIcon/color.vue";
 
 export default {
   name: "CarInfo",
@@ -81,6 +82,7 @@ export default {
     Location,
     Mileage,
     Power,
+    color,
   },
   data() {
     return {
@@ -99,19 +101,19 @@ export default {
   computed: {
     ...mapState(useCarStore, {
       car(store) {
-        console.log(store.cars[0].brand)
-        console.log(this.$route.params.carId)
-        return store.getCar(this.$route.params.carId)
-      }
+        console.log(store.cars[0].brand);
+        console.log(this.$route.params.carId);
+        return store.getCar(this.$route.params.carId);
+      },
     }),
     engine() {
       const engine = this.car.engine;
       if (engine) {
         return engine;
       }
-      return {}
-    }
-  }
+      return {};
+    },
+  },
 };
 </script>
 

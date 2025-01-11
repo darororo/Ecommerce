@@ -13,7 +13,9 @@
     <div class="collapse-item">
       <h3>Vehicle Details</h3>
       <div class="item-row">
-        <img src="@/assets/images/products/car1.png" />
+        <img
+          src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
+        />
         <div class="content-row">
           <label>Ferrari LaFerrari 2017</label>
           <span>$6,670,088</span>

@@ -5,7 +5,7 @@
   <div v-if="showReserve" class="wrapper-content">
     <div class="image-wrapper">
       <img
-        src="@/assets/images/products/car1.png"
+        src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
         alt="Ferrari LaFerrari 2017"
       />
       <div>

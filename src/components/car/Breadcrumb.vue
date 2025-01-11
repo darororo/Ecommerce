@@ -30,7 +30,7 @@ export default {
   props: {
     brand: String,
     model: String,
-  }
+  },
 };
 </script>
 <style scoped>

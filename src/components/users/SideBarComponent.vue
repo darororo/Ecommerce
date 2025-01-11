@@ -32,7 +32,11 @@ export default {
   <div class="container">
     <div class="header">
       <div class="logo-name">
-        <img src="@/assets/images/media/carbodiaBlack.png" alt="Frame" class="logo" />
+        <img
+          src="@/assets/images/media/carbodiaBlack.png"
+          alt="Frame"
+          class="logo"
+        />
         <span>Carbodia</span>
       </div>
       <ArrowLeft @click="closeSidebar" style="cursor: pointer" />

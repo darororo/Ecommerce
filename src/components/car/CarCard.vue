@@ -41,23 +41,23 @@ import BookmarkComponent from "../bookmark/BookmarkComponent.vue";
 
 export default {
   components: {
-    SellerIcon, BookmarkComponent,
+    SellerIcon,
+    BookmarkComponent,
   },
   computed: {
     ...mapState(useCarStore, {
       cars: "cars",
       imageUrl(store) {
-        return store.getImageURL("cars", this.car.id, this.car.images[0])
+        return store.getImageURL("cars", this.car.id, this.car.images[0]);
       },
     }),
     ...mapState(useUtilStore, {
       formatUsd: "formatUsd",
     }),
-
   },
   props: {
     car: Object,
-  }
+  },
 };
 </script>
 
@@ -76,11 +76,12 @@ export default {
   border-radius: 10px;
 }
 
-.img-container>img {
+.img-container > img {
   display: block;
-  max-height: 300px;
+  max-height: 320px;
   width: 100%;
-  height: auto;
+  /* height: 100%; */
+  height: 100vh;
   border-radius: 10px;
 }
 

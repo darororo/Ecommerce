@@ -2,7 +2,12 @@
   <div class="product-list">
     <h3 class="header-product">Brand lists</h3>
     <div class="product-container">
-      <RouterLink class="RouterLink" v-for="(brand, index) in brands" :key="index" :to="`/brand/${brand.name}`">
+      <RouterLink
+        class="RouterLink"
+        v-for="(brand, index) in brands"
+        :key="index"
+        :to="`/brand/${brand.name}`"
+      >
         <div class="product-item">
           <img :src="brand.logo" :alt="brand.name" loading="lazy" />
           <!-- <div style="display: flex;">
