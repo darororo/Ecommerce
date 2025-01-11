@@ -48,16 +48,19 @@ const router = createRouter({
       ],
     },
     {
-      path: "/checkout",
+      path: "/checkout/:carId",
       component: Reserve,
+      name: "checkout",
       children: [
         {
           path: "customer",
           component: CustomerDetails,
+          name: "customer-details",
           children: [
             {
               path: "payment",
               component: Payment,
+              name: "payment",
             },
           ],
         },

@@ -34,7 +34,7 @@ export const useCarStore = defineStore("cars", {
           location: "Dubai",
           fuelType: "Petrol",
         },
-        location: "Dubai, United Arab Emirates",
+        location: "Phnom Penh City, Cambodia",
       },
       {
         id: "2",
@@ -75,7 +75,27 @@ export const useCarStore = defineStore("cars", {
           "/Ecommerce/src/assets/images/products/lamborghini-svj/car4.webp",
           "/Ecommerce/src/assets/images/products/lamborghini-svj/car5.webp",
         ],
-        location: "Steung mean chey, loo lek 8",
+        location: "Phnom Penh City, Cambodia",
+      },
+      {
+        id: "4",
+        price: 92998,
+        brand: "BMW",
+        model: "2024 BMW M3",
+        description:
+          "The 2024 BMW M3 is a sport sedan that comes so close to being perfect. The all-wheel-drive system gives you confidence in poor weather, plus heaps of grip for explosive acceleration. ",
+        innerDescription: [
+          "The 2024 BMW M3 for sale is poised to impress with its powerful performance and sophisticated design. Now available at South BMW, this competitive sedan offers TwinPower Turbo technology, along with a bold exterior and a comfortable 2024 BMW M3 interior. While you can browse 2024 BMW M3 images online, we invite you to experience the impressive 2024 BMW M3 specs firsthand at our BMW dealership in Miami, FL. Get in touch with us today.",
+          "Prepare for an exhilarating driving experience with the 2024 BMW M3 for sale. The base configuration boasts a powerful 473-horsepower 3.0L inline 6-cylinder BMW M TwinPower Turbo engine, generating 406 lb-ft of torque. It is paired with a 6 speed manual transmission and rear-wheel drive. The sport exhaust system with quad tailpipes and chrome-plated exhaust tips adds to the excitement.",
+        ],
+        images: [
+          "/Ecommerce/src/assets/images/products/BMW-M3/car1.webp",
+          "/Ecommerce/src/assets/images/products/BMW-M3/car2.webp",
+          "/Ecommerce/src/assets/images/products/BMW-M3/car3.webp",
+          "/Ecommerce/src/assets/images/products/BMW-M3/car4.webp",
+          "/Ecommerce/src/assets/images/products/BMW-M3/car5.webp",
+        ],
+        location: "Phnom Penh City, Cambodia",
       },
     ],
   }),

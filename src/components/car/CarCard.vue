@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="reser-detail">
-        <RouterLink to="/checkout">
+        <RouterLink :to="{ name: 'checkout', params: { carId: car.id } }">
           <button class="btn-reser">Reserve Now</button>
         </RouterLink>
         <RouterLink :to="`/car/${car.id}`">
@@ -82,7 +82,7 @@ export default {
   width: 100%;
   /* height: 100%; */
   height: 100vh;
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .text-container {

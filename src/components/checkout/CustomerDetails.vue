@@ -120,7 +120,7 @@ export default {
   computed: {
     showCustomer() {
       let curPath = this.$route.path;
-      return curPath.split("/").reverse()[1] === "checkout";
+      return this.$route.name === "customer-details";
     },
   },
 };

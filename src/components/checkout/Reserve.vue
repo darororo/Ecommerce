@@ -8,6 +8,7 @@
         src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
         alt="Ferrari LaFerrari 2017"
       />
+      <!-- <img :src=""> -->
       <div>
         <h1>Ferrari LaFerrari 2017</h1>
         <div class="span-content">
@@ -102,22 +103,20 @@ export default {
   },
   computed: {
     showReserve() {
-      let curPath = this.$route.path;
-      return curPath.split("/").reverse()[0] === "checkout";
+      console.log(this.$route.name);
+      return this.$route.name === "checkout";
     },
     next() {
-      let curPath = this.$route.path;
-      const endpoint = curPath.split("/").reverse()[0];
-      if (endpoint === "customer") {
-        return "/checkout/customer/payment";
+      const endpoint = this.$route.name;
+      console.log(endpoint);
+      if (endpoint === "customer-details") {
+        return { name: "payment" };
       } else if (endpoint === "checkout") {
-        return "/checkout/customer";
+        return { name: "customer-details" };
       }
     },
     showBtnNext() {
-      let curPath = this.$route.path;
-      const endpoint = curPath.split("/").reverse()[0];
-      return endpoint != "payment";
+      return this.$route.name !== "payment";
     },
   },
 };
