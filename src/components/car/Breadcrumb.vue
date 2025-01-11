@@ -7,10 +7,14 @@
         <ChevronRight />
       </li>
     </RouterLink>
-    <li>
-      <a href="">{{ brand }}</a>
-      <ChevronRight />
-    </li>
+    <RouterLink
+      :to="{ name: 'brand', params: { brandName: brand.toLowerCase() } }"
+    >
+      <li>
+        <a href="">{{ brand }}</a>
+        <ChevronRight />
+      </li>
+    </RouterLink>
     <li>
       <a href="">{{ model }}</a>
       <ChevronRight />
