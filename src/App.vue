@@ -3,16 +3,16 @@
 </template>
 
 <script>
-import { mapState } from 'pinia';
-import pb from './lib/pocketbase';
-import { useCarStore } from './stores/cars';
+import { mapState } from "pinia";
+import pb from "./lib/pocketbase";
+import { useCarStore } from "./stores/cars";
 
 export default {
   setup() {
     const carStore = useCarStore();
     return {
       carStore,
-    }
+    };
   },
   async mounted() {
     // try {
@@ -24,9 +24,8 @@ export default {
     //   alert(error)
     // }
 
-    this.carStore.fetchCars();
-    console.log(this.carStore.cars)
-  }
-}
-
+    await this.carStore.fetchCars();
+    console.log(this.carStore.cars);
+  },
+};
 </script>

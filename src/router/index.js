@@ -39,6 +39,7 @@ const router = createRouter({
 
     {
       path: "/car/:carId",
+      name: "car",
       component: CarView,
       children: [
         {

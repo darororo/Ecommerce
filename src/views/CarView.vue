@@ -12,8 +12,16 @@ import Breadcrumb from "../components/car/Breadcrumb.vue";
 import { mapState } from "pinia";
 import { useCarStore } from "../stores/cars";
 import { useUtilStore } from "../stores/utils";
+import SuggestedCar from "../components/SuggestedCar.vue";
 
 export default {
+  setup() {
+    const carStore = useCarStore();
+
+    return {
+      carStore,
+    };
+  },
   components: {
     Back,
     CarHeader,
@@ -24,20 +32,20 @@ export default {
     CommentSection,
     FooterComponent,
     Breadcrumb,
+    SuggestedCar,
   },
   data() {
-    return {
-      // showGallery: false,
-    };
+    return {};
   },
   computed: {
     ...mapState(useCarStore, {
       cars: "cars",
-      car(store) {
-        let c = this.cars.find((car) => car.id === this.$route.params.carId);
-        return c;
-      },
     }),
+
+    car() {
+      let c = this.cars.find((car) => car.id === this.$route.params.carId);
+      return c;
+    },
 
     ...mapState(useUtilStore, {
       priceUsd(store) {
@@ -48,6 +56,9 @@ export default {
     showGallery() {
       let curPath = this.$route.path;
       return curPath.split("/").reverse()[0] === "gallery";
+    },
+    carByBrand() {
+      return this.cars.filter((c) => c.brand === this.car.brand);
     },
   },
 };
@@ -60,7 +71,7 @@ export default {
     :textColor="'black'"
     :borderColor="'#C0C0C0'"
   />
-  <div class="container">
+  <div class="container" v-show="car.brand">
     <div v-if="!showGallery" class="main">
       <Breadcrumb :brand="car.brand" :model="car.model" />
       <CarHeader />
@@ -87,20 +98,26 @@ export default {
           <ContactDealer />
         </div>
       </div>
+      <div class="line">
+        <hr />
+        <h1>You Might Also Like</h1>
+      </div>
     </div>
     <div v-else>
       <RouterView />
     </div>
-    <div class="line">
-      <hr />
-    </div>
+  </div>
+  <div class="suggested-car-container">
+    <template v-for="car in carByBrand.slice(0, 3)">
+      <SuggestedCar :car="car" />
+    </template>
   </div>
   <FooterComponent />
 </template>
 
 <style scoped>
 .line {
-  padding: 0px 136px 0 136px;
+  padding: 10px 136px 10px 136px;
 }
 
 .line-grey {
@@ -135,5 +152,12 @@ export default {
 
 .engine-details {
   margin-bottom: 18px;
+}
+
+.suggested-car-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  padding: 0px 126px 0 126px;
 }
 </style>
