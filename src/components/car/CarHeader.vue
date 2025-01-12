@@ -1,9 +1,12 @@
 <template>
   <div class="car-header">
     <div class="image-section">
-      <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
-        <img :src="imageUrls[0]" class="large-image" />
-      </RouterLink>
+      <div class="main-img">
+        <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
+          <img :src="imageUrls[0]" class="large-image" />
+          <div v-if="car.discount" class="discount-tag"> {{ car.discount }} % OFF</div>
+        </RouterLink>
+      </div>
       <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
         <div class="small-gallery">
           <!-- <img v-for="img in imageUrls" :src="img" alt=""> -->
@@ -11,9 +14,9 @@
           <!-- <img src="@/assets/images/products/car2.png" class="small-image" />
           <img src="@/assets/images/products/car3.png" class="small-image" />
           <img src="@/assets/images/products/car4.png" class="small-image" /> -->
-          <div class="overlay-container">
-            <div class="overlay-text">All Photos (6)</div>
-            <img :src="imageUrls[4]" class="small-image" />
+          <div v-show="car.images.length > 5" class="overlay-container">
+            <div class="overlay-text">All Photos ({{ car.images.length }})</div>
+            <img :src="imageUrls[car.images.length - 1]" class="small-image" />
           </div>
         </div>
       </RouterLink>
@@ -21,13 +24,16 @@
     <div class="price-sec">
       <div class="car-details">
         <div class="text-content">
-          <h2 class="title">{{ model }}</h2>
+          <h2 class="title">{{ car.model }}</h2>
         </div>
       </div>
       <div class="car-details1">
-        <p class="subtitle">{{ location }}</p>
-        <div class="price-inquire">
-          <p class="price">{{ price }}</p>
+        <p class="subtitle">{{ car.location }}</p>
+        <div class="price-inquire price">
+          <p v-if="car.discount"> <span class="original-price"><del>{{ formatUsd(car.price) }}</del></span>
+            {{ formatUsd(discountedPrice(car.price, car.discount)) }}
+          </p>
+          <p v-else class="price">{{ formatUsd(car.price) }}</p>
           <button @click="inquire" class="inquire-button">Inquire</button>
         </div>
       </div>
@@ -38,16 +44,10 @@
 <script>
 import { mapState } from 'pinia';
 import { useCarStore } from '../../stores/cars';
+import { useUtilStore } from '../../stores/utils';
 
 export default {
   name: "CarHeader",
-  props: {
-    model: String,
-    price: String,
-    location: String,
-    id: String,
-    images: Array,
-  },
   methods: {
     inquire() {
       alert("Inquire button clicked!");
@@ -55,19 +55,25 @@ export default {
   },
   computed: {
     ...mapState(useCarStore, {
-      cars: "cars",
+      car(store) {
+        return store.getCar(this.$route.params.carId);
+      },
       imageUrls(store) {
         const urls = [];
-        this.images.forEach(img => {
+        this.car.images.forEach(img => {
           urls.push(store.getImageURL("cars", this.$route.params.carId, img))
         });
-        console.log("POOPY")
-        console.log(this.images)
-
         return urls
       },
+      discountedPrice: 'getDiscountedPrice',
     }),
-  }
+
+    ...mapState(useUtilStore, {
+      formatUsd: 'formatUsd',
+    })
+
+  },
+
 };
 </script>
 
@@ -77,6 +83,12 @@ export default {
 
 .car-header {
   padding: 10px 136px 0 136px;
+}
+
+.car-header .main-img {
+  width: auto;
+  height: 100%;
+  position: relative;
 }
 
 .back-button {
@@ -204,6 +216,11 @@ export default {
   font-style: normal;
 }
 
+.original-price {
+  font-size: 24px;
+  color: red;
+}
+
 .inquire-button {
   display: inline-block;
   background-color: #e63946;
@@ -215,5 +232,20 @@ export default {
   cursor: pointer;
   border-radius: 0px 16px 0px 16px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.discount-tag {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  bottom: 20px;
+  right: 0;
+  color: white;
+  background-color: rgb(255, 111, 0);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px 0 0 7px;
 }
 </style>

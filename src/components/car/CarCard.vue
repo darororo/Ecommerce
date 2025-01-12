@@ -1,11 +1,16 @@
 <template>
   <div class="container">
     <div class="img-container">
+      <div v-if="car.discount" class="discount-tag"> {{ car.discount }} % OFF</div>
       <img :src="imageUrl" />
     </div>
     <div class="text-container">
       <div class="text-row-1">
-        <div class="price">{{ formatUsd(car.price) }}</div>
+        <div class="price" v-if="car.discount">
+          <span class="original-price"><del>{{ formatUsd(car.price) }}</del></span>
+          {{ formatUsd(discountedPrice) }}
+        </div>
+        <div v-else class="price discounted-price">{{ formatUsd(car.price) }}</div>
         <BookmarkComponent :car="car" />
       </div>
       <div class="name-car">{{ car.model }}</div>
@@ -50,6 +55,9 @@ export default {
       imageUrl(store) {
         return store.getImageURL("cars", this.car.id, this.car.images[0]);
       },
+      discountedPrice(store) {
+        return store.getDiscountedPrice(this.car.price, this.car.discount)
+      }
     }),
     ...mapState(useUtilStore, {
       formatUsd: "formatUsd",
@@ -74,15 +82,40 @@ export default {
   border: 1px solid #b0b0b0;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
+  font-family: "Inria Sans", sans-serif;
 }
 
-.img-container > img {
+.img-container>img {
   display: block;
   max-height: 320px;
   width: 100%;
   /* height: 100%; */
   height: 100vh;
   border-radius: 10px 10px 0px 0px;
+}
+
+.img-container {
+  position: relative;
+}
+
+.discount-tag {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  bottom: 20px;
+  right: 0;
+  color: white;
+  background-color: rgb(255, 111, 0);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px 0 0 7px;
+}
+
+.original-price {
+  font-size: 16px;
+  color: red;
 }
 
 .text-container {
@@ -96,6 +129,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
+  word-spacing: 12px;
 }
 
 .star {
@@ -120,7 +154,6 @@ export default {
 
 .price {
   font-style: normal;
-  font-family: "Inria Sans", sans-serif;
   font-size: 18px;
   font-weight: bold;
 }

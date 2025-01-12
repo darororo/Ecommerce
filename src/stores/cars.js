@@ -9,6 +9,7 @@ export const useCarStore = defineStore("cars", {
       {
         id: "1",
         price: 6670088,
+        discount: 10,
         brand: "Ferrari",
         model: "2017 Ferrari LaFerrari",
         description:
@@ -144,6 +145,9 @@ export const useCarStore = defineStore("cars", {
       return `${
         import.meta.env.VITE_PB_URL
       }/api/files/${collectionName}/${recID}/${filename}`;
+    },
+    getDiscountedPrice(price, percentage) {
+      return price * ((100 - percentage) / 100);
     },
   },
 });

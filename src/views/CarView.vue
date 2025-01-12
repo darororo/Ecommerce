@@ -34,8 +34,6 @@ export default {
     ...mapState(useCarStore, {
       cars: "cars",
       car(store) {
-        console.log("route carId: " + this.$route.params.carId)
-        console.log("car id 0: " + this.cars[0].id)
         let c = this.cars.find(car => car.id === this.$route.params.carId)
         return c
       }
@@ -62,7 +60,7 @@ export default {
   <div class="container">
     <div v-if="!showGallery" class="main">
       <Breadcrumb :brand="car.brand" :model="car.model" />
-      <CarHeader :id="car.id" :model="car.model" :price="priceUsd" :location="car.location" :images="car.images" />
+      <CarHeader />
       <div class="line">
         <hr />
       </div>
