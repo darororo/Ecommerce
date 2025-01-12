@@ -13,13 +13,16 @@
     <div class="collapse-item">
       <h3>Vehicle Details</h3>
       <div class="item-row">
-        <img
-          src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
-        />
+        <img :src="imageUrl" />
         <div class="content-row">
-          <label>Ferrari LaFerrari 2017</label>
-          <span>$6,670,088</span>
-          <span>From $6,670,088/month</span>
+          <label>{{ car.model }}</label>
+          <span v-if="car.discount">{{
+            formatUsd(discountedPrice(car.price, car.discount))
+          }}</span>
+          <span v-else>{{ formatUsd(car.price) }}</span>
+          <span
+            >From {{ formatUsd(mapCarLoan[$route.params.carId]) }}/month</span
+          >
         </div>
       </div>
     </div>
@@ -111,6 +114,11 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useCarStore } from "../../stores/cars";
+import { useUtilStore } from "../../stores/utils";
+import { useUsersStore } from "../../stores/users";
+
 export default {
   data() {
     return {
@@ -122,6 +130,42 @@ export default {
       let curPath = this.$route.path;
       return this.$route.name === "customer-details";
     },
+    ...mapState(useCarStore, {
+      cars: "cars",
+      imageUrl(store) {
+        return store.getImageURL("cars", this.car.id, this.car.images[0]);
+      },
+    }),
+    car() {
+      return this.cars.find((c) => c.id === this.$route.params.carId);
+    },
+    ...mapState(useUtilStore, {
+      formatUsd: "formatUsd",
+    }),
+    ...mapState(useCarStore, {
+      cars: "cars",
+      imageUrl(store) {
+        return store.getImageURL("cars", this.car.id, this.car.images[0]);
+      },
+      discountedPrice: "getDiscountedPrice",
+    }),
+    ...mapState(useUsersStore, {
+      mapCarLoan: "mapCarLoan",
+    }),
+  },
+
+  async mounted() {
+    await this.$router.isReady();
+    const usersStore = useUsersStore();
+    let id = this.$route.params.carId;
+    if (!usersStore.mapCarLoan[id]) {
+      this.$router.push({
+        name: "checkout",
+        params: {
+          carId: id,
+        },
+      });
+    }
   },
 };
 </script>

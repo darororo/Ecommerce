@@ -27,7 +27,7 @@
         <Mileage />
         <span class="space">Mileage</span>
       </span>
-      <span class="space1">{{ engine.mileage }} km (0 mi)</span>
+      <span class="space1">{{ engine.mileage }} km</span>
     </div>
     <div class="info-item">
       <span>

@@ -4,18 +4,27 @@
       <div class="main-img">
         <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
           <img :src="imageUrls[0]" class="large-image" />
-          <div v-if="car.discount" class="discount-tag"> {{ car.discount }} % OFF</div>
+          <div v-if="car.discount" class="discount-tag">
+            {{ car.discount }} % OFF
+          </div>
         </RouterLink>
       </div>
       <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
         <div class="small-gallery">
           <!-- <img v-for="img in imageUrls" :src="img" alt=""> -->
-          <img v-for="img in imageUrls.slice(1, 4)" :src="img" alt="" class="small-image" />
+          <img
+            v-for="img in imageUrls.slice(1, 4)"
+            :src="img"
+            alt=""
+            class="small-image"
+          />
           <!-- <img src="@/assets/images/products/car2.png" class="small-image" />
           <img src="@/assets/images/products/car3.png" class="small-image" />
           <img src="@/assets/images/products/car4.png" class="small-image" /> -->
-          <div v-show="car.images.length > 5" class="overlay-container">
-            <div class="overlay-text">All Photos ({{ car.images.length }})</div>
+          <div class="overlay-container">
+            <div v-show="car.images.length > 5" class="overlay-text">
+              All Photos ({{ car.images.length }})
+            </div>
             <img :src="imageUrls[car.images.length - 1]" class="small-image" />
           </div>
         </div>
@@ -30,7 +39,10 @@
       <div class="car-details1">
         <p class="subtitle">{{ car.location }}</p>
         <div class="price-inquire price">
-          <p v-if="car.discount"> <span class="original-price"><del>{{ formatUsd(car.price) }}</del></span>
+          <p v-if="car.discount">
+            <span class="original-price"
+              ><del>{{ formatUsd(car.price) }}</del></span
+            >
             {{ formatUsd(discountedPrice(car.price, car.discount)) }}
           </p>
           <p v-else class="price">{{ formatUsd(car.price) }}</p>
@@ -42,9 +54,9 @@
 </template>
 
 <script>
-import { mapState } from 'pinia';
-import { useCarStore } from '../../stores/cars';
-import { useUtilStore } from '../../stores/utils';
+import { mapState } from "pinia";
+import { useCarStore } from "../../stores/cars";
+import { useUtilStore } from "../../stores/utils";
 
 export default {
   name: "CarHeader",
@@ -60,20 +72,18 @@ export default {
       },
       imageUrls(store) {
         const urls = [];
-        this.car.images.forEach(img => {
-          urls.push(store.getImageURL("cars", this.$route.params.carId, img))
+        this.car.images.forEach((img) => {
+          urls.push(store.getImageURL("cars", this.$route.params.carId, img));
         });
-        return urls
+        return urls;
       },
-      discountedPrice: 'getDiscountedPrice',
+      discountedPrice: "getDiscountedPrice",
     }),
 
     ...mapState(useUtilStore, {
-      formatUsd: 'formatUsd',
-    })
-
+      formatUsd: "formatUsd",
+    }),
   },
-
 };
 </script>
 
@@ -137,7 +147,7 @@ export default {
   gap: 10px;
 }
 
-.small-gallery>img {
+.small-gallery > img {
   height: 244px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -147,7 +157,7 @@ export default {
   position: relative;
 }
 
-.overlay-container>img {
+.overlay-container > img {
   height: 240px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

@@ -1,12 +1,3 @@
-<script>
-import CheckCompleted from "../icons/payment/checkCompleted.vue";
-export default {
-  components: {
-    CheckCompleted,
-  },
-};
-</script>
-
 <template>
   <div class="container">
     <div class="row-scroll-wrapper">
@@ -21,12 +12,10 @@ export default {
     </div>
     <h3>Selected Vehicle</h3>
     <div class="vehicle-selection">
-      <img
-        src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
-      />
+      <img :src="imageUrl" :alt="imageUrl" />
       <div class="vehicle-info">
-        <label>Ferrari LaFerrari 2017</label>
-        <span>Stueng MeanChey tmei 210, Phonm Penh, Cambodia</span>
+        <label>{{ car.model }}</label>
+        <span>{{ car.location }}</span>
         <span>Telephone: +(855) 999 777 888</span>
       </div>
       <hr />
@@ -63,6 +52,43 @@ export default {
     </div>
   </div>
 </template>
+<script>
+import CheckCompleted from "../icons/payment/checkCompleted.vue";
+import { useUsersStore } from "../../stores/users";
+import { mapState } from "pinia";
+import { useCarStore } from "../../stores/cars";
+
+export default {
+  components: {
+    CheckCompleted,
+  },
+  async mounted() {
+    await this.$router.isReady();
+    const usersStore = useUsersStore();
+    let id = this.$route.params.carId;
+    if (!usersStore.mapCarLoan[id]) {
+      this.$router.push({
+        name: "checkout",
+        params: {
+          carId: id,
+        },
+      });
+    }
+  },
+  computed: {
+    ...mapState(useCarStore, {
+      cars: "cars",
+      imageUrl(store) {
+        return store.getImageURL("cars", this.car.id, this.car.images[0]);
+      },
+      discountedPrice: "getDiscountedPrice",
+    }),
+    car() {
+      return this.cars.find((c) => c.id === this.$route.params.carId);
+    },
+  },
+};
+</script>
 
 <style scoped>
 .container {

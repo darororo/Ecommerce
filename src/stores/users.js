@@ -4,6 +4,7 @@ export const useUsersStore = defineStore("users", {
   state: () => ({
     bookmarks: [],
     mapCarBookmarked: {},
+    mapCarLoan: {},
   }),
   getters: {},
   actions: {

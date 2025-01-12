@@ -4,20 +4,27 @@
   </div>
   <div v-if="showReserve" class="wrapper-content">
     <div class="image-wrapper">
-      <img
+      <!-- <img
         src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
         alt="Ferrari LaFerrari 2017"
-      />
-      <!-- <img :src=""> -->
+      /> -->
+      <img :src="imageUrl" :alt="imageUrl" />
       <div>
-        <h1>Ferrari LaFerrari 2017</h1>
+        <h1>{{ car.model }}</h1>
         <div class="span-content">
-          <span>Ferrari Approved Pre-Owned</span>
-          <span>Ferrari Centre Dubai, United Arab Emirates</span>
+          <span>{{ car.status }}</span>
+          <span>{{ car.location }}</span>
         </div>
         <div class="price-name-content">
           <span>Price</span>
-          <h3>$6,670,088</h3>
+          <!-- <h3>{{ formatUsd(car.price) }}</h3> -->
+          <h3 v-if="car.discount">
+            <span class="original-price"
+              ><del>{{ formatUsd(car.price) }}</del></span
+            >
+            {{ formatUsd(discountedPrice(car.price, car.discount)) }}
+          </h3>
+          <h3 v-else class="price">{{ formatUsd(car.price) }}</h3>
         </div>
       </div>
     </div>
@@ -26,53 +33,57 @@
         <div class="select-fill-content">
           <span>Finance Product*</span>
           <select>
-            <option value="">Ferrari LaFerrari Hire</option>
+            <option value="">{{ car.model }}</option>
           </select>
         </div>
         <div class="select-fill-content">
           <span>Tenure*</span>
-          <select>
-            <option value="">48 Months</option>
-            <option value="">60 Months</option>
+          <select v-model="tenure">
+            <option value="48">48 Months</option>
+            <option value="60">60 Months</option>
           </select>
         </div>
       </div>
       <div class="select-fill-content">
         <span>Interest Rate*</span>
         <select>
-          <option value="">2.99 p.a.flat</option>
+          <option value="">{{ interestRate }} p.a.flat</option>
         </select>
       </div>
       <div class="row-select-fill">
-        <div class="select-fill-reserve">
+        <div class="select-fill-reserve" :class="{ focus: downPayment === 30 }">
           <span>Down Payment*</span>
-          <button>
-            <option value="">$2,001,027 (30%)</option>
+          <button @click="downPayment = 30">
+            {{ formatUsd(discountedPrice(car.price, car.discount || 0) * 0.3) }}
+            (30%)
           </button>
         </div>
-        <div class="select-fill-reserve">
-          <button>
-            <option value="">$3,335,044 (50%)</option>
+        <div class="select-fill-reserve" :class="{ focus: downPayment === 50 }">
+          <button @click="downPayment = 50">
+            {{ formatUsd(discountedPrice(car.price, car.discount || 0) * 0.5) }}
+            (50%)
           </button>
         </div>
       </div>
       <div class="row-select-fill">
-        <div class="select-fill-reserve">
+        <div class="select-fill-reserve" :class="{ focus: downPayment === 30 }">
           <span>Loan Payment*</span>
-          <button>
-            <option value="">$4,669,061 (70%)</option>
+          <button @click="downPayment = 30">
+            {{ formatUsd(discountedPrice(car.price, car.discount || 0) * 0.7) }}
+            (70%)
           </button>
         </div>
-        <div class="select-fill-reserve">
-          <button>
-            <option value="">$3,335,044 (50%)</option>
+        <div class="select-fill-reserve" :class="{ focus: downPayment === 50 }">
+          <button @click="downPayment = 50">
+            {{ formatUsd(discountedPrice(car.price, car.discount || 0) * 0.5) }}
+            (50%)
           </button>
         </div>
       </div>
       <div class="btn-payment">
         <button class="btn-payment">
           <span>Month Payment</span>
-          <span>$6,670,088</span>
+          <span>{{ formatUsd(monthlyPayment) }}</span>
         </button>
       </div>
     </div>
@@ -88,8 +99,13 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
 import Back from "../car/Back.vue";
 import ChevronBack from "../icons/productPage/chevronBack.vue";
+import { useCarStore } from "../../stores/cars";
+import { useUtilStore } from "../../stores/utils";
+import { object } from "yup";
+import { useUsersStore } from "../../stores/users";
 
 export default {
   components: {
@@ -99,6 +115,11 @@ export default {
   data() {
     return {
       showReserve: false,
+      interestRate: 2.99,
+
+      tenure: 48,
+      downPayment: 30,
+      // loan: 70,
     };
   },
   computed: {
@@ -117,6 +138,31 @@ export default {
     },
     showBtnNext() {
       return this.$route.name !== "payment";
+    },
+    ...mapState(useCarStore, {
+      cars: "cars",
+      imageUrl(store) {
+        return store.getImageURL("cars", this.car.id, this.car.images[0]);
+      },
+      discountedPrice: "getDiscountedPrice",
+    }),
+    car() {
+      return this.cars.find((c) => c.id === this.$route.params.carId);
+    },
+    ...mapState(useUtilStore, {
+      formatUsd: "formatUsd",
+    }),
+    ...mapState(useUsersStore, {
+      mapCarLoan: "mapCarLoan",
+    }),
+    monthlyPayment() {
+      let loan =
+        (this.discountedPrice(this.car.price, this.car.discount || 0) *
+          (100 - this.downPayment)) /
+        100;
+      let result = loan / this.tenure + (loan * this.interestRate) / 100 / 12;
+      this.mapCarLoan[this.$route.params.carId] = result;
+      return result;
     },
   },
 };
@@ -166,6 +212,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  column-gap: 100px;
+  word-spacing: 10px;
 }
 .price-name-content > span {
   font-size: 16px;
@@ -233,13 +281,12 @@ h1 {
   color: gray;
   transition-duration: 0.3s;
 }
-.select-fill-reserve button:focus {
+.select-fill-reserve.focus button {
   border-color: #000000;
   color: black;
+  font-weight: bolder;
 }
-button:focus > option {
-  font-weight: bold;
-}
+
 .select-fill-reserve > span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -286,5 +333,9 @@ button:focus > option {
   background-color: black;
   transition: 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.original-price {
+  font-size: 20px;
+  color: red;
 }
 </style>
