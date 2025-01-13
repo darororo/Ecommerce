@@ -18,7 +18,7 @@
       <fieldset>
         <div v-for="brand in brandOptions" :key="brand.value" class="option">
           <input type="radio" :id="brand.value" @click="selectedBrand = brand.value" name="brand"
-            :checked="brand.selected" :value="brand.value" />
+            :checked="watchRoute(brand.value) || brand.selected" :value="brand.value" />
           <label :for="brand.value" class="roboto">{{ brand.label }}</label>
         </div>
       </fieldset>
@@ -40,9 +40,12 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const selectedPrice = ref(false);
-const selectedBrand = ref(false);
+const selectedBrand = ref(route.params.brandName || false);
 const selectedDiscount = ref(false);
 
 // Define filter options
@@ -82,6 +85,20 @@ watch(selectedBrand, (cur) => {
   emit('filter-brand', cur)
 })
 watch(selectedDiscount, (cur) => emit('filter-discount', cur))
+
+function watchRoute(brand) {
+  if (route.params.brandName) {
+    const routeMatched = route.params.brandName === brand;
+    if (routeMatched) {
+      selectedBrand.value = brand
+      return true;
+    } else {
+      return false
+    }
+  }
+
+  return false
+}
 
 </script>
 
