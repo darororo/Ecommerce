@@ -189,5 +189,63 @@ export const useCarStore = defineStore("cars", {
     getDiscountedPrice(price, percentage) {
       return price * ((100 - percentage) / 100);
     },
+    filter(price, brand, isDiscount) {
+      console.log("parameter: ", price, brand, isDiscount);
+
+      if (!price && !brand && !isDiscount) {
+        return this.cars;
+      }
+
+      let filteredCars = this.cars;
+
+      if (price) {
+        if (price > 1000000) {
+          filteredCars = filteredCars.filter((c) => c.price >= 1000000);
+        } else if (price <= 1000000) {
+          filteredCars = filteredCars.filter((c) => c.price < 1000000);
+        }
+      }
+
+      if (brand) {
+        filteredCars = filteredCars.filter(
+          (c) => c.brand.toLowerCase() === brand.toLowerCase()
+        );
+      }
+
+      if (isDiscount) {
+        filteredCars = filteredCars.filter((c) => c.discount);
+      }
+
+      console.log(price, brand, isDiscount);
+
+      return filteredCars;
+
+      // const filteredCars = this.cars.filter((car) => {
+      //   let priceMatched;
+      //   if (price <= 1000000) {
+      //     priceMatched = car.price <= price;
+      //   } else if (price > 1000000) {
+      //     priceMatched = car.price > price;
+      //   } else {
+      //     priceMatched = true; // if price is undefined
+      //   }
+
+      //   console.log("brancd check: ", car.brand.toLowerCase() === brand);
+
+      //   const brandMatched = brand
+      //     ? car.brand.toLowerCase() === brand.toLowerCase()
+      //     : true;
+      //   const isDiscountMatched = isDiscount ? car.discount > 0 : true;
+
+      //   console.log(priceMatched, brandMatched, isDiscountMatched);
+      //   if (priceMatched && brandMatched && isDiscountMatched)
+      //     console.log(
+      //       "returning",
+      //       car.id,
+      //       priceMatched && brandMatched && isDiscountMatched
+      //     );
+      //   return priceMatched && brandMatched && isDiscountMatched;
+      // });
+    },
   },
 });
