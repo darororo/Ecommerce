@@ -224,5 +224,9 @@ export const useCarStore = defineStore("cars", {
 
       return filteredCars;
     },
+
+    searchCars(query, cars) {
+      return cars.filter((c) => c.model.toLowerCase().includes(query));
+    },
   },
 });

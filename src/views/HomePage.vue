@@ -6,7 +6,7 @@
   </Transition>
   <Transition appear @enter="navEnter">
     <NavComponent v-show="$route.name !== 'brand'" class="nav" :textColor="color" :bgColor="bgColor"
-      :borderColor="borderColor" @toggle-sidebar="toggleSidebar" />
+      :borderColor="borderColor" @toggle-sidebar="toggleSidebar" @search-cars="(data) => query = data" />
   </Transition>
   <LandingComponent v-if="$route.name !== 'brand'" class="hero" />
   <BrandLanding v-else class="brand-landing" />
@@ -53,6 +53,7 @@ export default {
   },
   data() {
     return {
+      query: '',
       color: "white",
       bgColor: "transparent",
       borderColor: "#C0C0C0",
@@ -110,8 +111,12 @@ export default {
   computed: {
     ...mapState(useCarStore, {
       cars: "cars",
+      searchCars: 'searchCars',
       filteredCars(store) {
-        const filtered = store.filter(this.filterPrice, this.filterBrand, this.filterDiscount);
+        let filtered = store.filter(this.filterPrice, this.filterBrand, this.filterDiscount);
+        if (this.query.length > 0) {
+          filtered = store.searchCars(this.query, filtered)
+        }
         console.log(filtered)
         return filtered
       },
