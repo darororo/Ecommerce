@@ -34,29 +34,32 @@ export default {
     ...mapState(useCarStore, {
       cars: "cars",
       car(store) {
-        let c = this.cars.find(car => car.id === this.$route.params.carId)
-        return c
-      }
+        let c = this.cars.find((car) => car.id === this.$route.params.carId);
+        return c;
+      },
     }),
 
     ...mapState(useUtilStore, {
       priceUsd(store) {
         return store.formatUsd(this.car.price);
-      }
+      },
     }),
 
     showGallery() {
       let curPath = this.$route.path;
       return curPath.split("/").reverse()[0] === "gallery";
     },
-
   },
-
 };
 </script>
 
 <template>
-  <NavComponent v-show="!showGallery" :bgColor="'white'" :textColor="'black'" :borderColor="'none'" />
+  <NavComponent
+    v-show="!showGallery"
+    :bgColor="'white'"
+    :textColor="'black'"
+    :borderColor="'#C0C0C0'"
+  />
   <div class="container">
     <div v-if="!showGallery" class="main">
       <Breadcrumb :brand="car.brand" :model="car.model" />

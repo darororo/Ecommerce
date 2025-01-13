@@ -6,41 +6,41 @@ export const useCarStore = defineStore("cars", {
     serverConnected: false,
     brands: ["Ferrari", "Mercedes", "Lamborghini", "Porsche", "BMW"],
     cars: [
-      {
-        id: "1",
-        price: 6670088,
-        discount: 10,
-        brand: "Ferrari",
-        model: "2017 Ferrari LaFerrari",
-        description:
-          "The LaFerrari features a 6262cc V12 engine built for performance. The LaFerrari is the first production car to ever be equipped with an F1-derived hybrid solution",
-        innerDescription: [
-          "The LaFerrari features a 6262cc V12 engine built for performance. The LaFerrari is the first production car to ever be equipped with an F1-derived hybrid solution and combines a powerful electric motor with the classic Ferrari V12 engine. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est quaerat voluptates animi ad iure eos magnam doloremque. Soluta delectus voluptatibus velit odit, vero quae pariatur, voluptatem sit veniam dicta vitae!",
-          "The LaFerrari Aperta is a hypercar with a hybrid powertrain that combines a V12 engine with an electric motor. It was introduced in 2017 to mark Ferrari's 70th anniversary. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sed esse quaerat, necessitatibus provident nesciunt repellendus quae fuga omnis explicabo sit sint amet tempora totam quidem et, sequi nisi? Ullam.",
-        ],
-        images: [
-          "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png",
-          "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car2.png",
-          "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car3.png",
-          "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car4.png",
-          "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car5.png",
-        ],
-        engine: {
-          year: 2017,
-          mileage: 0,
-          power: 949,
-          ownerNumbers: 1,
-          cylinder: 12,
-          color: "Red",
-          location: "Dubai",
-          fuelType: "Petrol",
-        },
-        location: "Ferrari Centre Phnom Penh City, Cambodia",
-        status: "Ferrari Approved Pre-Owned",
-        financeDetails: {
-          interestRate: "2.99 p.a.flat",
-        },
-      },
+      // {
+      //   id: "1",
+      //   price: 6670088,
+      //   discount: 10,
+      //   brand: "Ferrari",
+      //   model: "2017 Ferrari LaFerrari",
+      //   description:
+      //     "The LaFerrari features a 6262cc V12 engine built for performance. The LaFerrari is the first production car to ever be equipped with an F1-derived hybrid solution",
+      //   innerDescription: [
+      //     "The LaFerrari features a 6262cc V12 engine built for performance. The LaFerrari is the first production car to ever be equipped with an F1-derived hybrid solution and combines a powerful electric motor with the classic Ferrari V12 engine. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est quaerat voluptates animi ad iure eos magnam doloremque. Soluta delectus voluptatibus velit odit, vero quae pariatur, voluptatem sit veniam dicta vitae!",
+      //     "The LaFerrari Aperta is a hypercar with a hybrid powertrain that combines a V12 engine with an electric motor. It was introduced in 2017 to mark Ferrari's 70th anniversary. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sed esse quaerat, necessitatibus provident nesciunt repellendus quae fuga omnis explicabo sit sint amet tempora totam quidem et, sequi nisi? Ullam.",
+      //   ],
+      //   images: [
+      //     "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png",
+      //     "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car2.png",
+      //     "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car3.png",
+      //     "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car4.png",
+      //     "/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car5.png",
+      //   ],
+      //   engine: {
+      //     year: 2017,
+      //     mileage: 0,
+      //     power: 949,
+      //     ownerNumbers: 1,
+      //     cylinder: 12,
+      //     color: "Red",
+      //     location: "Dubai",
+      //     fuelType: "Petrol",
+      //   },
+      //   location: "Ferrari Centre Phnom Penh City, Cambodia",
+      //   status: "Ferrari Approved Pre-Owned",
+      //   financeDetails: {
+      //     interestRate: "2.99 p.a.flat",
+      //   },
+      // },
 
       {
         id: "2",
@@ -100,7 +100,7 @@ export const useCarStore = defineStore("cars", {
           ownerNumbers: 1,
           cylinder: 12,
           color: "Gray",
-          location: "Cambddia",
+          location: "Cambodia",
           fuelType: "Gasoline",
         },
         location: "Lamborghini Centre Phnom Penh City, Cambodia",

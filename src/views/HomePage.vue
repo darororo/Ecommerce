@@ -5,8 +5,14 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent v-show="$route.name !== 'brand'" class="nav" :textColor="color" :bgColor="bgColor"
-      :borderColor="borderColor" @toggle-sidebar="toggleSidebar" />
+    <NavComponent
+      v-show="$route.name !== 'brand'"
+      class="nav"
+      :textColor="color"
+      :bgColor="bgColor"
+      :borderColor="borderColor"
+      @toggle-sidebar="toggleSidebar"
+    />
   </Transition>
   <LandingComponent v-if="$route.name !== 'brand'" class="hero" />
   <BrandLanding v-else class="brand-landing" />
@@ -14,7 +20,13 @@
   <h1>Popular Cars</h1>
   <div class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
-      <PopularCard :name="car.name" :themeColor="car.color" :price="car.price" :img="car.img" :imgHeight="car.height" />
+      <PopularCard
+        :name="car.name"
+        :themeColor="car.color"
+        :price="car.price"
+        :img="car.img"
+        :imgHeight="car.height"
+      />
     </template>
   </div>
   <h1>Features</h1>
@@ -23,7 +35,6 @@
       <template v-for="car in cars">
         <CarCard :car="car" />
       </template>
-
     </div>
     <div class="filter-wrapper">
       <FilterComponent />
@@ -105,8 +116,8 @@ export default {
   computed: {
     ...mapState(useCarStore, {
       cars: "cars",
-    })
-  }
+    }),
+  },
 };
 
 function navInit(el, done) {

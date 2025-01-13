@@ -46,7 +46,9 @@
             {{ formatUsd(discountedPrice(car.price, car.discount)) }}
           </p>
           <p v-else class="price">{{ formatUsd(car.price) }}</p>
-          <button @click="inquire" class="inquire-button">Inquire</button>
+          <RouterLink :to="`/checkout/${car.id}`">
+            <button @click="inquire" class="inquire-button">Inquire</button>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -60,11 +62,11 @@ import { useUtilStore } from "../../stores/utils";
 
 export default {
   name: "CarHeader",
-  methods: {
-    inquire() {
-      alert("Inquire button clicked!");
-    },
-  },
+  // methods: {
+  //   inquire() {
+  //     alert("Inquire button clicked!");
+  //   },
+  // },
   computed: {
     ...mapState(useCarStore, {
       car(store) {
@@ -88,6 +90,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
@@ -252,6 +255,7 @@ export default {
   right: 0;
   color: white;
   background-color: rgb(255, 111, 0);
+  font-family: "Inria Sans", serif;
   font-weight: 600;
   display: flex;
   justify-content: center;

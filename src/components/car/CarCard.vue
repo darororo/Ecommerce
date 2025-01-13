@@ -1,16 +1,22 @@
 <template>
   <div class="container">
     <div class="img-container">
-      <div v-if="car.discount" class="discount-tag"> {{ car.discount }} % OFF</div>
+      <div v-if="car.discount" class="discount-tag">
+        {{ car.discount }} % OFF
+      </div>
       <img :src="imageUrl" />
     </div>
     <div class="text-container">
       <div class="text-row-1">
         <div class="price" v-if="car.discount">
-          <span class="original-price"><del>{{ formatUsd(car.price) }}</del></span>
+          <span class="original-price"
+            ><del>{{ formatUsd(car.price) }}</del></span
+          >
           {{ formatUsd(discountedPrice) }}
         </div>
-        <div v-else class="price discounted-price">{{ formatUsd(car.price) }}</div>
+        <div v-else class="price discounted-price">
+          {{ formatUsd(car.price) }}
+        </div>
         <BookmarkComponent :car="car" />
       </div>
       <div class="name-car">{{ car.model }}</div>
@@ -56,8 +62,8 @@ export default {
         return store.getImageURL("cars", this.car.id, this.car.images[0]);
       },
       discountedPrice(store) {
-        return store.getDiscountedPrice(this.car.price, this.car.discount)
-      }
+        return store.getDiscountedPrice(this.car.price, this.car.discount);
+      },
     }),
     ...mapState(useUtilStore, {
       formatUsd: "formatUsd",
@@ -85,12 +91,12 @@ export default {
   font-family: "Inria Sans", sans-serif;
 }
 
-.img-container>img {
+.img-container > img {
   display: block;
   max-height: 320px;
   width: 100%;
-  /* height: 100%; */
-  height: 100vh;
+  height: 100%;
+  /* height: 100vh; */
   border-radius: 10px 10px 0px 0px;
 }
 
