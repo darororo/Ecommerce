@@ -46,6 +46,11 @@
           <button @click="handleSubmit()">Confirm</button>
         </div>
       </div>
+      <!-- <Teleport to="body"> -->
+      <div v-show="openModal" class="sucess-modal">
+        <SuccessModal />
+      </div>
+      <!-- </Teleport> -->
     </div>
   </div>
 </template>
@@ -54,14 +59,17 @@ import CheckCompleted from "../icons/payment/checkCompleted.vue";
 import { useUsersStore } from "../../stores/users";
 import { mapState } from "pinia";
 import { useCarStore } from "../../stores/cars";
+import SuccessModal from "../SuccessModal.vue";
 
 export default {
   components: {
     CheckCompleted,
+    SuccessModal
   },
   data() {
     return {
       termAgreed: false,
+      openModal: false,
     }
   },
   async mounted() {
@@ -80,9 +88,9 @@ export default {
   methods: {
     handleSubmit() {
       if (!this.termAgreed) {
-        alert('You did not agreed to our terms!!!!')
+        this.openModal = false;
       } else {
-        alert('CONGRATS')
+        this.openModal = true;
       }
     }
   },
@@ -104,6 +112,7 @@ export default {
 <style scoped>
 .container {
   padding: 10px 136px 100px 136px;
+  position: relative;
 }
 
 .row-scroll-wrapper {
@@ -323,5 +332,12 @@ h3 {
   display: block;
   height: 100%;
   width: 100%;
+}
+
+.sucess-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
