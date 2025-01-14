@@ -39,14 +39,11 @@ export default {
 <template>
   <NavComponent text-color="black" />
   <div class="bookmark-container">
+    <h3>Bookmarks ({{ bookmarks.length }}) &#128512;</h3>
     <div class="simple-card-container">
       <template v-for="car in bookmarks" :key="car.id">
-        <SimpleCarCard
-          :id="car.id"
-          :model="car.model"
-          :price="formatUsd(car.price)"
-          :image="imageUrl(car.id, car.images[0])"
-        />
+        <SimpleCarCard :id="car.id" :model="car.model" :price="formatUsd(car.price)"
+          :image="imageUrl(car.id, car.images[0])" />
       </template>
     </div>
   </div>

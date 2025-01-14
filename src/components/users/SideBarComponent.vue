@@ -32,11 +32,7 @@ export default {
   <div class="container">
     <div class="header">
       <div class="logo-name">
-        <img
-          src="@/assets/images/media/carbodiaBlack.png"
-          alt="Frame"
-          class="logo"
-        />
+        <img src="@/assets/images/media/carbodiaBlack.png" alt="Frame" class="logo" />
         <span>Carbodia</span>
       </div>
       <ArrowLeft @click="closeSidebar" style="cursor: pointer" />
@@ -49,9 +45,9 @@ export default {
     </div>
     <hr />
     <div class="main">
-      <div class="main-sec">
+      <div class="main-sec" @click="$router.push({ name: 'bookmarks' })">
         <Dashboard />
-        <span>Dashboard</span>
+        <span>Bookmarks</span>
       </div>
     </div>
     <div class="main">

@@ -14,15 +14,14 @@
         </button>
       </div>
     </div>
-    <div class="dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <button class="btn-deta" @click="removeBookmark(id)">Delete</button>
   </div>
 </template>
 
 <script>
+import { mapState } from 'pinia';
+import { useUsersStore } from '../../stores/users';
+
 export default {
   props: {
     model: String,
@@ -35,6 +34,12 @@ export default {
       this.$router.push(`/car/${id}`);
     },
   },
+  computed: {
+    ...mapState(useUsersStore, {
+      bookmarks: 'bookmarks',
+      removeBookmark: 'removeBookmark'
+    })
+  }
 };
 </script>
 
@@ -115,5 +120,20 @@ export default {
 
 .dots span:hover {
   background-color: #555;
+}
+
+.btn-deta {
+  width: 100px;
+  height: 40px;
+  border: 2px solid rgb(172, 172, 172);
+  background-color: rgb(237, 81, 81);
+  color: white;
+  border-radius: 0px 12px 0px 12px;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 200;
+  border: 1px solid rgb(172, 172, 172);
+  cursor: pointer;
+  margin-left: 20px;
 }
 </style>
