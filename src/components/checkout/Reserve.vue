@@ -19,9 +19,7 @@
           <span>Price</span>
           <!-- <h3>{{ formatUsd(car.price) }}</h3> -->
           <h3 v-if="car.discount">
-            <span class="original-price"
-              ><del>{{ formatUsd(car.price) }}</del></span
-            >
+            <span class="original-price"><del>{{ formatUsd(car.price) }}</del></span>
             {{ formatUsd(discountedPrice(car.price, car.discount)) }}
           </h3>
           <h3 v-else class="price">{{ formatUsd(car.price) }}</h3>
@@ -93,7 +91,7 @@
   </div>
   <RouterLink v-show="showBtnNext" :to="next">
     <div class="btn-next">
-      <button>Next</button>
+      <button :disabled="disableNext">Next</button>
     </div>
   </RouterLink>
 </template>
@@ -106,6 +104,7 @@ import { useCarStore } from "../../stores/cars";
 import { useUtilStore } from "../../stores/utils";
 import { object } from "yup";
 import { useUsersStore } from "../../stores/users";
+import { useAuthStore } from "../../stores/auth";
 
 export default {
   components: {
@@ -155,6 +154,12 @@ export default {
     ...mapState(useUsersStore, {
       mapCarLoan: "mapCarLoan",
     }),
+
+    ...mapState(useAuthStore, {
+      disableNext(store) {
+        return store.disableCheckoutNext
+      }
+    }),
     monthlyPayment() {
       let loan =
         (this.discountedPrice(this.car.price, this.car.discount || 0) *
@@ -172,9 +177,11 @@ export default {
 .back-btn {
   padding-bottom: 20px;
 }
+
 .wrapper-content {
   padding: 10px 136px 0 136px;
 }
+
 .image-wrapper {
   display: flex;
   justify-content: flex-start;
@@ -182,11 +189,13 @@ export default {
   gap: 40px;
   padding-bottom: 30px;
 }
+
 h1 {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
-.image-wrapper > img {
+
+.image-wrapper>img {
   height: auto;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -199,6 +208,7 @@ h1 {
   flex-direction: column;
   margin-bottom: 100px;
 }
+
 .span-content {
   display: flex;
   flex-direction: column;
@@ -208,6 +218,7 @@ h1 {
   color: #555;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .price-name-content {
   display: flex;
   justify-content: space-between;
@@ -215,11 +226,13 @@ h1 {
   column-gap: 100px;
   word-spacing: 10px;
 }
-.price-name-content > span {
+
+.price-name-content>span {
   font-size: 16px;
   color: #333;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .price-name-content h3 {
   font-size: 24px;
   font-weight: 600;
@@ -227,6 +240,7 @@ h1 {
   color: #333;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .row-select-fill {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -234,12 +248,14 @@ h1 {
   align-items: end;
   padding-bottom: 20px;
 }
+
 .select-fill-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-bottom: 20px;
 }
+
 .select-fill-content select {
   font-size: 16px;
   outline: none;
@@ -255,19 +271,23 @@ h1 {
   background-size: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .select-fill-content select:focus {
   border-color: #000000;
 }
-.select-fill-content > span {
+
+.select-fill-content>span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #333;
 }
+
 .select-fill-reserve {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .select-fill-reserve button {
   font-size: 16px;
   outline: none;
@@ -281,17 +301,19 @@ h1 {
   color: gray;
   transition-duration: 0.3s;
 }
+
 .select-fill-reserve.focus button {
   border-color: #000000;
   color: black;
   font-weight: bolder;
 }
 
-.select-fill-reserve > span {
+.select-fill-reserve>span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #000000;
 }
+
 .btn-payment button {
   display: flex;
   justify-content: space-between;
@@ -303,9 +325,11 @@ h1 {
   border: none;
   cursor: pointer;
 }
+
 .btn-payment span {
   font-weight: 600;
 }
+
 .btn-next {
   position: fixed;
   display: flex;
@@ -320,6 +344,7 @@ h1 {
   padding: 10px 0px 10px 0px;
   width: 100%;
 }
+
 .btn-next button {
   padding: 16px 40px 16px 40px;
   font-family: Arial, Helvetica, sans-serif;
@@ -334,6 +359,7 @@ h1 {
   transition: 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
 .original-price {
   font-size: 20px;
   color: red;

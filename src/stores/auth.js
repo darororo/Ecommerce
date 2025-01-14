@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore("auth", {
-  state: () => ({}),
+  state: () => ({
+    disableCheckoutNext: false,
+  }),
   getters: {},
   actions: {},
 });

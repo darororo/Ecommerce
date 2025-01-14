@@ -20,9 +20,7 @@
             formatUsd(discountedPrice(car.price, car.discount))
           }}</span>
           <span v-else>{{ formatUsd(car.price) }}</span>
-          <span
-            >From {{ formatUsd(mapCarLoan[$route.params.carId]) }}/month</span
-          >
+          <span>From {{ formatUsd(mapCarLoan[$route.params.carId]) }}/month</span>
         </div>
       </div>
     </div>
@@ -39,28 +37,28 @@
           </select>
         </div>
         <div class="select-fill-content">
-          <span>First Name*</span>
-          <input type="text" />
+          <span>First Name*</span> <span class="text-error">{{ errors.firstname }}</span>
+          <input v-model="firstname" v-bind="firstnameProps" type="text" />
         </div>
       </div>
     </div>
     <div>
       <div class="row-select-fill">
         <div class="select-fill-content">
-          <span>Last Name*</span>
-          <input type="text" />
+          <span>Last Name*</span> <span class="text-error">{{ errors.lastname }}</span>
+          <input v-model="lastname" v-bind="lastnameProps" type="text" />
         </div>
         <div class="select-fill-content">
-          <span>Email*</span>
-          <input type="email" />
+          <span>Email*</span> <span class="text-error">{{ errors.email }}</span>
+          <input v-model="email" v-bind="emailProps" type="email" />
         </div>
       </div>
     </div>
     <div>
       <div class="row-select-fill">
         <div class="select-fill-content">
-          <span>Date of Birth*</span>
-          <input type="date" />
+          <span>Date of Birth*</span> <span class="text-error">{{ errors.dob }}</span>
+          <input v-model="dob" v-bind="dobProps" type="date" />
         </div>
         <div class="select-fill-content">
           <span>Gender</span>
@@ -74,12 +72,13 @@
     <div>
       <div class="row-select-fill">
         <div class="select-fill-content">
-          <span>City*</span>
-          <input type="text" />
+          <span>City*</span> <span class="text-error">{{ errors.city }}</span>
+          <input v-model="city" v-bind="cityProps" type="text" />
         </div>
         <div class="select-fill-content">
           <span>Country*</span>
           <select id="country" name="country" class="form-control">
+            <option value="Cambodia">Cambodia</option>
             <option value="Zimbabwe">Zimbabwe</option>
           </select>
         </div>
@@ -94,11 +93,7 @@
               <span class="phone-icon">+</span>
               <input type="text" placeholder="855" />
             </div>
-            <input
-              type="text"
-              class="phone-number"
-              placeholder="Phone number"
-            />
+            <input type="text" class="phone-number" placeholder="Phone number" />
           </div>
         </div>
         <div class="select-fill-content">
@@ -118,8 +113,45 @@ import { mapState } from "pinia";
 import { useCarStore } from "../../stores/cars";
 import { useUtilStore } from "../../stores/utils";
 import { useUsersStore } from "../../stores/users";
+import { string, date } from "yup";
+import { useForm } from "vee-validate";
 
 export default {
+  setup() {
+    const emailValidator = string().required("Email is required").email();
+    const firsnameValidator = string().required("First name is required");
+    const lastnameValidator = string().required("Last name is required");
+    const dobValidator = date().max(new Date(), "You are lying")
+    const cityValidator = string().required("City is required");
+
+    const { defineField, errors } = useForm({
+      validationSchema: {
+        email: emailValidator,
+        firstname: firsnameValidator,
+        lastname: lastnameValidator,
+        dob: dobValidator,
+        city: cityValidator,
+      },
+    });
+
+    const [email, emailProps] = defineField("email");
+    const [firstname, firstnameProps] = defineField("firstname");
+    const [lastname, lastnameProps] = defineField("lastname");
+    const [dob, dobProps] = defineField("dob");
+    const [city, cityProps] = defineField("city");
+
+    return {
+      errors,
+      firstname,
+      firstnameProps,
+      lastname,
+      lastnameProps,
+      email,
+      emailProps,
+      dob,
+      dobProps,
+    }
+  },
   data() {
     return {
       showCustomer: false,
@@ -174,17 +206,20 @@ export default {
 .container {
   padding: 10px 136px 100px 136px;
 }
+
 .row-scroll-wrapper {
   display: flex;
   align-items: center;
   gap: 40px;
 }
+
 .customer-completed {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 20px 0px 20px 0px;
 }
+
 .customer-completed span {
   background-color: black;
   color: white;
@@ -193,17 +228,20 @@ export default {
   font-weight: 500;
   border-radius: 100%;
 }
+
 .customer-completed label {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
+
 .payment-completed {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 20px 0px 20px 0px;
 }
+
 .payment-completed span {
   background-color: transparent;
   color: gray;
@@ -213,20 +251,24 @@ export default {
   font-weight: 500;
   border-radius: 100%;
 }
+
 .payment-completed label {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   color: gray;
 }
+
 .collapse-item {
   padding: 0px 0px 10px 0px;
 }
+
 .collapse-item h3 {
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px 0px 10px 0px;
   font-weight: 600;
 }
+
 .item-row {
   display: flex;
   align-items: center;
@@ -234,24 +276,29 @@ export default {
   border: 1px solid gray;
   border-radius: 10px;
 }
+
 .item-row img {
   height: auto;
   border-radius: 10px 0px 0px 10px;
   width: 25%;
 }
+
 .content-row {
   display: flex;
   flex-direction: column;
 }
+
 h3 {
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .content-row label {
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   padding-bottom: 16px;
 }
+
 .content-row span {
   font-family: Arial, Helvetica, sans-serif;
   color: #555;
@@ -259,6 +306,7 @@ h3 {
   font-weight: lighter;
   font-size: 16px;
 }
+
 .row-select-fill {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -266,11 +314,13 @@ h3 {
   padding-top: 20px;
   align-items: end;
 }
+
 .select-fill-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .select-fill-content select {
   font-size: 16px;
   outline: none;
@@ -286,9 +336,11 @@ h3 {
   background-size: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .select-fill-content select:focus {
   border-color: #000000;
 }
+
 .select-fill-content input {
   font-size: 16px;
   outline: none;
@@ -303,18 +355,31 @@ h3 {
   background-size: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .select-fill-content select:focus {
   border-color: #000000;
 }
-.select-fill-content > span {
+
+.select-fill-content>span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #333;
 }
+
+
+.select-fill-content>.text-error {
+  color: red;
+}
+
+.select-fill-content>.border-error {
+  border-color: red;
+}
+
 .fill-telephone {
   display: flex;
   gap: 10px;
 }
+
 .phone-icon-wrapper {
   display: flex;
   align-items: center;
@@ -334,12 +399,14 @@ h3 {
   border-radius: 4px;
   font-size: 16px;
 }
+
 .phone-number {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
 }
-.fill-telephone > .phone-number {
+
+.fill-telephone>.phone-number {
   width: 100%;
 }
 </style>

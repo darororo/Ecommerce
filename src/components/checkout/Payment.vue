@@ -26,18 +26,15 @@
           <div class="payment-checkbox">
             <div class="checkbox-wrapper-30">
               <span class="checkbox">
-                <input type="checkbox" />
+                <input v-model="termAgreed" type="checkbox" />
                 <svg>
                   <use xlink:href="#checkbox-30" class="checkbox"></use>
                 </svg>
               </span>
               <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
                 <symbol id="checkbox-30" viewBox="0 0 22 22">
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    d="M5.5,11.3L9,14.8L20.2,3.3l0,0c-0.5-1-1.5-1.8-2.7-1.8h-13c-1.7,0-3,1.3-3,3v13c0,1.7,1.3,3,3,3h13 c1.7,0,3-1.3,3-3v-13c0-0.4-0.1-0.8-0.3-1.2"
-                  />
+                  <path fill="none" stroke="currentColor"
+                    d="M5.5,11.3L9,14.8L20.2,3.3l0,0c-0.5-1-1.5-1.8-2.7-1.8h-13c-1.7,0-3,1.3-3,3v13c0,1.7,1.3,3,3,3h13 c1.7,0,3-1.3,3-3v-13c0-0.4-0.1-0.8-0.3-1.2" />
                 </symbol>
               </svg>
             </div>
@@ -46,7 +43,7 @@
         </div>
         <div class="confirm-section">
           <span>Reservation Deposit</span>
-          <button>Confirm</button>
+          <button @click="handleSubmit()">Confirm</button>
         </div>
       </div>
     </div>
@@ -62,6 +59,11 @@ export default {
   components: {
     CheckCompleted,
   },
+  data() {
+    return {
+      termAgreed: false,
+    }
+  },
   async mounted() {
     await this.$router.isReady();
     const usersStore = useUsersStore();
@@ -73,6 +75,15 @@ export default {
           carId: id,
         },
       });
+    }
+  },
+  methods: {
+    handleSubmit() {
+      if (!this.termAgreed) {
+        alert('You did not agreed to our terms!!!!')
+      } else {
+        alert('CONGRATS')
+      }
     }
   },
   computed: {
@@ -94,11 +105,13 @@ export default {
 .container {
   padding: 10px 136px 100px 136px;
 }
+
 .row-scroll-wrapper {
   display: flex;
   align-items: center;
   gap: 40px;
 }
+
 .customer-completed {
   display: flex;
   align-items: center;
@@ -112,12 +125,14 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
+
 .payment-completed {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 20px 0px 20px 0px;
 }
+
 .payment-completed span {
   background-color: transparent;
   color: black;
@@ -127,69 +142,83 @@ export default {
   font-weight: 500;
   border-radius: 100%;
 }
+
 .payment-completed label {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   color: black;
 }
+
 img {
   height: auto;
   width: 40%;
   border-radius: 10px;
 }
+
 h3 {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .vehicle-info {
   display: flex;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .vehicle-info label {
   font-weight: 600;
   font-size: 24px;
   padding: 30px 0px 10px 0px;
 }
+
 .vehicle-info span {
   color: #555;
   font-size: 16px;
   padding: 10px 0px 50px 0px;
 }
+
 .payment-terms {
   padding-top: 40px;
 }
+
 .payment-terms label {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 22px;
 }
+
 .payment-consent {
   border-radius: 10px;
   margin-top: 30px;
   padding: 30px;
   border: 1px solid gray;
 }
+
 .payment-consent label {
   font-size: 18px;
   color: black;
 }
+
 .payment-checkbox {
   display: flex;
   align-items: center;
   gap: 10px;
   padding-top: 30px;
 }
+
 .payment-checkbox span {
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .confirm-section {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
   gap: 10px;
 }
+
 .confirm-section button {
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -200,11 +229,13 @@ h3 {
   transition: 0.3s;
   cursor: pointer;
 }
+
 .confirm-section button:hover {
   background-color: #ccc;
   cursor: pointer;
   border: 1px solid gray;
 }
+
 .confirm-section span {
   display: flex;
   justify-content: center;
@@ -216,6 +247,7 @@ h3 {
   border-radius: 8px;
   font-size: 18px;
 }
+
 .checkbox-wrapper-30 .checkbox {
   --bg: #fff;
   --brdr: #d1d6ee;
@@ -226,15 +258,18 @@ h3 {
   width: calc(var(--size, 1) * 22px);
   position: relative;
 }
+
 .checkbox-wrapper-30 .checkbox:after {
   content: "";
   width: 100%;
   padding-top: 100%;
   display: block;
 }
-.checkbox-wrapper-30 .checkbox > * {
+
+.checkbox-wrapper-30 .checkbox>* {
   position: absolute;
 }
+
 .checkbox-wrapper-30 .checkbox input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -249,21 +284,26 @@ h3 {
   padding: 0;
   transition: all calc(var(--dur) / 3) linear;
 }
+
 .checkbox-wrapper-30 .checkbox input:hover,
 .checkbox-wrapper-30 .checkbox input:checked {
   --newBrdr: calc(var(--size, 1) * 2);
 }
+
 .checkbox-wrapper-30 .checkbox input:hover {
   --newBrdrClr: var(--brdr-hovr);
 }
+
 .checkbox-wrapper-30 .checkbox input:checked {
   --newBrdrClr: var(--brdr-actv);
   transition-delay: calc(var(--dur) / 1.3);
 }
-.checkbox-wrapper-30 .checkbox input:checked + svg {
+
+.checkbox-wrapper-30 .checkbox input:checked+svg {
   --dashArray: 16 93;
   --dashOffset: 109;
 }
+
 .checkbox-wrapper-30 .checkbox svg {
   fill: none;
   left: 0;
@@ -277,6 +317,7 @@ h3 {
   top: 0;
   transition: stroke-dasharray var(--dur), stroke-dashoffset var(--dur);
 }
+
 .checkbox-wrapper-30 .checkbox svg,
 .checkbox-wrapper-30 .checkbox input {
   display: block;
