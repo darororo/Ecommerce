@@ -1,17 +1,31 @@
 <template>
   <div class="car-header">
     <div class="image-section">
-      <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
-        <img src="@/assets/images/products/car1.png" class="large-image" />
-      </RouterLink>
+      <div class="main-img">
+        <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
+          <img :src="imageUrls[0]" class="large-image" />
+          <div v-if="car.discount" class="discount-tag">
+            {{ car.discount }} % OFF
+          </div>
+        </RouterLink>
+      </div>
       <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
         <div class="small-gallery">
-          <img src="@/assets/images/products/car2.png" class="small-image" />
+          <!-- <img v-for="img in imageUrls" :src="img" alt=""> -->
+          <img
+            v-for="img in imageUrls.slice(1, 4)"
+            :src="img"
+            alt=""
+            class="small-image"
+          />
+          <!-- <img src="@/assets/images/products/car2.png" class="small-image" />
           <img src="@/assets/images/products/car3.png" class="small-image" />
-          <img src="@/assets/images/products/car4.png" class="small-image" />
+          <img src="@/assets/images/products/car4.png" class="small-image" /> -->
           <div class="overlay-container">
-            <div class="overlay-text">All Photos (6)</div>
-            <img src="@/assets/images/products/car5.png" class="small-image" />
+            <div v-show="car.images.length > 5" class="overlay-text">
+              All Photos ({{ car.images.length }})
+            </div>
+            <img :src="imageUrls[car.images.length - 1]" class="small-image" />
           </div>
         </div>
       </RouterLink>
@@ -19,14 +33,22 @@
     <div class="price-sec">
       <div class="car-details">
         <div class="text-content">
-          <h2 class="title">2017 Ferrari LaFerrari</h2>
+          <h2 class="title">{{ car.model }}</h2>
         </div>
       </div>
       <div class="car-details1">
-        <p class="subtitle">Dubai, United Arab Emirates</p>
-        <div class="price-inquire">
-          <p class="price">$6,669,988</p>
-          <button @click="inquire" class="inquire-button">Inquire</button>
+        <p class="subtitle">{{ car.location }}</p>
+        <div class="price-inquire price">
+          <p v-if="car.discount">
+            <span class="original-price"
+              ><del>{{ formatUsd(car.price) }}</del></span
+            >
+            {{ formatUsd(discountedPrice(car.price, car.discount)) }}
+          </p>
+          <p v-else class="price">{{ formatUsd(car.price) }}</p>
+          <RouterLink :to="`/checkout/${car.id}`">
+            <button @click="inquire" class="inquire-button">Inquire</button>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -34,23 +56,54 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useCarStore } from "../../stores/cars";
+import { useUtilStore } from "../../stores/utils";
+
 export default {
   name: "CarHeader",
-  methods: {
-    inquire() {
-      alert("Inquire button clicked!");
-    },
+  // methods: {
+  //   inquire() {
+  //     alert("Inquire button clicked!");
+  //   },
+  // },
+  computed: {
+    ...mapState(useCarStore, {
+      car(store) {
+        return store.getCar(this.$route.params.carId);
+      },
+      imageUrls(store) {
+        const urls = [];
+        this.car.images.forEach((img) => {
+          urls.push(store.getImageURL("cars", this.$route.params.carId, img));
+        });
+        return urls;
+      },
+      discountedPrice: "getDiscountedPrice",
+    }),
+
+    ...mapState(useUtilStore, {
+      formatUsd: "formatUsd",
+    }),
   },
 };
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
 .car-header {
   padding: 10px 136px 0 136px;
 }
+
+.car-header .main-img {
+  width: auto;
+  height: 100%;
+  position: relative;
+}
+
 .back-button {
   display: flex;
   align-items: center;
@@ -176,6 +229,11 @@ export default {
   font-style: normal;
 }
 
+.original-price {
+  font-size: 24px;
+  color: red;
+}
+
 .inquire-button {
   display: inline-block;
   background-color: #e63946;
@@ -187,5 +245,21 @@ export default {
   cursor: pointer;
   border-radius: 0px 16px 0px 16px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.discount-tag {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  bottom: 20px;
+  right: 0;
+  color: white;
+  background-color: rgb(255, 111, 0);
+  font-family: "Inria Sans", serif;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px 0 0 7px;
 }
 </style>

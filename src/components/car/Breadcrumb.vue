@@ -1,5 +1,5 @@
 <template>
-  <NavComponent />
+  <!-- <NavComponent /> -->
   <nav class="nav-link">
     <RouterLink to="/">
       <li>
@@ -7,23 +7,33 @@
         <ChevronRight />
       </li>
     </RouterLink>
+    <RouterLink
+      :to="{ name: 'brand', params: { brandName: brand.toLowerCase() } }"
+    >
+      <li>
+        <a href="">{{ brand }}</a>
+        <ChevronRight />
+      </li>
+    </RouterLink>
     <li>
-      <a href="">Brand</a>
-      <ChevronRight />
-    </li>
-    <li>
-      <a href="">Gallery</a>
+      <a href="">{{ model }}</a>
       <ChevronRight />
     </li>
   </nav>
 </template>
 <script>
+import { mapState } from "pinia";
 import ChevronRight from "../icons/NavIcons/chevronRight.vue";
-import NavComponent from "../NavComponent.vue";
+import NavComponent from "../navigation/NavComponent.vue";
+import { useCarStore } from "../../stores/cars";
 export default {
   components: {
     ChevronRight,
     NavComponent,
+  },
+  props: {
+    brand: String,
+    model: String,
   },
 };
 </script>
@@ -33,6 +43,7 @@ export default {
   gap: 20px;
   padding: 136px 136px 0 136px;
 }
+
 .nav-link li {
   display: flex;
   align-items: center;
@@ -40,6 +51,7 @@ export default {
   list-style: none;
   gap: 6px;
 }
+
 a {
   text-decoration: none;
   color: #717171;

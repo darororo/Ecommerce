@@ -6,61 +6,62 @@
         <calender />
         <span class="space">Year</span>
       </span>
-      <span class="space1">{{ carInfo.year }}</span>
+      <span class="space1">{{ engine.year }}</span>
     </div>
     <div class="info-item">
       <span class="name">
         <Key />
         <span class="space">Number of Owners</span>
       </span>
-      <span class="space1">{{ carInfo.owners }}</span>
+      <span class="space1">{{ engine.ownerNumbers }}</span>
     </div>
     <div class="info-item">
       <span>
         <location />
         <span class="space">Location</span>
       </span>
-      <span class="space1">{{ carInfo.location }}</span>
+      <span class="space1">{{ engine.location }}</span>
     </div>
     <div class="info-item">
       <span>
         <Mileage />
         <span class="space">Mileage</span>
       </span>
-      <span class="space1">{{ carInfo.mileage }} km (0 mi)</span>
+      <span class="space1">{{ engine.mileage }} km</span>
     </div>
     <div class="info-item">
       <span>
         <Engine />
         <span class="space">Engine</span>
       </span>
-      <span class="space1">{{ carInfo.engine }}</span>
+      <span class="space1">{{ engine.cylinder }}</span>
     </div>
     <div class="info-item">
       <span>
         <FuleTpye />
         <span class="space">Fuel Type</span>
       </span>
-      <span class="space1">{{ carInfo.fuelType }}</span>
+      <span class="space1">{{ engine.fuelType }}</span>
     </div>
     <div class="info-item">
       <span>
         <Power />
         <span class="space">Power</span>
       </span>
-      <span class="space1">{{ carInfo.power }} hp</span>
+      <span class="space1">{{ engine.power }} hp</span>
     </div>
     <div class="info-item">
       <span>
-        <Power />
+        <color />
         <span class="space">Color</span>
       </span>
-      <span class="space1">{{ carInfo.color }}</span>
+      <span class="space1">{{ engine.color }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "pinia";
 import Calender from "./icons/nameIcon/calender.vue";
 import Engine from "./icons/nameIcon/engine.vue";
 import FuleTpye from "./icons/nameIcon/fule tpye.vue";
@@ -68,6 +69,8 @@ import Key from "./icons/nameIcon/key.vue";
 import Location from "./icons/nameIcon/location.vue";
 import Mileage from "./icons/nameIcon/mileage.vue";
 import Power from "./icons/nameIcon/power.vue";
+import { useCarStore } from "../stores/cars";
+import color from "./icons/nameIcon/color.vue";
 
 export default {
   name: "CarInfo",
@@ -79,6 +82,7 @@ export default {
     Location,
     Mileage,
     Power,
+    color,
   },
   data() {
     return {
@@ -93,6 +97,22 @@ export default {
         color: "Cherry",
       },
     };
+  },
+  computed: {
+    ...mapState(useCarStore, {
+      car(store) {
+        console.log(store.cars[0].brand);
+        console.log(this.$route.params.carId);
+        return store.getCar(this.$route.params.carId);
+      },
+    }),
+    engine() {
+      const engine = this.car.engine;
+      if (engine) {
+        return engine;
+      }
+      return {};
+    },
   },
 };
 </script>
@@ -160,6 +180,7 @@ h2 {
   margin-right: 8px;
   transition: fill 0.3s ease;
 }
+
 span {
   display: flex;
   align-items: center;

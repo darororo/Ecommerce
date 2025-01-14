@@ -1,5 +1,4 @@
 <template>
-  <!-- <img class="image-bg" src="@/assets/images/auth-bgs/Car1.jpg" alt="Background Image"> -->
   <video class="image-bg" autoplay loop muted>
     <source :src="videoSrc" type="video/mp4" />
   </video>
@@ -23,61 +22,32 @@
     </div>
   </div>
 
+  <!-- Log in  Section-->
   <div class="container">
     <form v-if="!isCreateForm" class="form-sec">
       <div class="form-layout">
         <div class="head-sec">
           <h2>Sign In</h2>
-          <span
-            >Don't have an account?
-            <strong @click="changeForm">Sign Up</strong></span
-          >
+          <span>Don't have an account?
+            <strong @click="changeForm">Sign Up</strong></span>
         </div>
         <div class="fill-email">
-          <svg
-            class="icon-style"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+          <svg class="icon-style" width="20" height="20" viewBox="0 0 20 20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
               d="M10 14.974L0 6.14899V17.5H20V6.14899L10 14.974ZM10.001 12.312L0 3.48102V2.5H20V3.48102L10.001 12.312Z"
-              fill="black"
-              fill-opacity="0.7"
-            />
+              fill="black" fill-opacity="0.7" />
           </svg>
-          <input
-            type="text"
-            name="fill-input"
-            class="fill-input"
-            placeholder="Email"
-          />
+          <input type="text" name="fill-input" class="fill-input" placeholder="Email" />
         </div>
         <div class="fill-pass">
-          <svg
-            class="icon-style"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg class="icon-style" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
-              fill="black"
-              fill-opacity="0.7"
-            />
+              fill="black" fill-opacity="0.7" />
           </svg>
-          <input
-            type="password"
-            name="fill-input"
-            class="fill-input-password"
-            placeholder="Password"
-          />
+          <input type="password" name="fill-input" class="fill-input-password" placeholder="Password" />
         </div>
       </div>
       <div class="form-check">
@@ -104,86 +74,60 @@
         </button>
       </div>
     </form>
-    <form v-else class="form-sec">
+
+    <!-- Sign up Section-->
+    <form v-else class="form-sec" @submit.prevent="onSubmit">
       <div class="form-layout">
         <div class="head-sec">
           <h2>Create an account</h2>
-          <span
-            >Don't have an account?
-            <strong @click="changeForm">Sign In</strong></span
-          >
+          <span>Don't have an account?
+            <strong @click="changeForm">Sign In</strong></span>
         </div>
         <div class="fname-lname">
           <div class="fname">
-            <input
-              type="text"
-              class="fill-fname-lname"
-              placeholder="First Name"
-            />
+            <input v-model="firstname" v-bind="firstnameProps" type="text" class="fill-fname-lname"
+              placeholder="First Name" />
+            <p class="text-error">{{ errors.firstname }}</p>
           </div>
           <div class="lname">
-            <input
-              type="text"
-              class="fill-fname-lname"
-              placeholder="Last Name"
-            />
+            <input v-model="lastname" v-bind="lastnameProps" type="text" class="fill-fname-lname"
+              placeholder="Last Name" />
+            <p class="text-error">{{ errors.lastname }}</p>
           </div>
         </div>
         <div class="fill-email">
-          <svg
-            class="icon-style"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+          <svg class="icon-style" width="20" height="20" viewBox="0 0 20 20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
               d="M10 14.974L0 6.14899V17.5H20V6.14899L10 14.974ZM10.001 12.312L0 3.48102V2.5H20V3.48102L10.001 12.312Z"
-              fill="black"
-              fill-opacity="0.7"
-            />
+              fill="black" fill-opacity="0.7" />
           </svg>
-          <input
-            type="text"
-            name="fill-input"
-            class="fill-input"
-            placeholder="Email"
-          />
+          <input v-model="email" v-bind="emailProps" type="text" name="fill-input" class="fill-input"
+            placeholder="Email" />
+          <p class="text-error">{{ errors.email }}</p>
         </div>
         <div class="fill-pass">
-          <svg
-            class="icon-style"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg class="icon-style" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
-              fill="black"
-              fill-opacity="0.7"
-            />
+              fill="black" fill-opacity="0.7" />
           </svg>
-          <input
-            type="password"
-            name="fill-input"
-            class="fill-input-password"
-            placeholder="Password"
-          />
+          <input v-model="password" v-bind="passwordProps" type="password" name="fill-input" class="fill-input-password"
+            placeholder="Password" />
+          <p class="text-error">{{ errors.password }}</p>
         </div>
       </div>
       <div class="form-check">
         <div class="check-box">
-          <input class="check-box-icon" type="checkbox" />
+          <input v-model="termsChecked" class="check-box-icon" type="checkbox" />
           <span>I agree to the</span>
           <strong>Terms & conditions</strong>
         </div>
       </div>
-      <div class="btn-sign-up"><button>Sign Up</button></div>
+      <div class="btn-sign-up" :class="{ 'btn-disabled': !termsChecked }">
+        <button>Sign Up</button>
+      </div>
       <div class="register">
         <hr />
         <span>or register with</span>
@@ -200,27 +144,59 @@
         </button>
       </div>
     </form>
-    <div class="footer-skip">
-      <span>CAMBODIA</span>
-      <div class="skip-form">
-        <template v-for="(item, index) in skipItems" :key="index">
-          <div
-            class="indicator"
-            :class="{ 'indicator-active': activeIndex === index }"
-          ></div>
-        </template>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import videoSrc from "@/assets/videos/Car1.mp4";
-import GoogleLogin from "./icons/GoogleLogin.vue";
-import FacebookLogin from "./icons/FacebookLogin.vue";
-import GoogleLogout from "./icons/GoogleLogout.vue";
-import FacebookLogout from "./icons/FacebookLogout.vue";
+import GoogleLogin from "@/components/icons/auth/GoogleLogin.vue";
+import FacebookLogin from "@/components/icons/auth/FacebookLogin.vue";
+import GoogleLogout from "@/components/icons/auth/GoogleLogout.vue";
+import FacebookLogout from "@/components/icons/auth/FacebookLogout.vue";
+
+import { useForm } from "vee-validate";
+import { string } from "yup";
+
 export default {
+  setup() {
+    const emailValidator = string().required("Email is required").email();
+    const passwordValidator = string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters");
+    const firsnameValidator = string().required("First name is required");
+    const lastnameValidator = string().required("Last name is required");
+
+    const { defineField, handleSubmit, errors } = useForm({
+      validationSchema: {
+        email: emailValidator,
+        password: passwordValidator,
+        firstname: firsnameValidator,
+        lastname: lastnameValidator,
+      },
+    });
+
+    const [email, emailProps] = defineField("email");
+    const [password, passwordProps] = defineField("password");
+    const [firstname, firstnameProps] = defineField("firstname");
+    const [lastname, lastnameProps] = defineField("lastname");
+
+    const onSubmit = handleSubmit((values) => {
+      console.log(values);
+    });
+
+    return {
+      errors,
+      onSubmit,
+      email,
+      emailProps,
+      password,
+      passwordProps,
+      firstname,
+      firstnameProps,
+      lastname,
+      lastnameProps,
+    };
+  },
   components: {
     GoogleLogin,
     FacebookLogin,
@@ -236,6 +212,7 @@ export default {
       isLoggedIn: false,
       skipItems: Array(5).fill(null),
       activeIndex: 0,
+      termsChecked: false,
     };
   },
   methods: {
@@ -261,8 +238,9 @@ a {
 .container {
   position: absolute;
   left: 50%;
-  padding-top: 50px;
+  /* padding-top: 0px; */
 }
+
 .container form {
   position: relative;
   left: -50%;
@@ -273,18 +251,18 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   z-index: -1;
 }
 
 .form-sec {
-  height: 610px;
+  height: auto;
   width: 600px;
   background-color: white;
   border: 0px solid rgb(104, 103, 103);
   border-radius: 15px;
-  padding: 20px;
+  padding: 20px 20px 30px 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -330,6 +308,7 @@ h2 {
   font-family: "Roboto Serif";
   font-size: 14px;
 }
+
 .fill-input-password {
   width: 330px;
   height: 32px;
@@ -345,6 +324,7 @@ h2 {
 .fill-email input[type="text"] {
   padding-right: 40px;
 }
+
 .fill-pass input[type="password"] {
   padding-right: 40px;
 }
@@ -396,11 +376,13 @@ h2 {
   justify-content: center;
   padding-top: 60px;
 }
+
 .btn-sign-up {
   display: flex;
   justify-content: center;
-  padding-top: 40px;
+  margin-top: 40px;
 }
+
 .btn-sign-up button {
   height: 50px;
   width: 380px;
@@ -413,6 +395,7 @@ h2 {
   font-weight: 500;
   cursor: pointer;
 }
+
 .btn-sign-in button {
   height: 50px;
   width: 380px;
@@ -424,6 +407,10 @@ h2 {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.btn-disabled {
+  cursor: not-allowed;
 }
 
 .register {
@@ -452,6 +439,7 @@ h2 {
   align-items: center;
   padding: 0px 100px 0px 100px;
 }
+
 .sign-with button {
   display: flex;
   align-items: center;
@@ -463,6 +451,7 @@ h2 {
   background-color: white;
   cursor: pointer;
 }
+
 .icon {
   padding-right: 8px;
 }
@@ -481,13 +470,14 @@ h2 {
 
 .fname-lname {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding-bottom: 40px;
 }
 
 .fname input[type="text"] {
   padding-right: 0px;
 }
+
 .lname input[tpe="text"] {
   padding-right: 0px;
 }
@@ -495,6 +485,7 @@ h2 {
 .fname {
   padding: 0px 46px 0px 0px;
 }
+
 .check-box strong {
   text-decoration: underline;
   padding-left: 10px;
@@ -504,6 +495,7 @@ h2 {
   cursor: pointer;
   padding-right: 100px;
 }
+
 .header-content {
   position: relative;
   display: flex;
@@ -512,12 +504,14 @@ h2 {
   height: 92px;
   text-align: center;
 }
+
 .empty-space {
   background-color: rgb(255, 255, 255);
   height: 31px;
   width: 400%;
   align-self: flex-start;
 }
+
 .container-btn {
   display: flex;
   background-color: rgb(255, 255, 255);
@@ -528,6 +522,7 @@ h2 {
   align-items: center;
   column-gap: 20px;
 }
+
 .container-btn::after {
   content: "";
   display: block;
@@ -540,6 +535,7 @@ h2 {
   rotate: 130deg;
   clip-path: polygon(34% 0, 100% 0, 100% 100%, 0% 100%);
 }
+
 .container-btn::before {
   content: "";
   display: block;
@@ -554,10 +550,12 @@ h2 {
 .container-btn .login-direction {
   position: relative;
 }
+
 .logo-img {
   width: 75px;
   height: 59px;
 }
+
 .logo-title {
   display: flex;
   align-items: center;
@@ -583,6 +581,7 @@ h2 {
   background-color: rgb(255, 255, 255);
   rotate: 50deg;
 }
+
 .logo-title::after {
   content: "";
   display: block;
@@ -593,6 +592,7 @@ h2 {
   height: 45px;
   background-color: rgb(255, 255, 255);
 }
+
 .header-content button {
   background: transparent;
   border: 1px solid black;
@@ -605,6 +605,7 @@ h2 {
   font-size: 16px;
   cursor: pointer;
 }
+
 .footer-skip {
   position: absolute;
   left: -50%;
@@ -614,6 +615,7 @@ h2 {
   font-family: "Yapari Variable Trial", sans-serif;
   font-weight: normal;
 }
+
 .footer-skip {
   position: relative;
   display: flex;
@@ -621,6 +623,7 @@ h2 {
   flex-direction: column;
   align-items: center;
 }
+
 .skip-form {
   display: flex;
   align-items: center;
@@ -638,5 +641,9 @@ h2 {
 
 .indicator-active {
   background-color: white;
+}
+
+.text-error {
+  color: red;
 }
 </style>

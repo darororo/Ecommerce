@@ -1,10 +1,28 @@
 <script>
+import { mapState } from "pinia";
 import FooterComponent from "../FooterComponent.vue";
 import Back from "./Back.vue";
+import { useCarStore } from "../../stores/cars";
 export default {
   components: {
     Back,
     FooterComponent,
+  },
+  computed: {
+    ...mapState(useCarStore, {
+      cars: "cars",
+      imageUrls(store) {
+        const urls = [];
+        const id = this.$route.params.carId;
+        const car = store.getCar(id);
+        car.images.forEach((img) => {
+          urls.push(store.getImageURL("cars", id, img));
+        });
+        console.log(car.images);
+
+        return urls;
+      },
+    }),
   },
 };
 </script>
@@ -14,98 +32,143 @@ export default {
   <div class="container">
     <div class="grid-container">
       <div class="grid-header">
-        <img src="@/assets/images/products/car1.png" class="header-image" />
-        <img src="@/assets/images/products/car2.png" class="header-image" />
+        <img
+          v-for="img in imageUrls.slice(0, 2)"
+          :src="img"
+          class="header-image"
+        />
       </div>
       <div class="grid-main">
-        <img src="@/assets/images/products/car3.png" class="main-image" />
-        <img src="@/assets/images/products/car4.png" class="main-image" />
-        <img src="@/assets/images/products/car5.png" class="main-image" />
+        <img
+          v-for="img in imageUrls.slice(0, 3)"
+          :src="img"
+          class="main-image"
+        />
+        <!-- <img src="@/assets/images/products/car4.png" class="main-image" />
+        <img src="@/assets/images/products/car5.png" class="main-image" /> -->
       </div>
       <div class="grid-footer">
-        <img src="@/assets/images/products/car3.png" class="footer-image" />
-        <img src="@/assets/images/products/car4.png" class="footer-image" />
+        <img
+          v-for="img in imageUrls.slice(0, 2)"
+          :src="img"
+          class="footer-image"
+        />
+
+        <!-- <img src="@/assets/images/products/car4.png" class="footer-image" /> -->
       </div>
-    </div>
-    <div class="last-gallery">
-      <img src="@/assets/images/products/car1.png" />
+      <div class="last-gallery">
+        <img :src="imageUrls[imageUrls.length - 1]" />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* Container Styling */
 .container {
-  padding: 10px 20px 100px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f8f9fa; /* Light background for contrast */
 }
+
+/* Grid Container Styling */
 .grid-container {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
+  max-width: 1800px;
+  background-color: #ffffff; /* White background for a clean look */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px; /* Subtle shadow */
+  padding: 20px; /* Internal spacing */
 }
+
+/* Header Section */
 .grid-header {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
   gap: 10px;
-  width: 100%;
 }
+
 .grid-header img {
-  height: 70%;
-  width: 100%;
+  width: calc(50% - 5px);
+  height: auto;
   object-fit: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+/* 
+.grid-header img:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 12px;
+} */
+
+/* Main Section */
 .grid-main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 10px;
-  height: 100%;
-  width: 100%;
 }
+
 .grid-main img {
-  position: relative;
-  bottom: 198px;
   height: auto;
-  height: 90%;
-  width: 100%;
-  object-fit: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 33%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+/* 
+.grid-main img:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 12px;
+} */
+
+/* Footer Section */
 .grid-footer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
   gap: 10px;
-  width: 100%;
 }
+
 .grid-footer img {
-  position: relative;
-  bottom: 240px;
+  width: calc(50% - 5px);
   height: auto;
-  width: 100%;
-  height: 80%;
   object-fit: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+/* 
+.grid-footer img:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 12px;
+} */
+
+/* Last Gallery Section */
 .last-gallery {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 10px;
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
+
 .last-gallery > img {
-  position: relative;
-  bottom: 358px;
-  height: auto;
-  height: 80%;
   width: 100%;
   object-fit: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* .last-gallery > img:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 12px;
+} */
 </style>
