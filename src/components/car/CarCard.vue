@@ -1,40 +1,47 @@
 <template>
-  <div class="container">
-    <div class="img-container">
-      <div v-if="car.discount" class="discount-tag">
-        {{ car.discount }} % OFF
+  <div class="car-card">
+    <div class="car-image-container">
+      <div v-if="car.discount" class="car-discount-tag">
+        {{ car.discount }}% OFF
       </div>
-      <img :src="imageUrl" />
+      <img :src="imageUrl" alt="Car Image" class="car-image" />
+      <div class="image-overlay"></div>
     </div>
-    <div class="text-container">
-      <div class="text-row-1">
-        <div class="price" v-if="car.discount">
-          <span class="original-price"
-            ><del>{{ formatUsd(car.price) }}</del></span
-          >
-          {{ formatUsd(discountedPrice) }}
+
+    <div class="car-content">
+      <div class="car-header">
+        <div class="price-section">
+          <template v-if="car.discount">
+            <span class="price-original">{{ formatUsd(car.price) }}</span>
+            <span class="price-discounted">{{
+              formatUsd(discountedPrice)
+            }}</span>
+          </template>
+          <template v-else>
+            <span class="price-current">{{ formatUsd(car.price) }}</span>
+          </template>
         </div>
-        <div v-else class="price discounted-price">
-          {{ formatUsd(car.price) }}
-        </div>
-        <BookmarkComponent :car="car" />
+        <BookmarkComponent :car="car" class="bookmark-btn" />
       </div>
-      <div class="name-car">{{ car.model }}</div>
-      <div class="script-seller">
-        <div class="description">
-          {{ car.description }}
-        </div>
-        <div class="seller">
-          <SellerIcon />
-          <span>Yem Daro</span>
-        </div>
+
+      <h3 class="car-model">{{ car.model }}</h3>
+
+      <p class="car-description">{{ car.description }}</p>
+
+      <div class="car-seller">
+        <SellerIcon class="seller-icon" />
+        <span class="seller-name">Yem Daro</span>
       </div>
-      <div class="reser-detail">
-        <RouterLink :to="{ name: 'checkout', params: { carId: car.id } }">
-          <button class="btn-reser">Reserve Now</button>
+
+      <div class="car-actions">
+        <RouterLink
+          :to="{ name: 'checkout', params: { carId: car.id } }"
+          class="btn-link"
+        >
+          <button class="btn btn-primary">Reserve Now</button>
         </RouterLink>
-        <RouterLink :to="`/car/${car.id}`">
-          <button class="btn-deta">More detail</button>
+        <RouterLink :to="`/car/${car.id}`" class="btn-link">
+          <button class="btn btn-secondary">View Details</button>
         </RouterLink>
       </div>
     </div>
@@ -47,7 +54,6 @@ import SellerIcon from "@/components/icons/SellerIcon.vue";
 import { mapState } from "pinia";
 import { useCarStore } from "../../stores/cars";
 import { useUtilStore } from "../../stores/utils";
-import { useUsersStore } from "../../stores/users";
 import BookmarkComponent from "../bookmark/BookmarkComponent.vue";
 
 export default {
@@ -76,191 +82,220 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Goldman:wght@400;700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&family=Quicksand:wght@300..700&display=swap");
-@import url("https://fonts.cdnfonts.com/css/inria-sans");
-
-.container {
+.car-card {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding-bottom: 8px;
-  height: 100%;
-  border: 1px solid #b0b0b0;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #ffffff;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  overflow: hidden;
   font-family: "Inria Sans", sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.img-container > img {
-  display: block;
-  max-height: 320px;
+.car-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.car-image-container {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.car-image {
   width: 100%;
   height: 100%;
-  /* height: 100vh; */
-  border-radius: 10px 10px 0px 0px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.img-container {
-  position: relative;
+.car-card:hover .car-image {
+  transform: scale(1.05);
 }
 
-.discount-tag {
+.image-overlay {
   position: absolute;
-  width: 100px;
-  height: 40px;
-  bottom: 20px;
+  top: 0;
+  left: 0;
   right: 0;
-  color: white;
-  background-color: rgb(255, 111, 0);
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 7px 0 0 7px;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.1));
+  pointer-events: none;
 }
 
-.original-price {
-  font-size: 16px;
-  color: red;
-}
-
-.text-container {
-  background: white;
-  height: 100%;
-  padding: 16px 16px 0px 16px;
-}
-
-.text-row-1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  word-spacing: 12px;
-}
-
-.star {
-  visibility: hidden;
-  font-size: 36px;
-  bottom: 22px;
-  right: 16px;
-  position: relative;
-  cursor: pointer;
-}
-
-.star::after {
-  content: "\2605";
-  visibility: visible;
-  color: black;
-}
-
-.star:checked::after {
-  color: #a8a8a8;
-  content: "\2606";
-}
-
-.price {
-  font-style: normal;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.bookmark {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 18px;
-  font-style: normal;
-  font-family: "Inria Sans", sans-serif;
-  cursor: pointer;
-}
-
-.name-car {
-  font-family: "Inria Sans", sans-serif;
-  font-weight: 100;
-  padding-bottom: 10px;
-  font-size: 18px;
-}
-
-.description {
-  font-family: "Inria Sans", sans-serif;
-  font-size: 16px;
-  font-weight: lighter;
-  color: #828282;
-  width: 24rem;
-  line-height: 24px;
-}
-
-.script-seller {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 14px 0px 20px 0px;
-}
-
-.seller {
-  display: flex;
-  color: #464646;
-  gap: 4px;
-  cursor: pointer;
-  padding: 0px 6px 0px 0px;
-}
-
-.seller span {
-  font-size: 14px;
-}
-
-.reser-detail {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn-reser {
-  position: relative;
-  display: inline-block;
-  padding: 14px 60px;
-  font-size: 16px;
-  color: white;
-  background-color: red;
-  border: 1px solid transparent;
-  border-radius: 0px 12px 0px 12px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease;
-  z-index: 1;
-}
-
-.btn-reser::before {
-  content: "";
+.car-discount-tag {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 0%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  z-index: -1;
-  background-color: white;
-  transition: height 0.8s ease;
+  bottom: 16px;
+  right: 0;
+  background: #ff6f00;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 7px 0 0 7px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 2;
 }
 
-.btn-reser:hover::before {
-  height: 400%;
+.car-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
 }
 
-.btn-reser:hover {
-  color: black;
-  border: 1px solid rgb(172, 172, 172);
+.car-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
 }
 
-.btn-deta {
-  width: 230px;
-  height: 50px;
-  border: 2px solid rgb(172, 172, 172);
-  background-color: white;
-  border-radius: 0px 12px 0px 12px;
-  font-family: "Inria Sans", sans-serif;
-  font-size: 18px;
+.price-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.price-original {
+  color: #9ca3af;
+  font-size: 14px;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.price-discounted,
+.price-current {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.price-discounted {
+  color: #dc2626;
+}
+
+.bookmark-btn {
+  margin-top: 4px;
+}
+
+.car-model {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.car-description {
+  font-size: 16px;
   font-weight: 200;
-  border: 1px solid rgb(172, 172, 172);
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.car-seller {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.seller-icon {
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+}
+
+.seller-name {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.car-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.btn-link {
+  flex: 1;
+  text-decoration: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: #374151;
+  border: 2px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .car-content {
+    padding: 20px;
+    gap: 14px;
+  }
+
+  .car-model {
+    font-size: 18px;
+  }
+
+  .price-discounted,
+  .price-current {
+    font-size: 20px;
+  }
+
+  .btn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
 }
 </style>

@@ -28,30 +28,60 @@
       <div class="form-layout">
         <div class="head-sec">
           <h2 @click="signIn">Sign In</h2>
-          <span>Don't have an account?
-            <strong @click="changeForm">Sign Up</strong></span>
+          <span
+            >Don't have an account?
+            <strong @click="changeForm">Sign Up</strong></span
+          >
         </div>
         <div class="fill-email">
-          <svg class="icon-style" width="20" height="20" viewBox="0 0 20 20" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+          <svg
+            class="icon-style"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
               d="M10 14.974L0 6.14899V17.5H20V6.14899L10 14.974ZM10.001 12.312L0 3.48102V2.5H20V3.48102L10.001 12.312Z"
-              fill="black" fill-opacity="0.7" />
+              fill="black"
+              fill-opacity="0.7"
+            />
             fill="black" fill-opacity="0.7" />
           </svg>
-          <input v-model="user.email" type="text" name="fill-input" class="fill-input" placeholder="Email" />
+          <input
+            v-model="user.email"
+            type="text"
+            name="fill-input"
+            class="fill-input"
+            placeholder="Email"
+          />
         </div>
         <div class="fill-pass">
-
-          <svg class="icon-style" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
+          <svg
+            class="icon-style"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
-              fill="black" fill-opacity="0.7" />
+              fill="black"
+              fill-opacity="0.7"
+            />
             fill="black" fill-opacity="0.7" />
           </svg>
-          <input v-model="user.password" type="password" name="fill-input" class="fill-input-password"
-            placeholder="Password" />
+          <input
+            v-model="user.password"
+            type="password"
+            name="fill-input"
+            class="fill-input-password"
+            placeholder="Password"
+          />
         </div>
       </div>
       <div class="form-check">
@@ -84,47 +114,93 @@
       <div class="form-layout">
         <div class="head-sec">
           <h2>Create an account</h2>
-          <span>Don't have an account?
-            <strong @click="changeForm">Sign In</strong></span>
+          <span
+            >Don't have an account?
+            <strong @click="changeForm">Sign In</strong></span
+          >
         </div>
         <div class="fname-lname">
           <div class="fname">
-            <input v-model="firstname" v-bind="firstnameProps" type="text" class="fill-fname-lname"
-              placeholder="First Name" />
+            <input
+              v-model="firstname"
+              v-bind="firstnameProps"
+              type="text"
+              class="fill-fname-lname"
+              placeholder="First Name"
+            />
             <p class="text-error">{{ errors.firstname }}</p>
           </div>
           <div class="lname">
-            <input v-model="lastname" v-bind="lastnameProps" type="text" class="fill-fname-lname"
-              placeholder="Last Name" />
+            <input
+              v-model="lastname"
+              v-bind="lastnameProps"
+              type="text"
+              class="fill-fname-lname"
+              placeholder="Last Name"
+            />
             <p class="text-error">{{ errors.lastname }}</p>
           </div>
         </div>
         <div class="fill-email">
-          <svg class="icon-style" width="20" height="20" viewBox="0 0 20 20" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+          <svg
+            class="icon-style"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
               d="M10 14.974L0 6.14899V17.5H20V6.14899L10 14.974ZM10.001 12.312L0 3.48102V2.5H20V3.48102L10.001 12.312Z"
-              fill="black" fill-opacity="0.7" />
+              fill="black"
+              fill-opacity="0.7"
+            />
           </svg>
-          <input v-model="email" v-bind="emailProps" type="text" name="fill-input" class="fill-input"
-            placeholder="Email" />
+          <input
+            v-model="email"
+            v-bind="emailProps"
+            type="text"
+            name="fill-input"
+            class="fill-input"
+            placeholder="Email"
+          />
           <p class="text-error">{{ errors.email }}</p>
         </div>
         <div class="fill-pass">
-          <svg class="icon-style" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
+          <svg
+            class="icon-style"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M19 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C15.866 2 19 5.13401 19 9V10ZM17 10V9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9V10H17ZM11 14V18H13V14H11Z"
-              fill="black" fill-opacity="0.7" />
+              fill="black"
+              fill-opacity="0.7"
+            />
           </svg>
-          <input v-model="password" v-bind="passwordProps" type="password" name="fill-input" class="fill-input-password"
-            placeholder="Password" />
+          <input
+            v-model="password"
+            v-bind="passwordProps"
+            type="password"
+            name="fill-input"
+            class="fill-input-password"
+            placeholder="Password"
+          />
           <p class="text-error">{{ errors.password }}</p>
         </div>
       </div>
       <div class="form-check">
         <div class="check-box">
-          <input v-model="termsChecked" class="check-box-icon" type="checkbox" />
+          <input
+            v-model="termsChecked"
+            class="check-box-icon"
+            type="checkbox"
+          />
           <span>I agree to the</span>
           <strong>Terms & conditions</strong>
         </div>
@@ -221,7 +297,7 @@ export default {
       user: {
         email: "",
         password: "",
-      }
+      },
     };
   },
   methods: {
@@ -236,20 +312,19 @@ export default {
           .collection("users")
           .authWithPassword(this.user.email, this.user.password);
 
-        console.log(pb.authStore.record.avatar)
+        console.log(pb.authStore.record.avatar);
 
         if (pb.authStore.isValid) {
-          this.$router.push({ name: "home" })
+          this.$router.push({ name: "home" });
         }
       } catch (error) {
-        alert(`Authentication failed: ${error}`)
+        alert(`Authentication failed: ${error}`);
       }
     },
     async createUser() {
       try {
-
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
   },
@@ -272,7 +347,6 @@ a {
   left: 50%;
   /* padding-top: 0px; */
 }
-
 
 .container form {
   position: relative;
