@@ -5,8 +5,15 @@
     </div>
   </Transition>
   <Transition appear @enter="navEnter">
-    <NavComponent v-show="$route.name !== 'brand'" class="nav" :textColor="color" :bgColor="bgColor"
-      :borderColor="borderColor" @toggle-sidebar="toggleSidebar" @search-cars="(data) => query = data" />
+    <NavComponent
+      v-show="$route.name !== 'brand'"
+      class="nav"
+      :textColor="color"
+      :bgColor="bgColor"
+      :borderColor="borderColor"
+      @toggle-sidebar="toggleSidebar"
+      @search-cars="(data) => (query = data)"
+    />
   </Transition>
   <LandingComponent v-if="$route.name !== 'brand'" class="hero" />
   <BrandLanding v-else class="brand-landing" />
@@ -14,7 +21,13 @@
   <h1>Popular Cars</h1>
   <div class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
-      <PopularCard :name="car.name" :themeColor="car.color" :price="car.price" :img="car.img" :imgHeight="car.height" />
+      <PopularCard
+        :name="car.name"
+        :themeColor="car.color"
+        :price="car.price"
+        :img="car.img"
+        :imgHeight="car.height"
+      />
     </template>
   </div>
   <h1>Features</h1>
@@ -25,8 +38,23 @@
       </template>
     </div>
     <div class="filter-wrapper">
-      <FilterComponent @filter-brand="(data) => { filterBrand = data }" @filter-price="(data) => { filterPrice = data }"
-        @filter-discount="(data) => { filterDiscount = data }" />
+      <FilterComponent
+        @filter-brand="
+          (data) => {
+            filterBrand = data;
+          }
+        "
+        @filter-price="
+          (data) => {
+            filterPrice = data;
+          }
+        "
+        @filter-discount="
+          (data) => {
+            filterDiscount = data;
+          }
+        "
+      />
     </div>
   </div>
   <FooterComponent />
@@ -53,7 +81,7 @@ export default {
   },
   data() {
     return {
-      query: '',
+      query: "",
       color: "white",
       bgColor: "transparent",
       borderColor: "#C0C0C0",
@@ -84,8 +112,8 @@ export default {
 
       // Filter objects
       filterPrice: 0,
-      filterBrand: '',
-      filterDiscount: '',
+      filterBrand: "",
+      filterDiscount: "",
     };
   },
 
@@ -111,22 +139,26 @@ export default {
   computed: {
     ...mapState(useCarStore, {
       cars: "cars",
-      searchCars: 'searchCars',
+      searchCars: "searchCars",
       filteredCars(store) {
-        let filtered = store.filter(this.filterPrice, this.filterBrand, this.filterDiscount);
+        let filtered = store.filter(
+          this.filterPrice,
+          this.filterBrand,
+          this.filterDiscount
+        );
         if (this.query.length > 0) {
-          filtered = store.searchCars(this.query, filtered)
+          filtered = store.searchCars(this.query, filtered);
         }
-        console.log(filtered)
-        return filtered
+        console.log(filtered);
+        return filtered;
       },
-    })
+    }),
   },
   watch: {
     filterBrand(cur) {
-      console.log(cur)
-    }
-  }
+      console.log(cur);
+    },
+  },
 };
 
 function navInit(el, done) {
@@ -200,6 +232,7 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   justify-content: center;
   padding: 20px 160px 20px 160px;
+  gap: 18px;
 }
 
 .car-listing-container {
