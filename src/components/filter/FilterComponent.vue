@@ -1,56 +1,97 @@
 <template>
   <div class="filter-panel">
     <!-- Price Section -->
-    <div class="section">
-      <p class="title gold">Price</p>
-      <fieldset>
-        <div v-for="option in priceOptions" :key="option.value" class="option">
-          <input type="radio" :id="option.value" @click="selectedPrice = option.value" name="price"
-            :checked="option.selected" :value="option.value" />
-          <label :for="option.value" class="roboto">{{ option.label }}</label>
+    <div class="filter-section">
+      <h3 class="section-title">Price Range</h3>
+      <div class="options-container">
+        <div
+          v-for="option in priceOptions"
+          :key="option.value"
+          class="option-item"
+        >
+          <input
+            type="radio"
+            :id="`price-${option.value}`"
+            v-model="selectedPrice"
+            :value="option.value"
+            name="price"
+            class="radio-input"
+          />
+          <label :for="`price-${option.value}`" class="option-label">
+            {{ option.label }}
+          </label>
         </div>
-      </fieldset>
+      </div>
     </div>
 
     <!-- Brand Section -->
-    <div class="section">
-      <p class="title gold">Brand</p>
-      <fieldset>
-        <div v-for="brand in brandOptions" :key="brand.value" class="option">
-          <input type="radio" :id="brand.value" @click="selectedBrand = brand.value" name="brand"
-            :checked="watchRoute(brand.value) || brand.selected" :value="brand.value" />
-          <label :for="brand.value" class="roboto">{{ brand.label }}</label>
+    <div class="filter-section">
+      <h3 class="section-title">Brand</h3>
+      <div class="options-container">
+        <div
+          v-for="brand in brandOptions"
+          :key="brand.value"
+          class="option-item"
+        >
+          <input
+            type="radio"
+            :id="`brand-${brand.value}`"
+            v-model="selectedBrand"
+            :value="brand.value"
+            name="brand"
+            class="radio-input"
+          />
+          <label :for="`brand-${brand.value}`" class="option-label">
+            {{ brand.label }}
+          </label>
         </div>
-      </fieldset>
+      </div>
     </div>
 
     <!-- Discount Section -->
-    <div class="section">
-      <p class="title gold">Discount</p>
-      <fieldset>
-        <div v-for="discount in discountOptions" :key="discount.value" class="option">
-          <input type="radio" :id="discount.value" :checked="discount.selected"
-            @click="selectedDiscount = discount.value" name="discount" :value="discount.value" />
-          <label :for="discount.value" class="roboto">{{ discount.label }}</label>
+    <div class="filter-section">
+      <h3 class="section-title">Discount</h3>
+      <div class="options-container">
+        <div
+          v-for="discount in discountOptions"
+          :key="discount.value"
+          class="option-item"
+        >
+          <input
+            type="radio"
+            :id="`discount-${discount.value}`"
+            v-model="selectedDiscount"
+            :value="discount.value"
+            name="discount"
+            class="radio-input"
+          />
+          <label :for="`discount-${discount.value}`" class="option-label">
+            {{ discount.label }}
+          </label>
         </div>
-      </fieldset>
+      </div>
     </div>
+
+    <!-- Clear Filters Button -->
+    <button @click="clearAllFilters" class="clear-button">
+      Clear All Filters
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 
 const selectedPrice = ref(false);
-const selectedBrand = ref(route.params.brandName || false);
+const selectedBrand = ref(false);
 const selectedDiscount = ref(false);
 
 // Define filter options
 const priceOptions = [
-  { value: false, label: "All", selected: true },
+  { value: false, label: "All Prices" },
   { value: 1000001, label: "Above $1M" },
   { value: 1000000, label: "Under $1M" },
   { value: 500000, label: "Under $500K" },
@@ -59,7 +100,7 @@ const priceOptions = [
 ];
 
 const brandOptions = [
-  { value: false, label: "All", selected: true },
+  { value: false, label: "All Brands" },
   { value: "ferrari", label: "Ferrari" },
   { value: "mercedes", label: "Mercedes" },
   { value: "porsche", label: "Porsche" },
@@ -68,70 +109,172 @@ const brandOptions = [
 ];
 
 const discountOptions = [
-  { value: false, label: "All", selected: true },
-  { value: true, label: "With discounts" },
+  { value: false, label: "All Items" },
+  { value: true, label: "Discounted Only" },
 ];
-const emit = defineEmits(['filter-price', 'filter-brand', 'filter-discount']);
 
-emit('filter-price', selectedPrice)
-emit('filter-brand', selectedBrand)
-emit('filter-discount', selectedDiscount)
+const emit = defineEmits(["filter-price", "filter-brand", "filter-discount"]);
 
-watch(selectedPrice, (cur) => {
-  emit('filter-price', cur)
-});
-watch(selectedBrand, (cur) => {
-  console.log('brand filter: ', cur)
-  emit('filter-brand', cur)
-})
-watch(selectedDiscount, (cur) => emit('filter-discount', cur))
-
-function watchRoute(brand) {
+// Initialize filters
+onMounted(() => {
+  // Set initial brand from route
   if (route.params.brandName) {
-    const routeMatched = route.params.brandName === brand;
-    if (routeMatched) {
-      selectedBrand.value = brand
-      return true;
-    } else {
-      return false
-    }
+    selectedBrand.value = route.params.brandName;
   }
 
-  return false
-}
+  // Emit initial values
+  emit("filter-price", selectedPrice.value);
+  emit("filter-brand", selectedBrand.value);
+  emit("filter-discount", selectedDiscount.value);
+});
 
+// Watch for changes and emit events
+watch(selectedPrice, (newValue) => {
+  emit("filter-price", newValue);
+});
+
+watch(selectedBrand, (newValue) => {
+  emit("filter-brand", newValue);
+});
+
+watch(selectedDiscount, (newValue) => {
+  emit("filter-discount", newValue);
+});
+
+// Clear all filters
+function clearAllFilters() {
+  selectedPrice.value = false;
+  selectedBrand.value = false;
+  selectedDiscount.value = false;
+}
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto:wght@400;700&display=swap");
-
 .filter-panel {
-  max-width: 300px;
-  margin: 0 auto;
+  position: relative;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 24px 44px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  max-width: 320px;
+  right: 20px;
+  top: 16px;
+  font-family: "Inria Sans", sans-serif;
+  margin-bottom: 30px;
 }
 
-.section {
-  margin-bottom: 20px;
+.filter-section {
+  margin-bottom: 32px;
 }
 
-.title {
-  font-family: "Quattrocento", serif;
-  font-size: 20px;
+.filter-section:last-of-type {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 10px;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f3f4f6;
 }
 
-.option {
-  margin-bottom: 8px;
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-input[type="radio"] {
-  margin-right: 10px;
+.option-item {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.roboto {
-  font-family: "Quattrocento", serif;
+.option-item:hover {
+  background-color: #f9fafb;
+}
+
+.radio-input {
+  width: 18px;
+  height: 18px;
+  margin: 0 12px 0 0;
+  cursor: pointer;
+  accent-color: #3b82f6;
+}
+
+.option-label {
+  font-size: 15px;
   font-weight: 500;
-  font-size: 16px;
+  color: #4b5563;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.option-item:hover .option-label {
+  color: #1f2937;
+}
+
+.radio-input:checked + .option-label {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.clear-button {
+  width: 100%;
+  padding: 12px 16px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-button:hover {
+  background: #e5e7eb;
+  color: #4b5563;
+  border-color: #9ca3af;
+}
+
+.clear-button:active {
+  transform: translateY(1px);
+}
+
+/* Focus states for accessibility */
+.radio-input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.clear-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .filter-panel {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .option-label {
+    font-size: 14px;
+  }
 }
 </style>
