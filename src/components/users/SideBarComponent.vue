@@ -32,7 +32,6 @@
         <div class="nav-item" @click="$router.push({ name: 'bookmarks' })">
           <Icon icon="material-symbols:bookmark-outline" />
           <span>Bookmarks</span>
-          <span class="nav-badge">12</span>
         </div>
 
         <div class="nav-item">
@@ -43,7 +42,6 @@
         <div class="nav-item">
           <Icon icon="lsicon:badge-promotion-outline" />
           <span>Promotions</span>
-          <span class="nav-badge new">New</span>
         </div>
 
         <div class="nav-item">
@@ -252,7 +250,6 @@ export default {
 .nav-item:hover {
   background: rgba(102, 126, 234, 0.08);
   color: #667eea;
-  transform: translateX(4px);
   border-color: rgba(102, 126, 234, 0.15);
 }
 
