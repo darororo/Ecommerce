@@ -4,10 +4,10 @@
     <div class="sidebar-header">
       <div class="logo-section">
         <div class="logo-placeholder">
-          <Icon icon="mdi:car-sports" class="logo-icon" />
+          <Icon icon="emojione-v1:racing-car" class="logo-icon" />
         </div>
         <div class="brand-info">
-          <span class="brand-name">RevXsuper</span>
+          <span class="brand-name">Carbodia</span>
           <span class="brand-subtitle">Car Management</span>
         </div>
       </div>
@@ -155,7 +155,6 @@ export default {
 }
 
 .logo-icon {
-  color: white;
   font-size: 20px;
 }
 
