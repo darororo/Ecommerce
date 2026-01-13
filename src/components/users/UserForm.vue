@@ -1,8 +1,4 @@
 <template>
-  <video class="image-bg" autoplay loop muted>
-    <source :src="videoSrc" type="video/mp4" />
-  </video>
-
   <div class="header-content">
     <div class="logo-title">
       <img class="logo-img" src="@/assets/images/Logo.png" alt="logo-img" />
@@ -228,10 +224,6 @@
 </template>
 
 <script>
-// Use external video URL to avoid Cloudflare's 25MB file size limit
-// Replace this with your uploaded video URL (GitHub, Cloudinary, or YouTube)
-const videoSrc = "https://raw.githubusercontent.com/Vuth-Menghuor/carbodia/main/public/videos/Car1.mp4";
-
 import GoogleLogin from "@/components/icons/auth/GoogleLogin.vue";
 import FacebookLogin from "@/components/icons/auth/FacebookLogin.vue";
 import GoogleLogout from "@/components/icons/auth/GoogleLogout.vue";
@@ -292,7 +284,6 @@ export default {
   },
   data() {
     return {
-      videoSrc,
       isLoggedIn: false,
       skipItems: Array(5).fill(null),
       activeIndex: 0,
@@ -348,6 +339,13 @@ a {
 .container {
   position: absolute;
   left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('@/assets/images/auth-bgs/Car1.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
   /* padding-top: 0px; */
 }
 
@@ -356,15 +354,7 @@ a {
   left: -50%;
 }
 
-.image-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  z-index: -1;
-}
+/* Removed .image-bg styles - video no longer used */
 
 .form-sec {
   height: auto;
