@@ -1,7 +1,11 @@
 <template>
   <div class="header-content">
     <div class="logo-title">
-      <img class="logo-img" src="@/assets/images/Logo.png" alt="logo-img" />
+      <img
+        class="logo-img"
+        src="@/assets/images/media/carbodiaWhite.png"
+        alt="Carbodia Logo"
+      />
       <span>Carbodia</span>
     </div>
     <div class="empty-space"></div>
@@ -326,6 +330,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
 @import url("https://fonts.cdnfonts.com/css/yapari-trial");
@@ -336,34 +341,44 @@ a {
   color: black;
 }
 
+* {
+  font-family: "Rajdhani", sans-serif;
+}
+
 .container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-image: url('@/assets/images/auth-bgs/Car1.jpg');
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: url("@/assets/images/bg-authentication.jpg");
   background-size: cover;
   background-position: center;
   width: 100vw;
   height: 100vh;
-  /* padding-top: 0px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container form {
   position: relative;
-  left: -50%;
+  left: 0;
+  margin: 0 auto;
 }
-
-/* Removed .image-bg styles - video no longer used */
 
 .form-sec {
   height: auto;
-  width: 600px;
-  background-color: white;
-  border: 0px solid rgb(104, 103, 103);
-  border-radius: 15px;
-  padding: 20px 20px 30px 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 500px;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  margin: 0 auto;
 }
 
 .form-layout {
@@ -376,82 +391,133 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Roboto Serif";
+  font-family: "Rajdhani", sans-serif;
   text-align: center;
-  line-height: 24px;
-  padding-bottom: 40px;
+  line-height: 28px;
+  padding-bottom: 30px;
+  width: 100%;
 }
 
 h2 {
-  font-size: 40px;
-  font-weight: normal;
+  font-size: 38px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .head-sec span {
-  font-size: 14px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .head-sec strong {
-  color: blue;
+  color: #ffffff;
   text-decoration: underline;
   cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.head-sec strong:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .fill-input {
-  width: 330px;
-  height: 32px;
-  border: 2px solid 000000;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  width: 100%;
+  width: -webkit-fill-available;
+  height: 45px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
   outline: none;
-  font-family: "Roboto Serif";
-  font-size: 14px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  padding: 0 15px 0 45px;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #ffffff;
+}
+
+.fill-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.fill-input:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.9);
 }
 
 .fill-input-password {
-  width: 330px;
-  height: 32px;
-  border: 2px solid 000000;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  width: 100%;
+  width: -webkit-fill-available;
+  height: 45px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
   outline: none;
-  font-family: "Roboto Serif";
-  font-size: 14px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  padding: 0 15px 0 45px;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #ffffff;
+}
+
+.fill-input-password::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.fill-input-password:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.9);
 }
 
 .fill-email input[type="text"] {
-  padding-right: 40px;
+  padding-right: 15px;
 }
 
 .fill-pass input[type="password"] {
-  padding-right: 40px;
+  padding-right: 15px;
 }
 
 .icon-style {
   position: absolute;
   cursor: pointer;
-  margin-top: 5px;
-  margin-left: 18vw;
+  margin-top: 12px;
+  margin-left: 15px;
+  opacity: 0.8;
+  filter: brightness(0) invert(1);
 }
 
 .fill-email {
-  padding-bottom: 40px;
+  padding-bottom: 25px;
+  position: relative;
+  width: 100%;
 }
 
 .fill-pass {
-  padding-bottom: 15px;
+  padding-bottom: 20px;
+  position: relative;
+  width: 100%;
 }
 
 .form-check {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
 }
 
 .forget-ps {
   cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.forget-ps:hover {
+  color: #ffffff;
 }
 
 .check-box {
@@ -462,94 +528,144 @@ h2 {
 .check-box-icon {
   height: 18px;
   width: 18px;
-  color: black;
-  border: 1px solid black;
-  border-radius: 2px;
+  cursor: pointer;
+  accent-color: #ffffff;
+  filter: brightness(0) invert(1);
 }
 
 .check-box span {
-  padding-left: 10px;
+  padding-left: 8px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .btn-sign-in {
   display: flex;
   justify-content: center;
-  padding-top: 60px;
+  padding-top: 30px;
+  width: 100%;
 }
 
 .btn-sign-up {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .btn-sign-up button {
   height: 50px;
-  width: 380px;
+  width: 100%;
   border: none;
-  background-color: #636871;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   color: white;
-  font-family: "Roboto Serif";
-  font-size: 16px;
-  font-weight: 500;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-sign-up button:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-sign-up button:active {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(0);
 }
 
 .btn-sign-in button {
   height: 50px;
-  width: 380px;
+  width: 100%;
   border: none;
-  background-color: #636871;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   color: white;
-  font-family: "Roboto Serif";
-  font-size: 16px;
-  font-weight: 500;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-sign-in button:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-sign-in button:active {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(0);
 }
 
 .btn-disabled {
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .register {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin: 30px 0;
+  gap: 15px;
+  margin: 25px 0;
+  width: 100%;
 }
 
 .register hr {
-  width: 140px;
+  flex: 1;
   border: none;
   margin: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .register span {
-  font-size: 14px;
-  color: #666;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .sign-with {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding: 0px 100px 0px 100px;
+  gap: 15px;
+  width: 100%;
 }
 
 .sign-with button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #666;
-  background-color: white;
+  flex: 1;
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.sign-with button:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 .icon {
@@ -557,21 +673,35 @@ h2 {
 }
 
 .fill-fname-lname {
-  width: 160px;
-  height: 32px;
-  border: 2px solid 000000;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  width: 100%;
+  width: -webkit-fill-available;
+  height: 45px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
   outline: none;
-  font-family: "Roboto Serif";
-  font-size: 14px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #ffffff;
+}
+
+.fill-fname-lname::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.fill-fname-lname:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.9);
 }
 
 .fname-lname {
   display: flex;
   align-items: flex-start;
-  padding-bottom: 40px;
+  gap: 20px;
+  padding-bottom: 25px;
+  width: 100%;
 }
 
 .fname input[type="text"] {
@@ -583,68 +713,63 @@ h2 {
 }
 
 .fname {
-  padding: 0px 46px 0px 0px;
+  flex: 1;
+}
+
+.lname {
+  flex: 1;
 }
 
 .check-box strong {
   text-decoration: underline;
-  padding-left: 10px;
-  font-family: "Roboto Serif";
-  font-size: 14px;
-  color: rgb(73, 73, 253);
+  padding-left: 5px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  color: #ffffff;
   cursor: pointer;
-  padding-right: 100px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.check-box strong:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .header-content {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 92px;
+  height: auto;
+  padding: 20px 40px;
+  background-color: transparent;
   text-align: center;
+  z-index: 10;
 }
 
 .empty-space {
-  background-color: rgb(255, 255, 255);
-  height: 31px;
-  width: 400%;
-  align-self: flex-start;
+  display: none;
 }
 
 .container-btn {
   display: flex;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
   align-items: center;
-  height: 100px;
-  padding: 0px 20px 0px 0px;
+  height: auto;
+  padding: 0;
   width: auto;
-  align-items: center;
-  column-gap: 20px;
+  column-gap: 12px;
 }
 
 .container-btn::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 50px;
-  right: 310px;
-  border-radius: 0% 30% 0% 0%;
-  height: 122.5px;
-  background-color: rgb(255, 255, 255);
-  rotate: 130deg;
-  clip-path: polygon(34% 0, 100% 0, 100% 100%, 0% 100%);
+  display: none;
 }
 
 .container-btn::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 175px;
-  border-bottom-left-radius: 30px;
-  right: 155px;
-  height: 100px;
-  background-color: rgb(255, 255, 255);
+  display: none;
 }
 
 .container-btn .login-direction {
@@ -652,58 +777,56 @@ h2 {
 }
 
 .logo-img {
-  width: 75px;
-  height: 59px;
+  height: 50px;
+  width: auto;
 }
 
 .logo-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
-  font-family: "Goldman", sans-serif;
-  background-color: rgb(255, 255, 255);
-  height: 100px;
-  font-size: 30px;
+  background-color: transparent;
+  height: auto;
   width: auto;
-  padding: 0px 30px 0px 30px;
-  column-gap: 20px;
+  padding: 0;
+  column-gap: 15px;
+}
+
+.logo-title span {
+  color: #ffffff;
+  font-family: "Goldman", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  font-style: normal;
+  transition: color 0.4s ease;
 }
 
 .logo-title::before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 310px;
-  width: 50px;
-  border-radius: 0% 0% 30% 0%;
-  height: 122.5px;
-  background-color: rgb(255, 255, 255);
-  rotate: 50deg;
+  display: none;
 }
 
 .logo-title::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 291px;
-  top: 0;
-  width: 60px;
-  height: 45px;
-  background-color: rgb(255, 255, 255);
+  display: none;
 }
 
 .header-content button {
-  background: transparent;
-  border: 1px solid black;
-  height: 50px;
-  width: 125px;
-  color: black;
-  border-radius: 10px;
-  font-weight: bold;
-  font-family: "Quattrocento Sans", sans-serif;
-  font-size: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  height: 40px;
+  padding: 0 20px;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.header-content button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-skip {
@@ -712,7 +835,7 @@ h2 {
   margin-top: 40px;
   color: white;
   font-size: 24px;
-  font-family: "Yapari Variable Trial", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: normal;
 }
 
@@ -744,6 +867,9 @@ h2 {
 }
 
 .text-error {
-  color: red;
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 5px;
+  font-family: "Rajdhani", sans-serif;
 }
 </style>

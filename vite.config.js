@@ -18,8 +18,8 @@ export default defineConfig({
       output: {
         // Split large assets into separate chunks
         manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return 'vendor';
+          if (id.includes("node_modules")) {
+            return "vendor";
           }
         },
       },
