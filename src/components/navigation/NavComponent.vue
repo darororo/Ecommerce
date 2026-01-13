@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :class="{ dark: scrolled }" :style="{ background: bgColor }">
     <div class="container">
       <div class="menu-btn">
         <svg @click="$emit('toggle-sidebar')" class="burger-svg" xmlns="http://www.w3.org/2000/svg" width="2rem"
@@ -87,11 +87,15 @@ export default {
     textColor: {
       default: "transparent",
     },
-    bgColor: {
-      default: "transparent",
-    },
     borderColor: {
       default: "#C0C0C0",
+    },
+    bgColor: {
+      default: "rgba(255, 255, 255, 0.1)",
+    },
+    scrolled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -110,8 +114,27 @@ export default {
   position: fixed;
   width: 100%;
   z-index: 168;
-  background: v-bind(bgColor);
-  /* box-shadow: 0 2px 6px rgb(196, 185, 185); */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.6s ease;
+}
+
+.dark {
+  background: white !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark .search-icon {
+  color: black;
+}
+
+.dark .brand-navs::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .container {
@@ -124,6 +147,12 @@ export default {
 .search {
   position: relative;
   width: auto;
+  overflow: visible;
+}
+
+.search-wrapper {
+  position: relative;
+  overflow: visible;
 }
 
 .search>input {
@@ -138,6 +167,7 @@ export default {
   top: 8px;
   left: 12px;
   color: grey;
+  transition: color 0.6s ease;
 }
 
 .search-bar {
@@ -149,7 +179,14 @@ export default {
   box-sizing: border-box;
   border: 1px solid;
   border-color: v-bind(borderColor);
-  /* background-color: purple; */
+  background-color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: v-bind(borderColor);
 }
 
 .menu-btn {
@@ -158,6 +195,7 @@ export default {
   align-items: center;
   cursor: pointer;
   color: v-bind(textColor);
+  transition: color 0.4s ease;
 }
 
 .menu-btn>p {
@@ -168,6 +206,7 @@ export default {
 .burger-svg {
   position: absolute;
   left: -44px;
+  transition: fill 0.6s ease;
 }
 
 .brand-navs {
@@ -180,6 +219,7 @@ export default {
   border-color: v-bind(borderColor);
   border-right: none;
   border-left: none;
+  transition: border-color 0.6s ease;
 }
 
 .brand-navs .brand {
@@ -188,6 +228,10 @@ export default {
   column-gap: 1rem;
   cursor: pointer;
   text-decoration: none;
+}
+
+.brand-navs svg {
+  transition: fill 0.6s ease;
 }
 
 .brand>p {
@@ -201,6 +245,7 @@ export default {
   font-family: "Goldman", sans-serif;
   font-weight: 400;
   font-style: normal;
+  transition: color 0.4s ease;
 }
 
 .goldman-bold {
@@ -219,5 +264,241 @@ export default {
   font-family: "Quattrocento", serif;
   font-weight: 700;
   font-style: normal;
+  transition: color 0.4s ease;
+}
+
+/* Responsive Styles */
+
+/* Tablets and smaller (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+    justify-content: space-between;
+  }
+
+  .search-wrapper {
+    flex: 1;
+    max-width: 45%;
+    margin: 0 1rem;
+  }
+
+  .search>input {
+    width: 100%;
+  }
+
+  .brand-navs {
+    column-gap: 2rem;
+  }
+
+  .menu-btn>p {
+    font-size: 1.5rem;
+  }
+
+  .burger-svg {
+    left: -36px;
+  }
+}
+
+/* Tablets portrait and smaller (max-width: 768px) */
+@media (max-width: 768px) {
+  .container {
+    height: 55px;
+    padding: 0 0.5rem;
+  }
+
+  .search>input {
+    width: 30vw;
+    font-size: 14px;
+  }
+
+  .search-icon {
+    width: 14px;
+    top: 7px;
+  }
+
+  .menu-btn>p {
+    font-size: 1.3rem;
+  }
+
+  .burger-svg {
+    left: -32px;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .brand-navs {
+    column-gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .brand-navs::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .brand-navs::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .brand-navs::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .container {
+    height: 60px;
+    justify-content: space-between;
+    padding: 0 1rem;
+    flex-wrap: nowrap;
+    background: inherit;
+  }
+
+  .menu-btn {
+    flex-shrink: 0;
+    order: 1;
+  }
+
+  .menu-btn>p {
+    font-size: 1.2rem;
+  }
+
+  .burger-svg {
+    left: -32px;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .search-wrapper {
+    flex: 1;
+    max-width: none;
+    margin: 0 1rem;
+    order: 2;
+    overflow: visible;
+  }
+
+  .search {
+    overflow: visible;
+  }
+
+  .search>input {
+    width: 100%;
+    font-size: 13px;
+    padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+    height: 36px;
+    background-color: white;
+    border-radius: 18px;
+  }
+
+  .search-icon {
+    width: 14px;
+    top: 11px;
+    left: 10px;
+  }
+
+  /* Brand navigation - horizontal scroll */
+  .brand-navs {
+    display: flex;
+    column-gap: 1.5rem;
+    padding: 1rem 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    background: inherit;
+  }
+
+  .brand-navs::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  .brand-navs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .brand-navs::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .brand-navs .brand {
+    column-gap: 0.6rem;
+    flex-shrink: 0;
+    padding: 0.25rem;
+  }
+
+  .brand>p {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .brand svg {
+    width: 18px !important;
+    height: 22px !important;
+  }
+}
+
+/* Extra small devices (max-width: 360px) */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.75rem;
+    height: 56px;
+  }
+
+  .menu-btn>p {
+    font-size: 1.1rem;
+  }
+
+  .burger-svg {
+    left: -28px;
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .search-wrapper {
+    margin: 0 0.75rem;
+  }
+
+  .search>input {
+    font-size: 12px;
+    height: 34px;
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+  }
+
+  .search-icon {
+    width: 13px;
+    top: 10px;
+    left: 9px;
+  }
+
+  .brand-navs {
+    column-gap: 1.25rem;
+    padding: 0.75rem 0.75rem;
+  }
+
+  .brand>p {
+    font-size: 11px;
+  }
+
+  .brand svg {
+    width: 16px !important;
+    height: 20px !important;
+  }
 }
 </style>

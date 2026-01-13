@@ -1,21 +1,22 @@
 <template>
   <div class="product-list">
     <h3 class="header-product">Brand lists</h3>
-    <div class="product-container">
-      <RouterLink
-        class="RouterLink"
-        v-for="(brand, index) in brands"
-        :key="index"
-        :to="`/brand/${brand.name}`"
-      >
-        <div class="product-item">
-          <img :src="brand.logo" :alt="brand.name" loading="lazy" />
-          <!-- <div style="display: flex;">
-          <div style="border: 1px solid; height: 10px; width: 10px; border-radius: 100%; font-size: 8px; font-weight: bold;">R</div>
-        </div> -->
-          <!-- <p class="branch-name">{{ brand.name }}</p> -->
+    <div class="carousel-container">
+      <div class="carousel-wrapper">
+        <div class="product-container">
+          <RouterLink
+            class="RouterLink"
+            v-for="(brand, index) in brands"
+            :key="index"
+            :to="`/brand/${brand.name}`"
+          >
+            <div class="product-item">
+              <img :src="brand.logo" :alt="brand.name" loading="lazy" />
+              <p class="branch-name">{{ brand.name }}</p>
+            </div>
+          </RouterLink>
         </div>
-      </RouterLink>
+      </div>
     </div>
   </div>
 </template>
@@ -54,6 +55,7 @@ export default {
       ],
     };
   },
+  computed: {},
 };
 </script>
 <style>
@@ -61,21 +63,38 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .header-product {
-  padding: 100px 0px 28px 0px;
+  padding: 80px 0px 40px 0px;
   font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  font-size: 32px;
+  font-weight: 600;
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
 .product-list {
   text-align: center;
-  margin-top: 20px;
+  margin: 40px 0;
+  padding: 0 20px;
+}
+
+.carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carousel-wrapper {
+  width: 100%;
+  border-radius: 16px;
 }
 
 .product-container {
   display: flex;
+  gap: 30px;
+  padding: 20px;
   justify-content: center;
-  gap: 20px;
+  width: 100%;
 }
 
 .product-item {
@@ -84,24 +103,141 @@ export default {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  border: 1px solid #ccc;
-  padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 180px;
-  height: 100px;
-  background-color: white;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px 60px;
+  min-height: 90px;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: 220px;
+}
+
+.product-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.product-item:hover {
+  transform: translateY(-8px);
+}
+
+.product-item:hover::before {
+  left: 100%;
 }
 
 .product-item img {
-  max-width: 48px;
-  max-width: 48px;
-  margin-top: 20px;
+  max-width: 80px;
+  max-height: 60px;
+  object-fit: contain;
+  filter: grayscale(20%);
+  transition: all 0.3s ease;
+  margin-bottom: 6px;
+}
+
+.product-item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 .branch-name {
-  margin-top: 8px;
-  font-size: 14px;
-  font-family: "Yapari Variable Trial", sans-serif;
+  margin-top: 12px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #495057;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* Tablet responsive */
+@media (max-width: 1024px) {
+  .product-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .product-item {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 200px;
+    max-width: calc(33.333% - 20px);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .header-product {
+    font-size: 32px;
+    padding: 60px 0px 30px 0px;
+  }
+
+  .product-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .product-item {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 160px;
+    max-width: calc(50% - 10px);
+    padding: 20px 30px;
+    min-height: 80px;
+  }
+
+  .product-item img {
+    max-width: 70px;
+    max-height: 50px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-product {
+    font-size: 28px;
+    padding: 50px 0px 25px 0px;
+  }
+
+  .product-container {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .product-item {
+    flex: 1 1 calc(50% - 7px);
+    min-width: 140px;
+    max-width: calc(50% - 7px);
+    padding: 15px 25px;
+    min-height: 70px;
+    border-radius: 8px;
+  }
+
+  .product-item img {
+    max-width: 60px;
+    max-height: 45px;
+    margin-bottom: 10px;
+  }
+
+  .branch-name {
+    font-size: 14px;
+  }
 }
 </style>

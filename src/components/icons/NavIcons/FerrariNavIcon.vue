@@ -31,3 +31,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+svg {
+  transition: fill 0.6s ease;
+}
+</style>

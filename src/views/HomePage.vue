@@ -4,18 +4,17 @@
       <SideBarComponent @close-sidebar="toggleSidebar" />
     </div>
   </Transition>
-  <Transition appear @enter="navEnter">
-    <NavComponent
-      v-show="$route.name !== 'brand'"
-      class="nav"
-      :textColor="color"
-      :bgColor="bgColor"
-      :borderColor="borderColor"
-      @toggle-sidebar="toggleSidebar"
-      @search-cars="(data) => (query = data)"
-    />
-  </Transition>
-  <LandingComponent v-if="$route.name !== 'brand'" class="hero" />
+  <NavComponent
+    v-show="$route.name !== 'brand'"
+    class="nav"
+    :textColor="scrolled ? 'black' : 'white'"
+    :borderColor="scrolled ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.15)'"
+    :bgColor="scrolled ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.1)'"
+    :scrolled="scrolled"
+    @toggle-sidebar="toggleSidebar"
+    @search-cars="(data) => (query = data)"
+  />
+  <LandingComponent v-if="$route.name !== 'brand'" class="hero" ref="hero" />
   <BrandLanding v-else class="brand-landing" />
   <BrandList />
   <h1>Popular Cars</h1>
@@ -66,8 +65,6 @@ import FooterComponent from "../components/FooterComponent.vue";
 import LandingComponent from "../components/LandingComponent.vue";
 import NavComponent from "../components/navigation/NavComponent.vue";
 import PopularCard from "../components/car/PopularCard.vue";
-import { gsap, Power2 } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SideBarComponent from "../components/users/SideBarComponent.vue";
 import FilterComponent from "../components/filter/FilterComponent.vue";
 import BrandLanding from "../components/landingPage/BrandLanding.vue";
@@ -76,15 +73,9 @@ import { useCarStore } from "../stores/cars";
 import BrandList from "../components/BrandList.vue";
 
 export default {
-  setup() {
-    gsap.registerPlugin(ScrollTrigger);
-  },
   data() {
     return {
       query: "",
-      color: "white",
-      bgColor: "transparent",
-      borderColor: "#C0C0C0",
       popularCars: [
         {
           name: "Porsche 911 GT2 RS",
@@ -109,6 +100,7 @@ export default {
         },
       ],
       isSidebarVisible: false,
+      scrolled: false,
 
       // Filter objects
       filterPrice: 0,
@@ -129,12 +121,22 @@ export default {
     BrandList,
   },
   methods: {
-    navInit,
-    navEnter,
-    navLeave,
     toggleSidebar() {
       this.isSidebarVisible = !this.isSidebarVisible;
     },
+    handleScroll() {
+      const hero = this.$refs.hero?.$el;
+      if (hero) {
+        this.scrolled = window.scrollY > hero.offsetHeight;
+      }
+    },
+  },
+  mounted() {
+    this.handleScroll();
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
   computed: {
     ...mapState(useCarStore, {
@@ -160,53 +162,6 @@ export default {
     },
   },
 };
-
-function navInit(el, done) {
-  this.color = "white";
-  done();
-}
-
-function navEnter(el, done) {
-  console.log("enter");
-  gsap.to(el, {
-    scrollTrigger: {
-      // trigger: ".hero",
-      start: "+=10px top",
-      end: "+=10px 0",
-      toggleActions: "play none reverse none",
-      // markers: true,
-    },
-    duration: 0.4,
-    ease: "power2",
-    immediateRender: false,
-    backgroundColor: "white",
-    onStart: () => {
-      this.color = "black";
-      this.borderColor = "#C0C0C0";
-      // this.bgColor = "white";
-      done();
-    },
-    onReverseComplete: () => {
-      this.color = "white";
-      this.bgColor = "transparent";
-      done();
-    },
-  });
-}
-
-function navLeave(el, done) {
-  // gsap.to(el, {
-  //   duration: 0,
-  //   onComplete: () => {
-  //     this.color = "black"
-  //   },
-  //   onReverseComplete: () => {
-  //     this.color = "black"
-  //   }
-  // })
-
-  this.color = white;
-}
 </script>
 
 <style scoped>
@@ -232,7 +187,7 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   justify-content: center;
   padding: 20px 160px 20px 160px;
-  gap: 18px;
+  gap: 40px;
 }
 
 .car-listing-container {
@@ -245,9 +200,5 @@ h1 {
 .filter-wrapper {
   position: sticky;
   top: 100px;
-}
-
-.brand-landing {
-  /* padding-top: 1000px; */
 }
 </style>

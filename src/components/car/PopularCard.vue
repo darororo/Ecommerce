@@ -83,7 +83,7 @@ export default {
 
 function onBeforeEnter(el) {
   gsap.set(el, {
-    x: 250,
+    xPercent: 50,
   });
 }
 
@@ -95,7 +95,7 @@ function onEnter(el, done) {
       // markers: true
     },
     duration: 1.5,
-    x: -20,
+    xPercent: -50,
     ease: "power2.out",
     onComplete: done,
   });
@@ -120,7 +120,7 @@ function onEnter(el, done) {
   overflow: hidden;
   border: 2px solid #bababa;
   height: 380px;
-  width: 500px;
+  width: auto;
   border-radius: 10px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -160,22 +160,22 @@ function onEnter(el, done) {
 }
 .popular-car {
   position: absolute;
-  left: 45px;
+  left: 50%;
   bottom: 135px;
-  overflow: hidden;
+  transform: translateX(-50%);
 }
 
 .popular-car img {
   height: v-bind(height);
   width: auto;
+  transform: scale(1.2);
 }
 
 .bg-popular {
   position: relative;
   height: 180px;
-  width: 620px;
-  right: 50px;
-  top: 100px;
+  width: 800px;
+  top: 120px;
   background: v-bind(linearGradient);
   box-shadow: 0px 6px 5px rgb(190, 190, 190);
   rotate: -22.83deg;
@@ -257,5 +257,45 @@ function onEnter(el, done) {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 2250px) {
+  .popular-car img {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 1200px) {
+  .popular-car img {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 992px) {
+  .popular-car img {
+    transform: scale(0.9);
+  }
+  .column {
+    height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .popular-car img {
+    transform: scale(0.8);
+  }
+  .column {
+    height: 340px;
+  }
+}
+
+@media (max-width: 576px) {
+  .popular-car img {
+    transform: scale(0.7);
+  }
+  .column {
+    height: 320px;
+  }
 }
 </style>
