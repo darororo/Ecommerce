@@ -228,7 +228,10 @@
 </template>
 
 <script>
-import videoSrc from "@/assets/videos/Car1.mp4";
+// Use external video URL to avoid Cloudflare's 25MB file size limit
+// Replace this with your uploaded video URL (GitHub, Cloudinary, or YouTube)
+const videoSrc = "https://raw.githubusercontent.com/Vuth-Menghuor/carbodia/main/public/videos/Car1.mp4";
+
 import GoogleLogin from "@/components/icons/auth/GoogleLogin.vue";
 import FacebookLogin from "@/components/icons/auth/FacebookLogin.vue";
 import GoogleLogout from "@/components/icons/auth/GoogleLogout.vue";

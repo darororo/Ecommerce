@@ -13,4 +13,19 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split large assets into separate chunks
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+    // Set asset size limits
+    assetsInlineLimit: 4096, // 4kb
+    chunkSizeWarningLimit: 1000, // 1MB
+  },
 });

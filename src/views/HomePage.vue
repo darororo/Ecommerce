@@ -72,6 +72,11 @@ import { mapState } from "pinia";
 import { useCarStore } from "../stores/cars";
 import BrandList from "../components/BrandList.vue";
 
+// Import popular car images
+import car1 from "@/assets/images/popular/car1.png";
+import car2 from "@/assets/images/popular/car2.png";
+import car3 from "@/assets/images/popular/car3.png";
+
 export default {
   data() {
     return {
@@ -81,21 +86,21 @@ export default {
           name: "Porsche 911 GT2 RS",
           price: "293,200",
           color: "gray",
-          img: "/Ecommerce/src/assets/images/popular/car1.png",
+          img: car1,
           height: "160px",
         },
         {
           name: "Ferrari SF90",
           price: "293,200",
           color: "red",
-          img: "/Ecommerce/src/assets/images/popular/car2.png",
+          img: car2,
           height: "160px",
         },
         {
           name: "Lamborghini Aventador S Roadster",
           price: "293,200",
           color: "#0066ff",
-          img: "/Ecommerce/src/assets/images/popular/car3.png",
+          img: car3,
           height: "125px",
         },
       ],
