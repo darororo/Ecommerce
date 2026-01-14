@@ -17,38 +17,52 @@
 <style scoped>
 .comment-box {
   width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
-  padding: 20px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  padding: 16px;
   box-sizing: border-box;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  outline: none;
+  background-color: #f9fafb;
+  color: #111827;
+  resize: vertical;
+}
+
+.comment-box:focus {
+  border: 1px solid #dc2626;
+  background-color: #ffffff;
+}
+
+.comment-box::placeholder {
+  color: #9ca3af;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .inquire-button {
-  display: inline-block;
-  background-color: #045a09;
-  color: white;
-  height: 50px;
-  width: 160px;
-  border: none;
-  font-weight: bold;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
   font-size: 16px;
+  color: #ffffff;
+  height: 48px;
+  width: 140px;
+  border: none;
   cursor: pointer;
-  border-radius: 0px 10px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 6px;
 }
 
 .bg-green {
-  background-color: #00bb09;
+  background-color: #16a34a;
 }
 
 .bg-red {
-  background-color: #db0000;
+  background-color: #dc2626;
 }
 
 .btn-wrapper {
   display: flex;
-  justify-content: end;
-  padding: 10px 0px 10px 0px;
-  column-gap: 30px;
+  justify-content: flex-end;
+  padding: 16px 0;
+  gap: 12px;
 }
 </style>

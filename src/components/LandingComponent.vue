@@ -213,8 +213,7 @@ export default {
 .subtitle {
   color: white;
   font-style: italic;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 300;
   font-size: 14px;
 }
@@ -268,13 +267,13 @@ export default {
 }
 
 .caudex-regular {
-  font-family: "Caudex", serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .caudex-bold {
-  font-family: "Caudex", serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 50px;

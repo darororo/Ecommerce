@@ -1,0 +1,21 @@
+/* Global Font Family */
+* {
+  font-family: "Rajdhani", sans-serif;
+}
+
+/* Brand font for specific elements */
+.goldman-font,
+.brand-name,
+.logo-text {
+  font-family: "Goldman", sans-serif;
+}
+
+/* Reset default browser fonts */
+body,
+html,
+input,
+textarea,
+select,
+button {
+  font-family: "Rajdhani", sans-serif;
+}

@@ -12,25 +12,29 @@ export default {
   props: {
     description: String,
   },
-}
+};
 </script>
 
 <style scoped>
 .header {
-  padding-top: 10px;
+  padding-top: 30px;
+  padding-right: 30px;
 }
 
-.header>span {
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
+.header > span {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
   font-size: 28px;
-  color: black;
+  color: #111827;
+  display: block;
+  margin-bottom: 16px;
 }
 
-.header>p {
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 0px 50px 0px 0px;
-  line-height: 2rem;
-  font-size: 18px;
+.header > p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 16px;
 }
 </style>

@@ -45,95 +45,126 @@ export default {
 </template>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 h2 {
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px;
-  color: black;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: #111827;
+  margin-bottom: 20px;
 }
+
 .wrapper {
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  height: 430px;
-  width: 407.59px;
-  padding: 20px 40px 20px 40px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 407px;
+  padding: 24px;
 }
+
 .header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
 }
+
 .header > img {
-  border: 1px solid black;
-  border-radius: 100%;
-  height: 50px;
-  width: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  height: 56px;
+  width: 56px;
+  object-fit: cover;
 }
+
 .dealer-name {
-  line-height: 26px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
+
 .dealer-name > span {
-  font-weight: 600;
-  font-size: 18px;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+  display: block;
+  margin-bottom: 4px;
 }
+
 .dealer-name > p {
+  font-family: "Rajdhani", sans-serif;
   font-size: 14px;
-  margin: 0px;
+  color: #6b7280;
+  margin: 0;
 }
+
 .body {
-  padding: 10px 0px 10px 0px;
+  padding: 20px 0;
 }
+
 .body > button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  background-color: transparent;
-  height: 50px;
+  gap: 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  height: 48px;
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
   cursor: pointer;
-  font-family: Arial, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-size: 16px;
-  transition: 0.3s ease;
+  font-weight: 500;
+  color: #111827;
 }
 
-button:hover {
-  border: 1px solid red;
-  background-color: red;
-  color: white;
-}
-
-button svg {
-  transition: fill 0.3s ease;
-}
-
-button:hover svg {
-  fill: white;
+.body > button:last-child {
+  margin-bottom: 0;
 }
 
 button > span {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-size: 16px;
+  font-weight: 500;
+}
+
+.footer {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
 }
 
 .footer > input {
-  padding: 10px 10px 80px 10px;
-  width: 94%;
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 12px;
+  width: 100%;
+  font-family: "Rajdhani", sans-serif;
   font-size: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
   outline: none;
+  background-color: #f9fafb;
+  color: #111827;
+  margin-bottom: 12px;
+  height: 100px;
+  resize: none;
 }
+
 input:focus {
-  border: 1px solid #000000;
+  border: 1px solid #dc2626;
+  background-color: #ffffff;
 }
+
 .btn-contact {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 600;
+  font-size: 16px;
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  height: 48px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
 }
 </style>

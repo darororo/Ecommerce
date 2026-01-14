@@ -1,9 +1,20 @@
 <template>
+  <!-- Backdrop Overlay -->
+  <Transition name="backdrop">
+    <div
+      v-if="isSidebarVisible"
+      class="sidebar-backdrop"
+      @click="toggleSidebar"
+    ></div>
+  </Transition>
+
+  <!-- Sidebar -->
   <Transition name="sidebar">
-    <div v-if="isSidebarVisible" class="sidebar-container">
+    <div v-if="isSidebarVisible" class="sidebar-wrapper">
       <SideBarComponent @close-sidebar="toggleSidebar" />
     </div>
   </Transition>
+
   <NavComponent
     v-show="$route.name !== 'brand'"
     class="nav"
@@ -170,12 +181,55 @@ export default {
 </script>
 
 <style scoped>
+/* Backdrop Overlay */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* Backdrop Transition */
+.backdrop-enter-active,
+.backdrop-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.backdrop-enter-from,
+.backdrop-leave-to {
+  opacity: 0;
+}
+
+/* Sidebar Wrapper */
+.sidebar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Sidebar Transition */
+.sidebar-enter-active,
+.sidebar-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.sidebar-enter-from,
+.sidebar-leave-to {
+  transform: translateX(-100%);
+}
+
 h1 {
   padding: 10px 0px 10px 160px;
-  font-size: 38px;
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
+  font-size: 42px;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
 .car-listing {

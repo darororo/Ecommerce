@@ -117,47 +117,109 @@ export default {
 
 <style scoped>
 .line {
-  padding: 10px 136px 10px 136px;
+  padding: 30px 136px;
+}
+
+.line h1 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin: 20px 0 0 0;
+}
+
+.line hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 0;
 }
 
 .line-grey {
-  border-color: #ffffff;
-  margin: 1px 0;
-  padding: 0px 30px 0 0px;
+  margin: 30px 0;
+  padding-right: 30px;
+}
+
+.line-grey hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
 }
 
 .listing-body-wrapper {
   display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 0px 136px 0 136px;
+  gap: 40px;
+  padding: 0 136px;
+  background-color: #ffffff;
 }
 
 .desc-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 800px;
 }
 
 .comment-section {
-  margin-top: 14px;
-  width: auto;
-  padding: 0px 30px 0px 0px;
+  margin-top: 30px;
+  padding-right: 30px;
 }
 
 .contact-dealer {
   position: sticky;
   top: 100px;
-  height: 100%;
+  height: fit-content;
+  width: 350px;
+  flex-shrink: 0;
 }
 
 .engine-details {
-  margin-bottom: 18px;
+  padding-right: 30px;
 }
 
 .suggested-car-container {
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  padding: 0px 126px 0 126px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
+  padding: 40px 136px;
+  background-color: #f9fafb;
+}
+
+@media (max-width: 1200px) {
+  .line,
+  .listing-body-wrapper,
+  .suggested-car-container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .listing-body-wrapper {
+    flex-direction: column;
+  }
+
+  .contact-dealer {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .desc-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .line,
+  .listing-body-wrapper,
+  .suggested-car-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .suggested-car-container {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

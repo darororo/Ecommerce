@@ -52,6 +52,9 @@ export default {
     textColor: {
       default: "white",
     },
+    borderColor: {
+      default: "rgba(255, 255, 255, 0.8)",
+    },
   },
   data() {
     return {
@@ -101,31 +104,34 @@ a {
 }
 
 .log-in {
-  font-family: "Quattrocento";
-  font-size: 16px;
-  padding-left: 4px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding-left: 0;
   color: v-bind(textColor);
-  transition: color 0.4s ease;
+  transition: color 0.3s ease;
+  letter-spacing: 0.3px;
 }
 
 .btn-log-in {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 4px 0 4px;
-  column-gap: 4px;
+  padding: 0 20px;
+  column-gap: 8px;
   height: 40px;
-  width: 140px;
-  border-radius: 20px;
-  background-color: transparent;
-  border: 1px solid;
-  border-color: v-bind(textColor);
+  width: auto;
+  min-width: 100px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1.5px solid;
+  border-color: v-bind(borderColor);
   cursor: pointer;
-  /* margin-right: 100px; */
+  transition: border-color 0.3s ease;
 }
 
 .btn-log-in svg {
-  transition: fill 0.6s ease;
+  transition: transform 0.3s ease;
 }
 
 .btn-user {
@@ -162,8 +168,9 @@ a {
 @media (max-width: 1024px) {
   .btn-log-in,
   .btn-user {
-    width: 120px;
-    height: 36px;
+    min-width: 90px;
+    height: 38px;
+    padding: 0 16px;
   }
 
   .log-in {
@@ -184,14 +191,15 @@ a {
 @media (max-width: 768px) {
   .btn-log-in,
   .btn-user {
-    width: 100px;
-    height: 32px;
-    padding: 0 6px;
+    min-width: 80px;
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 6px;
   }
 
   .log-in {
     font-size: 13px;
-    padding-left: 2px;
+    padding-left: 0;
   }
 
   .btn-log-in svg,
@@ -214,16 +222,15 @@ a {
 @media (max-width: 480px) {
   .btn-log-in,
   .btn-user {
-    width: auto;
-    min-width: 80px;
-    height: 32px;
-    padding: 0 10px;
-    border-radius: 16px;
+    min-width: 75px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 6px;
   }
 
   .log-in {
     font-size: 12px;
-    padding-left: 3px;
+    padding-left: 0;
   }
 
   .btn-log-in svg {
@@ -255,8 +262,8 @@ a {
   .btn-log-in,
   .btn-user {
     min-width: 70px;
-    height: 28px;
-    padding: 0 8px;
+    height: 32px;
+    padding: 0 10px;
   }
 
   .log-in {

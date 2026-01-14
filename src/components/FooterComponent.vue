@@ -5,57 +5,52 @@
         <div class="description-logo">
           <div class="head">
             <div class="img">
-              <img src="@/assets/images/media/carbodiaWhite.png" alt="Frame" />
+              <img
+                src="@/assets/images/media/carbodiaWhite.png"
+                alt="Carbodia Logo"
+              />
             </div>
             <div class="brand-name">Carbodia</div>
           </div>
           <div class="description">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
-            packages and web page editors now use Lorem Ipsum as their default
-            model text, and a search for 'lorem ipsum' will uncover many web
-            sites still in their infancy. Various versions have evolved over the
-            years, sometimes by accident, sometimes on purpose (injected humour
-            and the like).
+            Your trusted platform for luxury and performance vehicles. Discover
+            premium cars with detailed specifications, competitive pricing, and
+            exceptional customer service. Browse our collection and find your
+            dream car today.
           </div>
         </div>
         <nav class="nav">
           <ul>
-            <li class="span-script">
-              <p href="#ABOUT">ABOUT</p>
+            <li class="nav-column">
+              <p class="nav-title">ABOUT</p>
               <span>Our Story</span>
               <span>Mission and Vision</span>
               <span>Achievements</span>
-              <span>Partnertships</span>
+              <span>Partnerships</span>
             </li>
-            <li class="span-script">
-              <p href="#PRODUCTS">PRODUCTS</p>
-              <span>Product categories</span>
-              <span>Feature Products</span>
+            <li class="nav-column">
+              <p class="nav-title">PRODUCTS</p>
+              <span>Product Categories</span>
+              <span>Featured Products</span>
               <span>Filter and Search</span>
               <span>Special Offers</span>
             </li>
-            <li class="span-script">
-              <p href="#BLOG">BLOG</p>
+            <li class="nav-column">
+              <p class="nav-title">BLOG</p>
               <span>Categories</span>
               <span>Featured Posts</span>
               <span>Subscribe to our Blog</span>
-              <span><br /></span>
             </li>
-            <li class="span-script">
-              <p href="#CONTACTS">CONTACTS</p>
+            <li class="nav-column">
+              <p class="nav-title">CONTACTS</p>
               <div class="contact">
                 <Phone />
-                <span>+885 69 552 601</span>
+                <span>+855 69 552 601</span>
               </div>
               <div class="contact">
                 <Email />
                 <span>Carbodia168@gmail.com</span>
               </div>
-              <br /><br /><br />
             </li>
           </ul>
         </nav>
@@ -63,98 +58,173 @@
     </div>
     <hr />
     <div class="footer">
-      <div class="link">
-        <Facebook />
+      <div class="social-links">
+        <a
+          href="https://www.facebook.com/papapainkh/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook />
+        </a>
         <Instagram />
         <Tiktok />
       </div>
-      <p>Copyright © 2024 Flaunter, Ltd. All rights reserved.</p>
-      <p><u>Privacy Policy</u> | <u>Terms & Condition </u></p>
+      <p class="copyright">
+        Copyright © 2024 Carbodia, Ltd. All rights reserved.
+      </p>
+      <p class="legal-links">
+        <span class="link-item">Privacy Policy</span>
+        <span class="separator">|</span>
+        <span class="link-item">Terms & Conditions</span>
+      </p>
     </div>
   </div>
 </template>
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
-@import url("https://fonts.cdnfonts.com/css/goldman");
 .brand-name {
   font-family: "Goldman", sans-serif;
-  font-size: 30px;
+  font-size: 32px;
+  font-weight: 400;
 }
+
 .container {
   background-color: #1e1e1e;
-  padding: 40px 100px 30px 100px;
-  width: auto;
+  padding: 60px 100px 40px 100px;
+  width: 100%;
 }
+
 .head {
   display: flex;
   align-items: center;
-  color: #fff;
-  gap: 30px;
+  color: #ffffff;
+  gap: 24px;
+  margin-bottom: 24px;
 }
+
 .img {
-  width: 108px;
-  height: 80px;
+  width: 80px;
+  height: 60px;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: start;
-  color: white;
-  font-family: Goldman;
-  font-size: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #ffffff;
+  font-family: "Rajdhani", sans-serif;
+  gap: 80px;
 }
+
 .description-logo {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  max-width: 450px;
+  flex-shrink: 0;
 }
+
 .description {
-  padding: 20px 0px 30px 0px;
-  color: white;
-  font-size: 16px;
-  line-height: 2rem;
-  font-family: "Raleway", sans-serif;
-  width: 86%;
-}
-.footer {
-  padding: 30px 0px 0px 0px;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  color: white;
-  font-size: 16px;
+  color: #d1d5db;
+  font-size: 15px;
+  line-height: 1.8;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
 }
 
 .nav ul {
   display: flex;
   list-style: none;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  font-family: "Goldman", sans-serif;
+  gap: 50px;
   margin: 0;
-  padding-right: 20px;
+  padding: 0;
 }
-.span-script span {
+
+.nav-column {
   display: flex;
-  justify-content: start;
-  font-family: none;
-  font-size: 16px;
-  font-family: "Raleway", sans-serif;
-  line-height: 2.5rem;
-  width: 10rem;
+  flex-direction: column;
+  gap: 12px;
 }
-.span-script .contact {
+
+.nav-title {
+  font-family: "Goldman", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.nav-column span {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #d1d5db;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.contact {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #d1d5db;
 }
-.link {
+
+hr {
+  border: none;
+  border-top: 1px solid #374151;
+  margin: 40px 0 30px 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-family: "Rajdhani", sans-serif;
+  color: #d1d5db;
+}
+
+.social-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  padding: 0px 0px 10px 0px;
+  gap: 24px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.copyright {
+  font-size: 15px;
+  margin: 0;
+  color: #9ca3af;
+}
+
+.legal-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  margin: 0;
+}
+
+.link-item {
+  cursor: pointer;
+  color: #d1d5db;
+}
+
+.separator {
+  color: #6b7280;
 }
 </style>
 <script>

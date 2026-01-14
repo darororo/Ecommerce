@@ -64,9 +64,9 @@ export default {
 
 .header-product {
   padding: 80px 0px 40px 0px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 600;
-  font-size: 36px;
+  font-size: 42px;
   color: #333;
   text-align: center;
   margin: 0;
@@ -157,7 +157,7 @@ export default {
 .branch-name {
   margin-top: 12px;
   font-size: 16px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 500;
   color: #495057;
   text-transform: capitalize;

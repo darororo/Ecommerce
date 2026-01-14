@@ -19,7 +19,7 @@
             placeholder="Search"></input>
         </div>
       </div>
-      <LoginButton :textColor="textColor" />
+      <LoginButton :textColor="textColor" :borderColor="scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)'" />
     </div>
 
     <div class="brand-navs">
@@ -114,9 +114,9 @@ export default {
   position: fixed;
   width: 100%;
   z-index: 168;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   top: 0;
   left: 0;
@@ -171,6 +171,7 @@ export default {
 }
 
 .search-bar {
+  font-family: "Rajdhani", sans-serif;
   height: 30px;
   width: 500px;
   border: none;
@@ -261,7 +262,7 @@ export default {
 }
 
 .quattrocento-bold {
-  font-family: "Quattrocento", serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 700;
   font-style: normal;
   transition: color 0.4s ease;

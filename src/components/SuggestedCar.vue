@@ -58,64 +58,86 @@ export default {
 <style scoped>
 .related-rides {
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   margin: 10px;
+  cursor: pointer;
 }
 
 .suggested-card {
   display: flex;
   align-items: center;
   margin: 0 auto;
-  border: 1px solid #ccc;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .ride-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   text-align: left;
 }
 
-.ride-image {
-  max-width: 100%;
-  height: auto;
-}
-
-.price {
-  font-size: 20px;
-  color: black;
-  font-weight: bold;
-}
-h3 {
-  font-weight: 500;
-  font-size: 16px;
-}
-span {
-  font-size: 16px;
-  color: #555;
-}
-.product-card {
-  padding: 30px 20px 20px 20px;
-  line-height: 16px;
-}
 .img-container {
   position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.ride-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .discount-tag {
   position: absolute;
-  width: 100px;
-  height: 40px;
-  bottom: 20px;
+  bottom: 12px;
   right: 0;
+  padding: 8px 16px;
   color: white;
-  background-color: rgb(255, 111, 0);
+  background-color: #dc2626;
   font-weight: 600;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 7px 0 0 7px;
+  border-radius: 4px 0 0 4px;
 }
+
+.product-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.price {
+  font-size: 20px;
+  color: #111827;
+  font-weight: 700;
+  margin: 0;
+}
+
 .original-price {
   font-size: 16px;
-  color: red;
+  color: #dc2626;
+  margin-right: 8px;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 18px;
+  color: #111827;
+  margin: 0;
+}
+
+span {
+  font-size: 14px;
+  color: #6b7280;
 }
 </style>

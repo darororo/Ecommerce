@@ -1,55 +1,73 @@
 <template>
   <div class="car-header">
     <div class="image-section">
-      <div class="main-img">
-        <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
-          <img :src="imageUrls[0]" class="large-image" />
-          <div v-if="car.discount" class="discount-tag">
-            {{ car.discount }} % OFF
+      <!-- Main Image -->
+      <div class="main-image-wrapper">
+        <RouterLink
+          :to="`/car/${$route.params.carId}/gallery`"
+          class="image-link"
+        >
+          <img :src="imageUrls[0]" alt="Main car image" class="main-image" />
+          <div v-if="car.discount" class="discount-badge">
+            {{ car.discount }}% OFF
           </div>
         </RouterLink>
       </div>
-      <RouterLink :to="'/car/' + $route.params.carId + '/gallery'">
-        <div class="small-gallery">
-          <!-- <img v-for="img in imageUrls" :src="img" alt=""> -->
+
+      <!-- Thumbnail Gallery -->
+      <div class="thumbnail-gallery">
+        <RouterLink
+          v-for="(img, index) in imageUrls.slice(1, 4)"
+          :key="index"
+          :to="`/car/${$route.params.carId}/gallery`"
+          class="thumbnail-link"
+        >
           <img
-            v-for="img in imageUrls.slice(1, 4)"
             :src="img"
-            alt=""
-            class="small-image"
+            :alt="`Car image ${index + 2}`"
+            class="thumbnail-image"
           />
-          <!-- <img src="@/assets/images/products/car2.png" class="small-image" />
-          <img src="@/assets/images/products/car3.png" class="small-image" />
-          <img src="@/assets/images/products/car4.png" class="small-image" /> -->
-          <div class="overlay-container">
-            <div v-show="car.images.length > 5" class="overlay-text">
-              All Photos ({{ car.images.length }})
-            </div>
-            <img :src="imageUrls[car.images.length - 1]" class="small-image" />
+        </RouterLink>
+
+        <!-- View All Photos Overlay -->
+        <RouterLink
+          :to="`/car/${$route.params.carId}/gallery`"
+          class="thumbnail-link overlay-link"
+        >
+          <img
+            :src="imageUrls[imageUrls.length - 1]"
+            :alt="`Car image ${imageUrls.length}`"
+            class="thumbnail-image"
+          />
+          <div v-if="car.images.length > 5" class="view-all-overlay">
+            <span class="view-all-text"
+              >View All Photos ({{ car.images.length }})</span
+            >
           </div>
-        </div>
-      </RouterLink>
+        </RouterLink>
+      </div>
     </div>
+
     <div class="price-sec">
       <div class="car-details">
-        <div class="text-content">
-          <h2 class="title">{{ car.model }}</h2>
-        </div>
-      </div>
-      <div class="car-details1">
+        <h2 class="title">{{ car.model }}</h2>
         <p class="subtitle">{{ car.location }}</p>
-        <div class="price-inquire price">
-          <p v-if="car.discount">
-            <span class="original-price"
-              ><del>{{ formatUsd(car.price) }}</del></span
-            >
-            {{ formatUsd(discountedPrice(car.price, car.discount)) }}
+      </div>
+      <div class="price-inquire">
+        <div class="price-wrapper">
+          <p v-if="car.discount" class="price">
+            <span class="original-price">
+              <del>{{ formatUsd(car.price) }}</del>
+            </span>
+            <span class="discounted-price">{{
+              formatUsd(discountedPrice(car.price, car.discount))
+            }}</span>
           </p>
           <p v-else class="price">{{ formatUsd(car.price) }}</p>
-          <RouterLink :to="`/checkout/${car.id}`">
-            <button @click="inquire" class="inquire-button">Inquire</button>
-          </RouterLink>
         </div>
+        <RouterLink :to="`/checkout/${car.id}`">
+          <button @click="inquire" class="inquire-button">Inquire</button>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -98,168 +116,257 @@ export default {
   padding: 10px 136px 0 136px;
 }
 
-.car-header .main-img {
-  width: auto;
-  height: 100%;
-  position: relative;
+.car-header {
+  padding: 10px 136px 0 136px;
 }
 
-.back-button {
-  display: flex;
-  align-items: center;
-  background-color: rgba(217, 217, 217, 0.7);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  padding: 0px 0px 0px 20px;
-  width: auto;
-}
-
-.back-button button {
-  font-family: Arial, Helvetica, sans-serif;
-  height: 60px;
-  text-align: left;
-  font-size: 20px;
-  font-weight: 500;
-  border: 10px;
-  background-color: rgba(217, 217, 217, 0);
-  cursor: pointer;
-}
-
-.router-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
+/* Image Section - Flexbox Layout */
 .image-section {
   display: flex;
-  justify-content: center;
-  padding: 10px 120px 0 120px;
-  column-gap: 10px;
+  flex-direction: row;
+  gap: 12px;
 }
 
-.large-image {
-  width: auto;
-  height: 498px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.small-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.small-gallery > img {
-  height: 244px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.overlay-container {
+/* Main Image */
+.main-image-wrapper {
+  flex: 1;
   position: relative;
 }
 
-.overlay-container > img {
-  height: 240px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.image-link {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.overlay-text {
-  display: flex;
-  position: absolute;
-  top: 49%;
-  left: 50%;
-  font-family: Arial, Helvetica, sans-serif;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  height: 240px;
+.main-image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Discount Badge */
+.discount-badge {
+  position: absolute;
+  bottom: 16px;
+  right: 0;
+  background: linear-gradient(135deg, #ff6f00, #ff8f00);
+  color: white;
+  padding: 10px 20px;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 4px 12px rgba(255, 111, 0, 0.4);
+}
+
+/* Thumbnail Gallery */
+.thumbnail-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+  flex: 1;
+}
+
+.thumbnail-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-image {
+  width: 100%;
+  height: 244px;
+  object-fit: cover;
+}
+
+/* View All Overlay */
+.overlay-link {
+  position: relative;
+}
+
+.view-all-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.overlay-link:hover .view-all-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.view-all-text {
+  color: white;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .image-section {
+    padding: 10px 60px 0 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .image-section {
+    flex-direction: column;
+    padding: 10px 40px 0 40px;
+  }
+
+  .thumbnail-gallery {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .thumbnail-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .car-header {
+    padding: 10px 20px 0 20px;
+  }
+
+  .image-section {
+    padding: 10px 0;
+  }
+
+  .main-image {
+    height: 350px;
+  }
+
+  .thumbnail-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .thumbnail-image {
+    height: 160px;
+  }
+}
+
+/* Price Section */
+.price-sec {
+  padding: 30px 0px 10px 0px;
+  background-color: #ffffff;
 }
 
 .car-details {
-  margin-top: 30px;
+  margin-bottom: 24px;
 }
 
-.car-details1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
+.title {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  margin: 0;
 }
 
 .price-inquire {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  column-gap: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
 }
 
-.text-content {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.title {
-  font-size: 30px;
-  font-weight: 600;
-  color: #000000;
-  margin: 0;
-}
-
-.subtitle {
-  font-size: 16px;
-  font-family: "Roboto";
-  color: #000000;
+.price-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .price {
-  font-size: 34px;
-  color: #090607;
-  font-weight: bold;
-  margin: 0;
-  font-family: "Inria Sans", serif;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 36px;
   font-weight: 700;
-  font-style: normal;
+  color: #111827;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .original-price {
-  font-size: 24px;
-  color: red;
+  font-size: 20px;
+  font-weight: 500;
+  color: #dc2626;
+}
+
+.discounted-price {
+  font-size: 36px;
+  font-weight: 700;
+  color: #111827;
 }
 
 .inquire-button {
-  display: inline-block;
-  background-color: #e63946;
+  font-family: "Rajdhani", sans-serif;
+  background-color: #dc2626;
   color: white;
-  height: 60px;
-  width: 220px;
+  height: 56px;
+  width: 200px;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 0px 16px 0px 16px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 6px;
 }
 
-.discount-tag {
-  position: absolute;
-  width: 100px;
-  height: 40px;
-  bottom: 20px;
-  right: 0;
-  color: white;
-  background-color: rgb(255, 111, 0);
-  font-family: "Inria Sans", serif;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 7px 0 0 7px;
+@media (max-width: 768px) {
+  .price-sec {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .discounted-price {
+    font-size: 28px;
+  }
+
+  .original-price {
+    font-size: 18px;
+  }
+
+  .price-inquire {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .inquire-button {
+    width: 100%;
+  }
 }
 </style>

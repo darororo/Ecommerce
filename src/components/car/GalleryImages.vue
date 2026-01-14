@@ -40,7 +40,7 @@ export default {
       </div>
       <div class="grid-main">
         <img
-          v-for="img in imageUrls.slice(0, 3)"
+          v-for="img in imageUrls.slice(2, 5)"
           :src="img"
           class="main-image"
         />
@@ -49,7 +49,7 @@ export default {
       </div>
       <div class="grid-footer">
         <img
-          v-for="img in imageUrls.slice(0, 2)"
+          v-for="img in imageUrls.slice(5, 7)"
           :src="img"
           class="footer-image"
         />
@@ -70,7 +70,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f8f9fa; /* Light background for contrast */
+  background-color: #ffffff;
 }
 
 /* Grid Container Styling */
@@ -84,6 +84,7 @@ export default {
   border-radius: 10px; /* Rounded corners */
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px; /* Subtle shadow */
   padding: 20px; /* Internal spacing */
+  margin-top: 50px;
 }
 
 /* Header Section */

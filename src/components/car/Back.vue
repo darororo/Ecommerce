@@ -17,28 +17,42 @@ export default {
 
 <style scoped>
 .back-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
-  background-color: rgba(217, 217, 217, 0.7);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  padding: 0px 0px 0px 20px;
-  width: auto;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 18px 16px;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
 .back-button button {
-  font-family: Arial, Helvetica, sans-serif;
-  height: 60px;
-  text-align: left;
+  font-family: "Rajdhani", sans-serif;
   font-size: 20px;
-  font-weight: 500;
-  border: 10px;
-  background-color: rgba(217, 217, 217, 0);
+  font-weight: 600;
+  color: #333;
+  background: transparent;
+  border: none;
   cursor: pointer;
+  padding: 0;
 }
 
-.router-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+.back-button :deep(svg) {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.back-button :deep(svg path) {
+  fill: #333;
 }
 </style>

@@ -1,11 +1,15 @@
 import { defineStore } from "pinia";
+import ferrariLanding from "@/assets/images/landing-bgs/ferrari/landing.png";
+import mercedesLanding from "@/assets/images/landing-bgs/mercedes/landing.png";
+import porscheLanding from "@/assets/images/landing-bgs/porsche/landing.png";
+import lamborghiniLanding from "@/assets/images/landing-bgs/lamborghini/landing.png";
+import bmwLanding from "@/assets/images/landing-bgs/bmw/landing.png";
 
 export const useBrandsStore = defineStore("brands", {
   state: () => ({
     brands: {
       ferrari: {
-        landingImg:
-          "/Ecommerce/src/assets/images/landing-bgs/ferrari/landing.png",
+        landingImg: ferrariLanding,
         cssGradient: "#fecaca",
         bgLetterColor: "black",
         carName: "Ferrari 817",
@@ -15,8 +19,7 @@ export const useBrandsStore = defineStore("brands", {
         thirdLink: "Portofino",
       },
       mercedes: {
-        landingImg:
-          "/Ecommerce/src/assets/images/landing-bgs/mercedes/landing.png",
+        landingImg: mercedesLanding,
         cssGradient: "#bfdbfe",
         bgLetterColor: "black",
         carName: "Mercedes AMG",
@@ -26,8 +29,7 @@ export const useBrandsStore = defineStore("brands", {
         thirdLink: "CLA",
       },
       porsche: {
-        landingImg:
-          "/Ecommerce/src/assets/images/landing-bgs/porsche/landing.png",
+        landingImg: porscheLanding,
         cssGradient: "#e5e7eb",
         bgLetterColor: "green",
         carName: "Porsche 911",
@@ -37,8 +39,7 @@ export const useBrandsStore = defineStore("brands", {
         thirdLink: "Boxster",
       },
       lamborghini: {
-        landingImg:
-          "/Ecommerce/src/assets/images/landing-bgs/lamborghini/landing.png",
+        landingImg: lamborghiniLanding,
         cssGradient: "#fbcfe8",
         bgLetterColor: "black",
         carName: "Lamborghini SVJ",
@@ -48,7 +49,7 @@ export const useBrandsStore = defineStore("brands", {
         thirdLink: "Venovo",
       },
       bmw: {
-        landingImg: "/Ecommerce/src/assets/images/landing-bgs/bmw/landing.png",
+        landingImg: bmwLanding,
         cssGradient: "#e5e7eb",
         bgLetterColor: "black",
         carName: "BMW M4",
