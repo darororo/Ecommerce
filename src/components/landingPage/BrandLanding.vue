@@ -44,22 +44,17 @@ export default {
 </script>
 
 <template>
-  <!-- <NavComponent
-    :bgColor="'transparent'"
-    :textColor="'black'"
-    :borderColor="'#C0C0C0'"
-  /> -->
   <div class="container-wrapper">
-    <span>{{ $route.params.brandName.toUpperCase() }}</span>
+    <span class="brand-name">{{ $route.params.brandName.toUpperCase() }}</span>
+    <RouterLink to="/">
+      <div class="return-home-page">
+        <button>
+          <Back />
+          <span>Back</span>
+        </button>
+      </div>
+    </RouterLink>
   </div>
-  <RouterLink to="/">
-    <div class="return-home-page">
-      <button>
-        <Back />
-        <span>Back</span>
-      </button>
-    </div>
-  </RouterLink>
   <section class="hero">
     <div class="hero-background">
       <span>{{ bgName }}</span>
@@ -96,15 +91,18 @@ export default {
   display: flex;
   justify-content: center;
   text-align: center;
-  /* padding-top: 116px; */
-}
-.container-wrapper span {
-  font-size: 32px;
-  letter-spacing: 4px;
   padding: 30px;
+  border: 1px solid #c0c0c0;
   background-color: white;
   width: 100%;
-  border: 1px solid #c0c0c0;
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+  /* padding-top: 116px; */
+}
+.brand-name {
+  font-size: 32px;
+  letter-spacing: 4px;
   font-family: "911Porscha", sans-serif;
 }
 .return-home-page {

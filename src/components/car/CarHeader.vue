@@ -66,7 +66,7 @@
           <p v-else class="price">{{ formatUsd(car.price) }}</p>
         </div>
         <RouterLink :to="`/checkout/${car.id}`">
-          <button @click="inquire" class="inquire-button">Inquire</button>
+          <button @click="inquire" class="inquire-button">Reserve Now</button>
         </RouterLink>
       </div>
     </div>
@@ -330,12 +330,12 @@ export default {
   background-color: #dc2626;
   color: white;
   height: 56px;
-  width: 200px;
+  width: 300px;
   border: none;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {

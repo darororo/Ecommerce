@@ -1,13 +1,25 @@
 <template>
   <div v-if="showCustomer" class="container">
-    <div class="row-scroll-wrapper">
-      <div class="customer-completed">
-        <span>1</span>
-        <label>Customer Details</label>
+    <div class="checkout-steps">
+      <div class="step active">
+        <div class="step-circle">
+          <span class="step-number">1</span>
+        </div>
+        <span class="step-label">Deposit</span>
       </div>
-      <div class="payment-completed">
-        <span>2</span>
-        <label>Payment</label>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-number">2</span>
+        </div>
+        <span class="step-label">Customer Details</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-number">3</span>
+        </div>
+        <span class="step-label">Payment</span>
       </div>
     </div>
     <div class="collapse-item">
@@ -20,7 +32,9 @@
             formatUsd(discountedPrice(car.price, car.discount))
           }}</span>
           <span v-else>{{ formatUsd(car.price) }}</span>
-          <span>From {{ formatUsd(mapCarLoan[$route.params.carId]) }}/month</span>
+          <span
+            >From {{ formatUsd(mapCarLoan[$route.params.carId]) }}/month</span
+          >
         </div>
       </div>
     </div>
@@ -37,7 +51,8 @@
           </select>
         </div>
         <div class="select-fill-content">
-          <span>First Name*</span> <span class="text-error">{{ errors.firstname }}</span>
+          <span>First Name*</span>
+          <span class="text-error">{{ errors.firstname }}</span>
           <input v-model="firstname" v-bind="firstnameProps" type="text" />
         </div>
       </div>
@@ -45,7 +60,8 @@
     <div>
       <div class="row-select-fill">
         <div class="select-fill-content">
-          <span>Last Name*</span> <span class="text-error">{{ errors.lastname }}</span>
+          <span>Last Name*</span>
+          <span class="text-error">{{ errors.lastname }}</span>
           <input v-model="lastname" v-bind="lastnameProps" type="text" />
         </div>
         <div class="select-fill-content">
@@ -57,7 +73,8 @@
     <div>
       <div class="row-select-fill">
         <div class="select-fill-content">
-          <span>Date of Birth*</span> <span class="text-error">{{ errors.dob }}</span>
+          <span>Date of Birth*</span>
+          <span class="text-error">{{ errors.dob }}</span>
           <input v-model="dob" v-bind="dobProps" type="date" />
         </div>
         <div class="select-fill-content">
@@ -93,7 +110,11 @@
               <span class="phone-icon">+</span>
               <input type="text" placeholder="855" />
             </div>
-            <input type="text" class="phone-number" placeholder="Phone number" />
+            <input
+              type="text"
+              class="phone-number"
+              placeholder="Phone number"
+            />
           </div>
         </div>
         <div class="select-fill-content">
@@ -121,7 +142,7 @@ export default {
     const emailValidator = string().required("Email is required").email();
     const firsnameValidator = string().required("First name is required");
     const lastnameValidator = string().required("Last name is required");
-    const dobValidator = date().max(new Date(), "You are lying")
+    const dobValidator = date().max(new Date(), "You are lying");
     const cityValidator = string().required("City is required");
 
     const { defineField, errors } = useForm({
@@ -150,7 +171,7 @@ export default {
       emailProps,
       dob,
       dobProps,
-    }
+    };
   },
   data() {
     return {
@@ -207,56 +228,73 @@ export default {
   padding: 10px 136px 100px 136px;
 }
 
-.row-scroll-wrapper {
+.checkout-steps {
   display: flex;
   align-items: center;
-  gap: 40px;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
-.customer-completed {
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 20px 0px 20px 0px;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.customer-completed span {
-  background-color: black;
-  color: white;
-  padding: 6px 11px;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 100%;
+.step.active .step-circle {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border: 2px solid #dc2626;
 }
 
-.customer-completed label {
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-}
-
-.payment-completed {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 0px 20px 0px;
-}
-
-.payment-completed span {
+.step .step-circle {
   background-color: transparent;
-  color: gray;
-  border: 1px solid gray;
-  padding: 4px 9px;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 100%;
+  border: 2px solid #ccc;
 }
 
-.payment-completed label {
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+.step-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.step.active .step-number {
+  color: #fff;
+}
+
+.step .step-number {
+  color: #666;
+}
+
+.step-label {
+  font-size: 14px;
   font-weight: 500;
-  color: gray;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.step.active .step-label {
+  color: #000;
+  font-weight: 600;
+}
+
+.step-connector {
+  width: 60px;
+  height: 2px;
+  background-color: #e0e0e0;
+  flex-shrink: 0;
 }
 
 .collapse-item {
@@ -360,18 +398,17 @@ h3 {
   border-color: #000000;
 }
 
-.select-fill-content>span {
+.select-fill-content > span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #333;
 }
 
-
-.select-fill-content>.text-error {
+.select-fill-content > .text-error {
   color: red;
 }
 
-.select-fill-content>.border-error {
+.select-fill-content > .border-error {
   border-color: red;
 }
 
@@ -406,7 +443,7 @@ h3 {
   font-size: 14px;
 }
 
-.fill-telephone>.phone-number {
+.fill-telephone > .phone-number {
   width: 100%;
 }
 </style>

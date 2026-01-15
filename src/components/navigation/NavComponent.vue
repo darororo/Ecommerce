@@ -19,7 +19,7 @@
             placeholder="Search"></input>
         </div>
       </div>
-      <LoginButton :textColor="textColor" :borderColor="scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)'" />
+      <LoginButton :textColor="textColor" :borderColor="textColor === 'black' ? (scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.6)') : (scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)')" />
     </div>
 
     <div class="brand-navs">

@@ -3,26 +3,51 @@
     <Back />
   </div>
   <div v-if="showReserve" class="wrapper-content">
+    <div class="checkout-steps">
+      <div class="step active">
+        <div class="step-circle">
+          <span class="step-number">1</span>
+        </div>
+        <span class="step-label">Deposit</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-number">2</span>
+        </div>
+        <span class="step-label">Customer Details</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-circle">
+          <span class="step-number">3</span>
+        </div>
+        <span class="step-label">Payment</span>
+      </div>
+    </div>
     <div class="image-wrapper">
       <!-- <img
         src="/Ecommerce/src/assets/images/products/Ferrari-Laferrari/car1.png"
         alt="Ferrari LaFerrari 2017"
       /> -->
       <img :src="imageUrl" :alt="imageUrl" />
-      <div>
+      <div class="car-info-section">
         <h1>{{ car.model }}</h1>
-        <div class="span-content">
-          <span>{{ car.status }}</span>
-          <span>{{ car.location }}</span>
+        <div class="car-details">
+          <span class="car-status">{{ car.status }}</span>
+          <span class="car-location">{{ car.location }}</span>
         </div>
-        <div class="price-name-content">
-          <span>Price</span>
-          <!-- <h3>{{ formatUsd(car.price) }}</h3> -->
-          <h3 v-if="car.discount">
-            <span class="original-price"><del>{{ formatUsd(car.price) }}</del></span>
-            {{ formatUsd(discountedPrice(car.price, car.discount)) }}
-          </h3>
-          <h3 v-else class="price">{{ formatUsd(car.price) }}</h3>
+        <div class="price-section">
+          <span class="price-label">Price</span>
+          <div class="price-display">
+            <h3 v-if="car.discount" class="discounted-price">
+              <span class="original-price">
+                <del>{{ formatUsd(car.price) }}</del>
+              </span>
+              {{ formatUsd(discountedPrice(car.price, car.discount)) }}
+            </h3>
+            <h3 v-else class="regular-price">{{ formatUsd(car.price) }}</h3>
+          </div>
         </div>
       </div>
     </div>
@@ -157,8 +182,8 @@ export default {
 
     ...mapState(useAuthStore, {
       disableNext(store) {
-        return store.disableCheckoutNext
-      }
+        return store.disableCheckoutNext;
+      },
     }),
     monthlyPayment() {
       let loan =
@@ -175,7 +200,7 @@ export default {
 
 <style scoped>
 .back-btn {
-  padding-bottom: 20px;
+  padding-bottom: 80px;
 }
 
 .wrapper-content {
@@ -185,21 +210,28 @@ export default {
 .image-wrapper {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 40px;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
 }
 
-.image-wrapper>img {
+.image-wrapper > img {
   height: auto;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  width: 45%;
+  min-width: 300px;
+  object-fit: cover;
 }
 
 .container-fill-content {
@@ -216,7 +248,7 @@ h1 {
   font-size: 15px;
   padding: 20px 0px 30px 0px;
   color: #555;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .price-name-content {
@@ -227,10 +259,10 @@ h1 {
   word-spacing: 10px;
 }
 
-.price-name-content>span {
+.price-name-content > span {
   font-size: 16px;
   color: #333;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .price-name-content h3 {
@@ -238,7 +270,79 @@ h1 {
   font-weight: 600;
   margin: 0;
   color: #333;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.car-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.car-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.car-status {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.car-location {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  margin-top: 8px;
+}
+
+.price-label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-display h3 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.original-price {
+  font-size: 18px;
+  font-weight: 500;
+  color: #dc2626;
+}
+
+.original-price del {
+  color: #dc2626;
 }
 
 .row-select-fill {
@@ -276,7 +380,7 @@ h1 {
   border-color: #000000;
 }
 
-.select-fill-content>span {
+.select-fill-content > span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #333;
@@ -308,7 +412,7 @@ h1 {
   font-weight: bolder;
 }
 
-.select-fill-reserve>span {
+.select-fill-reserve > span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #000000;
@@ -363,5 +467,164 @@ h1 {
 .original-price {
   font-size: 20px;
   color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .image-wrapper {
+    gap: 30px;
+    padding-bottom: 30px;
+  }
+
+  .image-wrapper > img {
+    width: 50%;
+    min-width: 250px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .price-display h3 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 20px 30px 20px;
+    align-items: center;
+  }
+
+  .image-wrapper > img {
+    width: 100%;
+    max-width: 400px;
+    min-width: unset;
+  }
+
+  .car-info-section {
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .car-details {
+    gap: 6px;
+  }
+
+  .price-section {
+    padding: 20px 0;
+    gap: 8px;
+  }
+
+  .price-display h3 {
+    font-size: 22px;
+    justify-content: center;
+  }
+
+  .original-price {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-wrapper {
+    padding: 0 15px 20px 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .price-display h3 {
+    font-size: 20px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .car-status {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .car-location {
+    font-size: 14px;
+  }
+}
+
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-circle {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border: 2px solid #dc2626;
+}
+
+.step .step-circle {
+  background-color: transparent;
+  border: 2px solid #ccc;
+}
+
+.step-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.step.active .step-number {
+  color: #fff;
+}
+
+.step .step-number {
+  color: #666;
+}
+
+.step-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.step.active .step-label {
+  color: #000;
+  font-weight: 600;
+}
+
+.step-connector {
+  width: 60px;
+  height: 2px;
+  background-color: #e0e0e0;
+  flex-shrink: 0;
 }
 </style>

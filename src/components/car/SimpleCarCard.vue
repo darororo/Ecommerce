@@ -1,24 +1,26 @@
 <template>
   <div class="card">
     <div class="wrapper">
+      <div class="left-section">
+        <div class="details">
+          <h3 class="model-name">{{ model }}</h3>
+          <p class="price">{{ price }}</p>
+        </div>
+
+        <button class="reserve-btn" @click="reserveCar(id)">Reserve Now</button>
+
+        <div class="actions">
+          <button class="details-btn" @click="goToProduct(id)">
+            View Detail
+          </button>
+          <button class="delete-btn" @click="removeBookmark(id)">
+            Remove Card
+          </button>
+        </div>
+      </div>
+
       <div class="image-container">
         <img class="bm-img" :src="image" :alt="model" />
-      </div>
-
-      <div class="details">
-        <h3 class="model-name">{{ model }}</h3>
-        <p class="price">{{ price }}</p>
-      </div>
-
-      <div class="actions">
-        <button class="details-btn" @click="goToProduct(id)">
-          <Icon icon="mdi:eye" class="btn-icon" />
-          More Details
-        </button>
-        <button class="delete-btn" @click="removeBookmark(id)">
-          <Icon icon="mdi:delete" class="btn-icon" />
-          Remove
-        </button>
       </div>
     </div>
   </div>
@@ -27,12 +29,8 @@
 <script>
 import { mapState } from "pinia";
 import { useUsersStore } from "../../stores/users";
-import { Icon } from "@iconify/vue";
 
 export default {
-  components: {
-    Icon,
-  },
   props: {
     model: String,
     price: String,
@@ -42,6 +40,10 @@ export default {
   methods: {
     goToProduct(id) {
       this.$router.push(`/car/${id}`);
+    },
+    reserveCar(id) {
+      // Handle reserve action - could navigate to checkout or show modal
+      this.$router.push(`/checkout/${id}`);
     },
   },
   computed: {
@@ -54,6 +56,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
 .card {
   width: 100%;
   max-width: 938px;
@@ -73,31 +76,34 @@ export default {
   gap: 24px;
 }
 
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
 .image-container {
   flex-shrink: 0;
 }
 
 .bm-img {
-  width: 160px;
-  height: 100px;
+  width: 320px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
 }
 
-.card:hover .bm-img {
-  transform: scale(1.02);
-}
-
 .details {
-  flex-grow: 1;
-  padding: 0 20px;
+  padding: 0;
   min-width: 0;
 }
 
 .model-name {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   margin: 0 0 8px 0;
   font-family: "Inria Sans", sans-serif;
@@ -107,7 +113,7 @@ export default {
 }
 
 .price {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: red;
   margin: 0;
@@ -116,60 +122,72 @@ export default {
 
 .actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
   flex-shrink: 0;
 }
 
 .details-btn,
 .delete-btn {
-  padding: 12px 20px;
-  font-size: 14px;
+  padding: 0;
+  font-size: 18px;
   font-weight: 500;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  font-family: "Roboto Serif", serif;
+  font-family: "Rajdhani", sans-serif;
   transition: all 0.2s ease;
-  min-width: 120px;
+  min-width: 90px;
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.btn-icon {
-  font-size: 16px;
 }
 
 .details-btn {
-  background-color: #f8fafc;
+  background-color: transparent;
   color: #374151;
-  border: 1px solid #e5e7eb;
+  border: none;
+  padding: 0 !important;
 }
 
 .details-btn:hover {
-  background-color: #f1f5f9;
-  border-color: #d1d5db;
-  transform: translateY(-1px);
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+}
+
+.reserve-btn {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: 76%;
+  text-align: center;
+  margin: 8px 0;
+  border-radius: 2px;
+}
+
+.reserve-btn:hover {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
 }
 
 .delete-btn {
-  background-color: #ef4444;
-  color: #ffffff;
-  border: 1px solid #dc2626;
+  background-color: transparent;
+  color: #1f2937;
+  border: none;
 }
 
 .delete-btn:hover {
-  background-color: #dc2626;
-  border-color: #b91c1c;
-  transform: translateY(-1px);
+  background-color: rgba(31, 41, 55, 0.1);
+  color: #111827;
 }
 
 .details-btn:active,
 .delete-btn:active {
-  transform: translateY(0);
+  opacity: 0.8;
 }
 
 /* Responsive design */
@@ -198,8 +216,8 @@ export default {
   }
 
   .bm-img {
-    width: 200px;
-    height: 120px;
+    width: 360px;
+    height: 225px;
   }
 }
 </style>
